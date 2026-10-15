@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- 處理形狀未定的原始 JSON */
 // 由 2026 真實 fixtures 產生 Play-In 合成情境：fixtures/synthetic/playin-*.json
 // 執行：node scripts/make-synthetic.ts
 // 注意：第 3/4 場刻意讓「時間較早的那場」為敗部首輪，驗證判定不依賴 id/時間順序

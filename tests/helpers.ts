@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- 處理形狀未定的原始 JSON */
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import type { ApiTournament } from "../lib/api-types";

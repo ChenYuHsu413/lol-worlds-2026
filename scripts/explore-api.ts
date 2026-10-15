@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- 處理形狀未定的原始 JSON */
 // 探索 LoL Esports 非官方 API，將實際回應存成 fixtures/*.json
 // 執行：node scripts/explore-api.ts（Node 22.18+ 原生支援 TS type stripping）
 
