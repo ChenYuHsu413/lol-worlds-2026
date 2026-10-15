@@ -42,3 +42,6 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# 手機截圖（scripts/mobile-shots.ts 產出）
+/screenshots
