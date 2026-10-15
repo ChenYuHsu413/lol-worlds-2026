@@ -1,0 +1,244 @@
+{
+  "data": {
+    "teams": [
+      {
+        "id": "98767991853197861",
+        "slug": "t1",
+        "name": "T1",
+        "code": "T1",
+        "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+        "backgroundImage": "http://static.lolesports.com/teams/1596305556675_T1T1.png",
+        "status": "active",
+        "homeLeague": {
+          "name": "LCK",
+          "region": "韓國"
+        }
+      },
+      {
+        "id": "99566404848691211",
+        "slug": "invictus-gaming",
+        "name": "Invictus Gaming",
+        "code": "IG",
+        "image": "http://static.lolesports.com/teams/1634762917340_300px-Invictus_Gaming_logo.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1592591780362_InvictusGamingIG-03-FullonLight.png",
+        "backgroundImage": "https://lolstatic-a.akamaihd.net/esports-assets/production/team/invictus-gaming-ijpwreew.png",
+        "status": "active",
+        "homeLeague": {
+          "name": "LPL",
+          "region": "中國"
+        }
+      },
+      {
+        "id": "99566408219409348",
+        "slug": "vivo-keyd",
+        "name": "Vivo Keyd Stars",
+        "code": "VKS",
+        "image": "http://static.lolesports.com/teams/1670542079678_vks.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1670541584344_vks.png",
+        "backgroundImage": null,
+        "status": "active",
+        "homeLeague": {
+          "name": "CBLOL",
+          "region": "巴西"
+        }
+      },
+      {
+        "id": "113661839307879869",
+        "slug": "team-secret-whales",
+        "name": "Team Secret Whales",
+        "code": "TSW",
+        "image": "http://static.lolesports.com/teams/1774598000328_White_EyeText_600p.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1774598000328_White_EyeText_600p.png",
+        "backgroundImage": null,
+        "status": "active",
+        "homeLeague": {
+          "name": "LCP",
+          "region": "太平洋"
+        }
+      },
+      {
+        "id": "98767991866488695",
+        "slug": "fnatic",
+        "name": "Fnatic",
+        "code": "FNC",
+        "image": "http://static.lolesports.com/teams/1631819669150_fnc-2021-worlds.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1592591295310_FnaticFNC-03-FullonLight.png",
+        "backgroundImage": "http://static.lolesports.com/teams/1632941274242_FNC.png",
+        "status": "active",
+        "homeLeague": {
+          "name": "LEC",
+          "region": "歐洲、中東與非洲"
+        }
+      },
+      {
+        "id": "107700199633958891",
+        "slug": "ctbc-flying-oyster",
+        "name": "CTBC Flying Oyster",
+        "code": "CFO",
+        "image": "http://static.lolesports.com/teams/1656307849320_CFO_Logo.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1656307849321_CFO_Logo.png",
+        "backgroundImage": null,
+        "status": "active",
+        "homeLeague": {
+          "name": "LCP",
+          "region": "太平洋"
+        }
+      },
+      {
+        "id": "103461966965149786",
+        "slug": "mad-lions",
+        "name": "Movistar KOI",
+        "code": "MKOI",
+        "image": "http://static.lolesports.com/teams/1734012609283_MKOI_FullColor_Blue.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1734012609284_MKOI_FullColor_Blue.png",
+        "backgroundImage": null,
+        "status": "active",
+        "homeLeague": {
+          "name": "LEC",
+          "region": "歐洲、中東與非洲"
+        }
+      },
+      {
+        "id": "99566404579461230",
+        "slug": "kt-rolster",
+        "name": "kt Rolster",
+        "code": "KT",
+        "image": "http://static.lolesports.com/teams/kt_darkbackground.png",
+        "alternativeImage": "http://static.lolesports.com/teams/kt_whitebackground.png",
+        "backgroundImage": null,
+        "status": "active",
+        "homeLeague": {
+          "name": "LCK",
+          "region": "韓國"
+        }
+      },
+      {
+        "id": "99294153828264740",
+        "slug": "100-thieves",
+        "name": "100 Thieves",
+        "code": "100T",
+        "image": "http://static.lolesports.com/teams/1631819887423_100t-2021-worlds.png",
+        "alternativeImage": null,
+        "backgroundImage": "http://static.lolesports.com/teams/1633026249718_100Thieves100.png",
+        "status": "archived",
+        "homeLeague": {
+          "name": "LTA North",
+          "region": "美洲"
+        }
+      },
+      {
+        "id": "99566404853854212",
+        "slug": "bilibili-gaming",
+        "name": "BILIBILI GAMING",
+        "code": "BLG",
+        "image": "http://static.lolesports.com/teams/1682322954525_Bilibili_Gaming_logo_20211.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1682322954527_Bilibili_Gaming_logo_20211.png",
+        "backgroundImage": null,
+        "status": "active",
+        "homeLeague": {
+          "name": "LPL",
+          "region": "中國"
+        }
+      },
+      {
+        "id": "98926509892121852",
+        "slug": "flyquest",
+        "name": "FlyQuest",
+        "code": "FLY",
+        "image": "http://static.lolesports.com/teams/flyquest-new-on-dark.png",
+        "alternativeImage": "http://static.lolesports.com/teams/flyquest-new-on-dark.png",
+        "backgroundImage": null,
+        "status": "active",
+        "homeLeague": {
+          "name": "LCS",
+          "region": "北美洲"
+        }
+      },
+      {
+        "id": "99566404856367466",
+        "slug": "anyones-legend",
+        "name": "Anyone's Legend",
+        "code": "AL",
+        "image": "http://static.lolesports.com/teams/1641199582689_.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1641199582691_.png",
+        "backgroundImage": null,
+        "status": "active",
+        "homeLeague": {
+          "name": "LPL",
+          "region": "中國"
+        }
+      },
+      {
+        "id": "100205573496804586",
+        "slug": "hanwha-life-esports",
+        "name": "Hanwha Life Esports",
+        "code": "HLE",
+        "image": "http://static.lolesports.com/teams/1631819564399_hle-2021-worlds.png",
+        "alternativeImage": "http://static.lolesports.com/teams/hle-2021-color-on-light2.png",
+        "backgroundImage": "https://lolstatic-a.akamaihd.net/esports-assets/production/team/hanwha-life-esports-7kh5kjdc.png",
+        "status": "active",
+        "homeLeague": {
+          "name": "LCK",
+          "region": "韓國"
+        }
+      },
+      {
+        "id": "99566404854685458",
+        "slug": "top-esports",
+        "name": "TOP ESPORTS",
+        "code": "TES",
+        "image": "http://static.lolesports.com/teams/1592592064571_TopEsportsTES-01-FullonDark.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1592592064573_TopEsportsTES-03-FullonLight.png",
+        "backgroundImage": "https://lolstatic-a.akamaihd.net/esports-assets/production/team/top-esports-i4rk4nr3.png",
+        "status": "active",
+        "homeLeague": {
+          "name": "LPL",
+          "region": "中國"
+        }
+      },
+      {
+        "id": "98767991926151025",
+        "slug": "g2-esports",
+        "name": "G2 Esports",
+        "code": "G2",
+        "image": "http://static.lolesports.com/teams/G2-FullonDark.png",
+        "alternativeImage": "http://static.lolesports.com/teams/G2-FullonLight.png",
+        "backgroundImage": "http://static.lolesports.com/teams/G2.png",
+        "status": "active",
+        "homeLeague": {
+          "name": "LEC",
+          "region": "歐洲、中東與非洲"
+        }
+      },
+      {
+        "id": "104367068120825486",
+        "slug": "psg-talon",
+        "name": "PSG Talon",
+        "code": "PSG",
+        "image": "http://static.lolesports.com/teams/1752559016251_PSG_TALON_COLOR.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1752559016251_PSG_TALON_COLOR.png",
+        "backgroundImage": null,
+        "status": "active",
+        "homeLeague": {
+          "name": "LCP",
+          "region": "太平洋"
+        }
+      },
+      {
+        "id": "100205573495116443",
+        "slug": "geng",
+        "name": "Gen.G Esports",
+        "code": "GEN",
+        "image": "http://static.lolesports.com/teams/1773829250929_GENGLOGO_GOLD.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1773829250929_GENGLOGO_GOLD.png",
+        "backgroundImage": "https://lolstatic-a.akamaihd.net/esports-assets/production/team/geng-bnm75bf5.png",
+        "status": "active",
+        "homeLeague": {
+          "name": "LCK",
+          "region": "韓國"
+        }
+      }
+    ]
+  }
+}

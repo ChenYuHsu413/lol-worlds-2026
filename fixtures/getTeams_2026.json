@@ -1,0 +1,62 @@
+{
+  "data": {
+    "teams": [
+      {
+        "id": "100205576309502431",
+        "slug": "furia",
+        "name": "FURIA",
+        "code": "FUR",
+        "image": "http://static.lolesports.com/teams/FURIA---black.png",
+        "alternativeImage": "http://static.lolesports.com/teams/FURIA---black.png",
+        "backgroundImage": "http://static.lolesports.com/teams/FuriaUppercutFUR.png",
+        "status": "active",
+        "homeLeague": {
+          "name": "CBLOL",
+          "region": "巴西"
+        }
+      },
+      {
+        "id": "107251245690956393",
+        "slug": "saigon-buffalo-esports",
+        "name": "MVK Esports",
+        "code": "MVK",
+        "image": "http://static.lolesports.com/teams/1767089709161_White_Logo.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1767089709161_Orange_Black_Logo.png",
+        "backgroundImage": null,
+        "status": "active",
+        "homeLeague": {
+          "name": "LCP",
+          "region": "太平洋"
+        }
+      },
+      {
+        "id": "98767991877340524",
+        "slug": "cloud9",
+        "name": "Cloud9 Kia",
+        "code": "C9",
+        "image": "http://static.lolesports.com/teams/1736924120254_C9Kia_IconBlue_Transparent_2000x2000.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1736924120255_C9Kia_IconBlue_Transparent_2000x2000.png",
+        "backgroundImage": "https://lolstatic-a.akamaihd.net/esports-assets/production/team/cloud9-9vnfum22.png",
+        "status": "active",
+        "homeLeague": {
+          "name": "LCS",
+          "region": "北美洲"
+        }
+      },
+      {
+        "id": "111692118851466302",
+        "slug": "karmine-corp",
+        "name": "Karmine Corp",
+        "code": "KC",
+        "image": "http://static.lolesports.com/teams/1704714951336_KC.png",
+        "alternativeImage": "http://static.lolesports.com/teams/1704714951337_KC.png",
+        "backgroundImage": null,
+        "status": "active",
+        "homeLeague": {
+          "name": "LEC",
+          "region": "歐洲、中東與非洲"
+        }
+      }
+    ]
+  }
+}

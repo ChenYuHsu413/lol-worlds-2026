@@ -1,0 +1,6219 @@
+{
+  "data": {
+    "schedule": {
+      "events": [
+        {
+          "startTime": "2025-10-14T08:00:00Z",
+          "blockName": "入圍賽淘汰賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475493522079909",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "T1",
+                "code": "T1",
+                "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+                "result": {
+                  "gameWins": 3
+                }
+              },
+              {
+                "name": "Invictus Gaming",
+                "code": "IG",
+                "image": "http://static.lolesports.com/teams/1634762917340_300px-Invictus_Gaming_logo.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 5
+            }
+          },
+          "games": [
+            {
+              "id": "113475493522342054",
+              "vods": [
+                {
+                  "parameter": "-lc9kTCt48Y"
+                },
+                {
+                  "parameter": "2591455042"
+                },
+                {
+                  "parameter": "bAwqhKHo7RE"
+                },
+                {
+                  "parameter": "nOa2PKNdNVY"
+                },
+                {
+                  "parameter": "8t2J1kycs40"
+                },
+                {
+                  "parameter": "MZaGD7W8U1A"
+                },
+                {
+                  "parameter": "P2JfDZYnk5k"
+                },
+                {
+                  "parameter": "2591473415"
+                },
+                {
+                  "parameter": "174850471"
+                },
+                {
+                  "parameter": "2591470342"
+                },
+                {
+                  "parameter": "APbR9jgCrC0"
+                },
+                {
+                  "parameter": "2591468535"
+                },
+                {
+                  "parameter": "tapgcEfyB-k"
+                },
+                {
+                  "parameter": "2591477165"
+                },
+                {
+                  "parameter": "2591473569"
+                },
+                {
+                  "parameter": "d1cnOa42HzM"
+                },
+                {
+                  "parameter": "2591478317"
+                }
+              ]
+            },
+            {
+              "id": "113475493522604199",
+              "vods": [
+                {
+                  "parameter": "-lc9kTCt48Y"
+                },
+                {
+                  "parameter": "2591455042"
+                },
+                {
+                  "parameter": "lUtentM1iwA"
+                },
+                {
+                  "parameter": "mOE4v7Juzzg"
+                },
+                {
+                  "parameter": "WhiLhUl-y44"
+                },
+                {
+                  "parameter": "MZaGD7W8U1A"
+                },
+                {
+                  "parameter": "G7gGVVhD70A"
+                },
+                {
+                  "parameter": "2591473415"
+                },
+                {
+                  "parameter": "174855773"
+                },
+                {
+                  "parameter": "2591470342"
+                },
+                {
+                  "parameter": "APbR9jgCrC0"
+                },
+                {
+                  "parameter": "2591468535"
+                },
+                {
+                  "parameter": "tapgcEfyB-k"
+                },
+                {
+                  "parameter": "2591477165"
+                },
+                {
+                  "parameter": "2591473569"
+                },
+                {
+                  "parameter": "vKSHsxzSbd4"
+                },
+                {
+                  "parameter": "2591478317"
+                }
+              ]
+            },
+            {
+              "id": "113475493522604200",
+              "vods": [
+                {
+                  "parameter": "-lc9kTCt48Y"
+                },
+                {
+                  "parameter": "2591455042"
+                },
+                {
+                  "parameter": "Nn4a_IPfgBo"
+                },
+                {
+                  "parameter": "mjx9FUzh5Nc"
+                },
+                {
+                  "parameter": "qPme0ODKRwo"
+                },
+                {
+                  "parameter": "MZaGD7W8U1A"
+                },
+                {
+                  "parameter": "bkYXkUuDOsU"
+                },
+                {
+                  "parameter": "2591473415"
+                },
+                {
+                  "parameter": "174861801"
+                },
+                {
+                  "parameter": "2591470342"
+                },
+                {
+                  "parameter": "APbR9jgCrC0"
+                },
+                {
+                  "parameter": "2591468535"
+                },
+                {
+                  "parameter": "tapgcEfyB-k"
+                },
+                {
+                  "parameter": "2591477165"
+                },
+                {
+                  "parameter": "2591473569"
+                },
+                {
+                  "parameter": "d_FVDWHftUM"
+                },
+                {
+                  "parameter": "2591478317"
+                }
+              ]
+            },
+            {
+              "id": "113475493522604201",
+              "vods": [
+                {
+                  "parameter": "-lc9kTCt48Y"
+                },
+                {
+                  "parameter": "2591455042"
+                },
+                {
+                  "parameter": "laYAlhoMGPM"
+                },
+                {
+                  "parameter": "ac7zWzvh-uY"
+                },
+                {
+                  "parameter": "vHNB0LHd9tY"
+                },
+                {
+                  "parameter": "MZaGD7W8U1A"
+                },
+                {
+                  "parameter": "qzXbL8AqWow"
+                },
+                {
+                  "parameter": "2591473415"
+                },
+                {
+                  "parameter": "174870337"
+                },
+                {
+                  "parameter": "2591470342"
+                },
+                {
+                  "parameter": "APbR9jgCrC0"
+                },
+                {
+                  "parameter": "2591468535"
+                },
+                {
+                  "parameter": "tapgcEfyB-k"
+                },
+                {
+                  "parameter": "2591477165"
+                },
+                {
+                  "parameter": "2591473569"
+                },
+                {
+                  "parameter": "wbFyf0rlY1U"
+                },
+                {
+                  "parameter": "2591478317"
+                }
+              ]
+            },
+            {
+              "id": "113475493522604202",
+              "vods": []
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-15T05:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006599034",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Vivo Keyd Stars",
+                "code": "VKS",
+                "image": "http://static.lolesports.com/teams/1670542079678_vks.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "Team Secret Whales",
+                "code": "TSW",
+                "image": "http://static.lolesports.com/teams/1774598000328_White_EyeText_600p.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006599035",
+              "vods": [
+                {
+                  "parameter": "2592249086"
+                },
+                {
+                  "parameter": "2592250623"
+                },
+                {
+                  "parameter": "7WO9NOl-ASg"
+                },
+                {
+                  "parameter": "-luzRS4mjjQ"
+                },
+                {
+                  "parameter": "AXOlmjfcr5o"
+                },
+                {
+                  "parameter": "do3ORf-bvhU"
+                },
+                {
+                  "parameter": "FH-wt_BeUZI"
+                },
+                {
+                  "parameter": "2592248853"
+                },
+                {
+                  "parameter": "174935453"
+                },
+                {
+                  "parameter": "h2QGCJOKFKE"
+                },
+                {
+                  "parameter": "PaoMLXpuuRA"
+                },
+                {
+                  "parameter": "2592235041"
+                },
+                {
+                  "parameter": "ugRtApIIDII"
+                },
+                {
+                  "parameter": "2592252190"
+                },
+                {
+                  "parameter": "2592247556"
+                },
+                {
+                  "parameter": "LeX96S8xRRA"
+                },
+                {
+                  "parameter": "IOfexZkJ8Fk"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-15T06:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664572",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Fnatic",
+                "code": "FNC",
+                "image": "http://static.lolesports.com/teams/1631819669150_fnc-2021-worlds.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "CTBC Flying Oyster",
+                "code": "CFO",
+                "image": "http://static.lolesports.com/teams/1656307849320_CFO_Logo.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664573",
+              "vods": [
+                {
+                  "parameter": "2592249086"
+                },
+                {
+                  "parameter": "2592250623"
+                },
+                {
+                  "parameter": "hY7IuDfsKNs"
+                },
+                {
+                  "parameter": "YLvvwLvHaVs"
+                },
+                {
+                  "parameter": "0Oa9LZED4WY"
+                },
+                {
+                  "parameter": "pmegpSvgh44"
+                },
+                {
+                  "parameter": "BCD_g8VBdNk"
+                },
+                {
+                  "parameter": "2592248853"
+                },
+                {
+                  "parameter": "174938525"
+                },
+                {
+                  "parameter": "h2QGCJOKFKE"
+                },
+                {
+                  "parameter": "nqjKGXYNJZ4"
+                },
+                {
+                  "parameter": "2592235041"
+                },
+                {
+                  "parameter": "ugRtApIIDII"
+                },
+                {
+                  "parameter": "2592252190"
+                },
+                {
+                  "parameter": "2592247556"
+                },
+                {
+                  "parameter": "3lpcuMswuRo"
+                },
+                {
+                  "parameter": "IOfexZkJ8Fk"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-15T07:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664574",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Movistar KOI",
+                "code": "MKOI",
+                "image": "http://static.lolesports.com/teams/1734012609283_MKOI_FullColor_Blue.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "kt Rolster",
+                "code": "KT",
+                "image": "http://static.lolesports.com/teams/kt_darkbackground.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664575",
+              "vods": [
+                {
+                  "parameter": "2592249086"
+                },
+                {
+                  "parameter": "2592250623"
+                },
+                {
+                  "parameter": "j4BsUdHj2BU"
+                },
+                {
+                  "parameter": "12hWKJ_jIuA"
+                },
+                {
+                  "parameter": "mKhe1eojKds"
+                },
+                {
+                  "parameter": "EBSVB0Om0Rs"
+                },
+                {
+                  "parameter": "HRTvmZU9Dyc"
+                },
+                {
+                  "parameter": "2592248853"
+                },
+                {
+                  "parameter": "174942159"
+                },
+                {
+                  "parameter": "h2QGCJOKFKE"
+                },
+                {
+                  "parameter": "nqjKGXYNJZ4"
+                },
+                {
+                  "parameter": "2592235041"
+                },
+                {
+                  "parameter": "ugRtApIIDII"
+                },
+                {
+                  "parameter": "2592252190"
+                },
+                {
+                  "parameter": "2592247556"
+                },
+                {
+                  "parameter": "rwf-hR0TNgk"
+                },
+                {
+                  "parameter": "IOfexZkJ8Fk"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-15T08:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664576",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "100 Thieves",
+                "code": "100T",
+                "image": "http://static.lolesports.com/teams/1631819887423_100t-2021-worlds.png",
+                "result": {
+                  "gameWins": 1
+                }
+              },
+              {
+                "name": "BILIBILI GAMING",
+                "code": "BLG",
+                "image": "http://static.lolesports.com/teams/1682322954525_Bilibili_Gaming_logo_20211.png",
+                "result": {
+                  "gameWins": 0
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664577",
+              "vods": [
+                {
+                  "parameter": "2592249086"
+                },
+                {
+                  "parameter": "2592250623"
+                },
+                {
+                  "parameter": "Row83yX7Ae0"
+                },
+                {
+                  "parameter": "N4RzP_gYigs"
+                },
+                {
+                  "parameter": "xZ1m8zW2T04"
+                },
+                {
+                  "parameter": "PUpsfxpUgNw"
+                },
+                {
+                  "parameter": "5iy69aQUNcQ"
+                },
+                {
+                  "parameter": "2592248853"
+                },
+                {
+                  "parameter": "174946237"
+                },
+                {
+                  "parameter": "h2QGCJOKFKE"
+                },
+                {
+                  "parameter": "nqjKGXYNJZ4"
+                },
+                {
+                  "parameter": "2592235041"
+                },
+                {
+                  "parameter": "ugRtApIIDII"
+                },
+                {
+                  "parameter": "2592252190"
+                },
+                {
+                  "parameter": "2592247556"
+                },
+                {
+                  "parameter": "3lxs86vmgf0"
+                },
+                {
+                  "parameter": "IOfexZkJ8Fk"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-15T09:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664578",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "T1",
+                "code": "T1",
+                "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+                "result": {
+                  "gameWins": 1
+                }
+              },
+              {
+                "name": "FlyQuest",
+                "code": "FLY",
+                "image": "http://static.lolesports.com/teams/flyquest-new-on-dark.png",
+                "result": {
+                  "gameWins": 0
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664579",
+              "vods": [
+                {
+                  "parameter": "2592249086"
+                },
+                {
+                  "parameter": "2592250623"
+                },
+                {
+                  "parameter": "6wj8x1ySMzU"
+                },
+                {
+                  "parameter": "FYdlOLG3V4g"
+                },
+                {
+                  "parameter": "dcL-9leJjZg"
+                },
+                {
+                  "parameter": "8A3ON9Dmgyo"
+                },
+                {
+                  "parameter": "G6dKovxyDO0"
+                },
+                {
+                  "parameter": "2592248853"
+                },
+                {
+                  "parameter": "174952517"
+                },
+                {
+                  "parameter": "h2QGCJOKFKE"
+                },
+                {
+                  "parameter": "nqjKGXYNJZ4"
+                },
+                {
+                  "parameter": "2592235041"
+                },
+                {
+                  "parameter": "ugRtApIIDII"
+                },
+                {
+                  "parameter": "2592252190"
+                },
+                {
+                  "parameter": "2592247556"
+                },
+                {
+                  "parameter": "Y6YBWXAGklg"
+                },
+                {
+                  "parameter": "IOfexZkJ8Fk"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-15T10:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664580",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Anyone's Legend",
+                "code": "AL",
+                "image": "http://static.lolesports.com/teams/1641199582689_.png",
+                "result": {
+                  "gameWins": 1
+                }
+              },
+              {
+                "name": "Hanwha Life Esports",
+                "code": "HLE",
+                "image": "http://static.lolesports.com/teams/1631819564399_hle-2021-worlds.png",
+                "result": {
+                  "gameWins": 0
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664581",
+              "vods": [
+                {
+                  "parameter": "2592249086"
+                },
+                {
+                  "parameter": "2592250623"
+                },
+                {
+                  "parameter": "yVB8Tn9a2_k"
+                },
+                {
+                  "parameter": "93gFHltbJX4"
+                },
+                {
+                  "parameter": "Rm8UxhoDrlQ"
+                },
+                {
+                  "parameter": "4IxETPsmdgU"
+                },
+                {
+                  "parameter": "g8V1apB_H-U"
+                },
+                {
+                  "parameter": "2592248853"
+                },
+                {
+                  "parameter": "174958475"
+                },
+                {
+                  "parameter": "h2QGCJOKFKE"
+                },
+                {
+                  "parameter": "nqjKGXYNJZ4"
+                },
+                {
+                  "parameter": "2592235041"
+                },
+                {
+                  "parameter": "ugRtApIIDII"
+                },
+                {
+                  "parameter": "2592252190"
+                },
+                {
+                  "parameter": "2592247556"
+                },
+                {
+                  "parameter": "H5yZtz1Bikg"
+                },
+                {
+                  "parameter": "IOfexZkJ8Fk"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-15T11:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664582",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "TOP ESPORTS",
+                "code": "TES",
+                "image": "http://static.lolesports.com/teams/1592592064571_TopEsportsTES-01-FullonDark.png",
+                "result": {
+                  "gameWins": 1
+                }
+              },
+              {
+                "name": "G2 Esports",
+                "code": "G2",
+                "image": "http://static.lolesports.com/teams/G2-FullonDark.png",
+                "result": {
+                  "gameWins": 0
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664583",
+              "vods": [
+                {
+                  "parameter": "2592249086"
+                },
+                {
+                  "parameter": "2592250623"
+                },
+                {
+                  "parameter": "4NhM5CcZTbU"
+                },
+                {
+                  "parameter": "zwMSwW5DiYU"
+                },
+                {
+                  "parameter": "9jQZjiXXBzM"
+                },
+                {
+                  "parameter": "LYCwkLFIx6w"
+                },
+                {
+                  "parameter": "9CV3zYFsR6Q"
+                },
+                {
+                  "parameter": "2592248853"
+                },
+                {
+                  "parameter": "174964199"
+                },
+                {
+                  "parameter": "h2QGCJOKFKE"
+                },
+                {
+                  "parameter": "nqjKGXYNJZ4"
+                },
+                {
+                  "parameter": "2592235041"
+                },
+                {
+                  "parameter": "ugRtApIIDII"
+                },
+                {
+                  "parameter": "2592252190"
+                },
+                {
+                  "parameter": "2592247556"
+                },
+                {
+                  "parameter": "oNMoOP3bV8E"
+                },
+                {
+                  "parameter": "IOfexZkJ8Fk"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-15T12:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664584",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "PSG Talon",
+                "code": "PSG",
+                "image": "http://static.lolesports.com/teams/1752559016251_PSG_TALON_COLOR.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "Gen.G Esports",
+                "code": "GEN",
+                "image": "http://static.lolesports.com/teams/1773829250929_GENGLOGO_GOLD.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664585",
+              "vods": [
+                {
+                  "parameter": "2592249086"
+                },
+                {
+                  "parameter": "2592250623"
+                },
+                {
+                  "parameter": "KSWgX8PijEo"
+                },
+                {
+                  "parameter": "Xv2LCfn3Ui8"
+                },
+                {
+                  "parameter": "zxR_EwhcT-s"
+                },
+                {
+                  "parameter": "G8pUgk_BMW0"
+                },
+                {
+                  "parameter": "aJaICPdRR98"
+                },
+                {
+                  "parameter": "2592248853"
+                },
+                {
+                  "parameter": "174972291"
+                },
+                {
+                  "parameter": "h2QGCJOKFKE"
+                },
+                {
+                  "parameter": "nqjKGXYNJZ4"
+                },
+                {
+                  "parameter": "2592235041"
+                },
+                {
+                  "parameter": "ugRtApIIDII"
+                },
+                {
+                  "parameter": "2592252190"
+                },
+                {
+                  "parameter": "2592247556"
+                },
+                {
+                  "parameter": "jdi_JS72yrg"
+                },
+                {
+                  "parameter": "IOfexZkJ8Fk"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-16T05:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664594",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "FlyQuest",
+                "code": "FLY",
+                "image": "http://static.lolesports.com/teams/flyquest-new-on-dark.png",
+                "result": {
+                  "gameWins": 1
+                }
+              },
+              {
+                "name": "Vivo Keyd Stars",
+                "code": "VKS",
+                "image": "http://static.lolesports.com/teams/1670542079678_vks.png",
+                "result": {
+                  "gameWins": 0
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664595",
+              "vods": [
+                {
+                  "parameter": "GTcYj-057eQ"
+                },
+                {
+                  "parameter": "2593088578"
+                },
+                {
+                  "parameter": "ES2vDP1lZj0"
+                },
+                {
+                  "parameter": "ttAB5eZMpJc"
+                },
+                {
+                  "parameter": "TRgl0BrRiY4"
+                },
+                {
+                  "parameter": "1GJVSPa3kgY"
+                },
+                {
+                  "parameter": "wctfzy7xplk"
+                },
+                {
+                  "parameter": "2593084424"
+                },
+                {
+                  "parameter": "175027973"
+                },
+                {
+                  "parameter": "2593079711"
+                },
+                {
+                  "parameter": "HRR-Bret8nc"
+                },
+                {
+                  "parameter": "2593071194"
+                },
+                {
+                  "parameter": "5QHNPpQck9Y"
+                },
+                {
+                  "parameter": "2593089136"
+                },
+                {
+                  "parameter": "2593084631"
+                },
+                {
+                  "parameter": "9xkOotjMOxo"
+                },
+                {
+                  "parameter": "2593085602"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-16T06:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664586",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Team Secret Whales",
+                "code": "TSW",
+                "image": "http://static.lolesports.com/teams/1774598000328_White_EyeText_600p.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "kt Rolster",
+                "code": "KT",
+                "image": "http://static.lolesports.com/teams/kt_darkbackground.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664587",
+              "vods": [
+                {
+                  "parameter": "GTcYj-057eQ"
+                },
+                {
+                  "parameter": "2593088578"
+                },
+                {
+                  "parameter": "Dabhs2kFxL0"
+                },
+                {
+                  "parameter": "l_wCn2MfptY"
+                },
+                {
+                  "parameter": "2qi7V-xmARM"
+                },
+                {
+                  "parameter": "SNkUSkM-efE"
+                },
+                {
+                  "parameter": "WlE79bEXAkg"
+                },
+                {
+                  "parameter": "2593084424"
+                },
+                {
+                  "parameter": "175031037"
+                },
+                {
+                  "parameter": "2593079711"
+                },
+                {
+                  "parameter": "cAWCw0jS_lE"
+                },
+                {
+                  "parameter": "2593071194"
+                },
+                {
+                  "parameter": "5QHNPpQck9Y"
+                },
+                {
+                  "parameter": "2593089136"
+                },
+                {
+                  "parameter": "2593084631"
+                },
+                {
+                  "parameter": "YrCV5rpSAlQ"
+                },
+                {
+                  "parameter": "2593085602"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-16T07:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664596",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "G2 Esports",
+                "code": "G2",
+                "image": "http://static.lolesports.com/teams/G2-FullonDark.png",
+                "result": {
+                  "gameWins": 1
+                }
+              },
+              {
+                "name": "Movistar KOI",
+                "code": "MKOI",
+                "image": "http://static.lolesports.com/teams/1734012609283_MKOI_FullColor_Blue.png",
+                "result": {
+                  "gameWins": 0
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664597",
+              "vods": [
+                {
+                  "parameter": "GTcYj-057eQ"
+                },
+                {
+                  "parameter": "2593088578"
+                },
+                {
+                  "parameter": "Jgwdkb2JXyg"
+                },
+                {
+                  "parameter": "BHlMOzXPLM0"
+                },
+                {
+                  "parameter": "gIs65DQFR7w"
+                },
+                {
+                  "parameter": "MQ-fkfnFQuE"
+                },
+                {
+                  "parameter": "x6VSQlO-pjk"
+                },
+                {
+                  "parameter": "2593084424"
+                },
+                {
+                  "parameter": "175034005"
+                },
+                {
+                  "parameter": "2593079711"
+                },
+                {
+                  "parameter": "cAWCw0jS_lE"
+                },
+                {
+                  "parameter": "2593071194"
+                },
+                {
+                  "parameter": "5QHNPpQck9Y"
+                },
+                {
+                  "parameter": "2593089136"
+                },
+                {
+                  "parameter": "2593084631"
+                },
+                {
+                  "parameter": "oT00Rv10ODw"
+                },
+                {
+                  "parameter": "2593085602"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-16T08:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664588",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "100 Thieves",
+                "code": "100T",
+                "image": "http://static.lolesports.com/teams/1631819887423_100t-2021-worlds.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "TOP ESPORTS",
+                "code": "TES",
+                "image": "http://static.lolesports.com/teams/1592592064571_TopEsportsTES-01-FullonDark.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664589",
+              "vods": [
+                {
+                  "parameter": "GTcYj-057eQ"
+                },
+                {
+                  "parameter": "2593088578"
+                },
+                {
+                  "parameter": "PLt2xUuDdVA"
+                },
+                {
+                  "parameter": "SkDtuLKvnfs"
+                },
+                {
+                  "parameter": "ZGiajBlgjY8"
+                },
+                {
+                  "parameter": "TJaqsZez3fc"
+                },
+                {
+                  "parameter": "8ZBpH4TgirA"
+                },
+                {
+                  "parameter": "2593084424"
+                },
+                {
+                  "parameter": "175037319"
+                },
+                {
+                  "parameter": "2593079711"
+                },
+                {
+                  "parameter": "cAWCw0jS_lE"
+                },
+                {
+                  "parameter": "2593071194"
+                },
+                {
+                  "parameter": "5QHNPpQck9Y"
+                },
+                {
+                  "parameter": "2593089136"
+                },
+                {
+                  "parameter": "2593084631"
+                },
+                {
+                  "parameter": "GOi9mM-DjZo"
+                },
+                {
+                  "parameter": "2593085602"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-16T09:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664590",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "T1",
+                "code": "T1",
+                "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "CTBC Flying Oyster",
+                "code": "CFO",
+                "image": "http://static.lolesports.com/teams/1656307849320_CFO_Logo.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664591",
+              "vods": [
+                {
+                  "parameter": "GTcYj-057eQ"
+                },
+                {
+                  "parameter": "2593088578"
+                },
+                {
+                  "parameter": "GDlJMPvV8LU"
+                },
+                {
+                  "parameter": "kdosrSKgfqY"
+                },
+                {
+                  "parameter": "uBP_EmElRNs"
+                },
+                {
+                  "parameter": "j8OW99N8jpI"
+                },
+                {
+                  "parameter": "2593080866"
+                },
+                {
+                  "parameter": "2593084424"
+                },
+                {
+                  "parameter": "175041531"
+                },
+                {
+                  "parameter": "2593079711"
+                },
+                {
+                  "parameter": "cAWCw0jS_lE"
+                },
+                {
+                  "parameter": "2593071194"
+                },
+                {
+                  "parameter": "5QHNPpQck9Y"
+                },
+                {
+                  "parameter": "2593089136"
+                },
+                {
+                  "parameter": "2593084631"
+                },
+                {
+                  "parameter": "GOi9mM-DjZo"
+                },
+                {
+                  "parameter": "2593085602"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-16T10:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664592",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Anyone's Legend",
+                "code": "AL",
+                "image": "http://static.lolesports.com/teams/1641199582689_.png",
+                "result": {
+                  "gameWins": 1
+                }
+              },
+              {
+                "name": "Gen.G Esports",
+                "code": "GEN",
+                "image": "http://static.lolesports.com/teams/1773829250929_GENGLOGO_GOLD.png",
+                "result": {
+                  "gameWins": 0
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664593",
+              "vods": [
+                {
+                  "parameter": "GTcYj-057eQ"
+                },
+                {
+                  "parameter": "2593088578"
+                },
+                {
+                  "parameter": "QxvoFCWC0u8"
+                },
+                {
+                  "parameter": "yaFZ6a-nwyA"
+                },
+                {
+                  "parameter": "PFkxPn1bhVY"
+                },
+                {
+                  "parameter": "Z98UcJMitlU"
+                },
+                {
+                  "parameter": "2593080866"
+                },
+                {
+                  "parameter": "2593084424"
+                },
+                {
+                  "parameter": "175048487"
+                },
+                {
+                  "parameter": "2593079711"
+                },
+                {
+                  "parameter": "cAWCw0jS_lE"
+                },
+                {
+                  "parameter": "2593071194"
+                },
+                {
+                  "parameter": "5QHNPpQck9Y"
+                },
+                {
+                  "parameter": "2593089136"
+                },
+                {
+                  "parameter": "2593084631"
+                },
+                {
+                  "parameter": "GOi9mM-DjZo"
+                },
+                {
+                  "parameter": "2593085602"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-16T11:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664598",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Fnatic",
+                "code": "FNC",
+                "image": "http://static.lolesports.com/teams/1631819669150_fnc-2021-worlds.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "BILIBILI GAMING",
+                "code": "BLG",
+                "image": "http://static.lolesports.com/teams/1682322954525_Bilibili_Gaming_logo_20211.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664599",
+              "vods": [
+                {
+                  "parameter": "GTcYj-057eQ"
+                },
+                {
+                  "parameter": "2593088578"
+                },
+                {
+                  "parameter": "s8RpmH0EK9A"
+                },
+                {
+                  "parameter": "5WxyJkriV74"
+                },
+                {
+                  "parameter": "OEv0xdvqIQQ"
+                },
+                {
+                  "parameter": "ms40kwceXhk"
+                },
+                {
+                  "parameter": "cOZKmSq6x_0"
+                },
+                {
+                  "parameter": "2593084424"
+                },
+                {
+                  "parameter": "175053515"
+                },
+                {
+                  "parameter": "2593079711"
+                },
+                {
+                  "parameter": "cAWCw0jS_lE"
+                },
+                {
+                  "parameter": "2593071194"
+                },
+                {
+                  "parameter": "5QHNPpQck9Y"
+                },
+                {
+                  "parameter": "2593089136"
+                },
+                {
+                  "parameter": "2593084631"
+                },
+                {
+                  "parameter": "GOi9mM-DjZo"
+                },
+                {
+                  "parameter": "2593085602"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-16T12:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664600",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "PSG Talon",
+                "code": "PSG",
+                "image": "http://static.lolesports.com/teams/1752559016251_PSG_TALON_COLOR.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "Hanwha Life Esports",
+                "code": "HLE",
+                "image": "http://static.lolesports.com/teams/1631819564399_hle-2021-worlds.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664601",
+              "vods": [
+                {
+                  "parameter": "GTcYj-057eQ"
+                },
+                {
+                  "parameter": "2593088578"
+                },
+                {
+                  "parameter": "lel6eXdjBSM"
+                },
+                {
+                  "parameter": "2593079904"
+                },
+                {
+                  "parameter": "HoUYhetNyfU"
+                },
+                {
+                  "parameter": "v-7zXEmzr6s"
+                },
+                {
+                  "parameter": "2593080866"
+                },
+                {
+                  "parameter": "2593084424"
+                },
+                {
+                  "parameter": "175061755"
+                },
+                {
+                  "parameter": "2593079711"
+                },
+                {
+                  "parameter": "cAWCw0jS_lE"
+                },
+                {
+                  "parameter": "2593071194"
+                },
+                {
+                  "parameter": "5QHNPpQck9Y"
+                },
+                {
+                  "parameter": "2593089136"
+                },
+                {
+                  "parameter": "2593084631"
+                },
+                {
+                  "parameter": "GOi9mM-DjZo"
+                },
+                {
+                  "parameter": "2593085602"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-17T08:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664602",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "TOP ESPORTS",
+                "code": "TES",
+                "image": "http://static.lolesports.com/teams/1592592064571_TopEsportsTES-01-FullonDark.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "kt Rolster",
+                "code": "KT",
+                "image": "http://static.lolesports.com/teams/kt_darkbackground.png",
+                "result": {
+                  "gameWins": 2
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 3
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664603",
+              "vods": [
+                {
+                  "parameter": "Qb62SEZZLEU"
+                },
+                {
+                  "parameter": "2593969280"
+                },
+                {
+                  "parameter": "N0gicXDP-bc"
+                },
+                {
+                  "parameter": "_CttMwOuN2U"
+                },
+                {
+                  "parameter": "B2f8HXRRW5Q"
+                },
+                {
+                  "parameter": "t9sHbhZ_D0s"
+                },
+                {
+                  "parameter": "wb0ulqT58wI"
+                },
+                {
+                  "parameter": "2593976087"
+                },
+                {
+                  "parameter": "175133553"
+                },
+                {
+                  "parameter": "T6W26N4cy_g"
+                },
+                {
+                  "parameter": "d87WiD0gt7w"
+                },
+                {
+                  "parameter": "2593967276"
+                },
+                {
+                  "parameter": "dyoRyVA1gdU"
+                },
+                {
+                  "parameter": "fxS_ZywYrP0"
+                },
+                {
+                  "parameter": "2593976274"
+                },
+                {
+                  "parameter": "C996Gto-Jd8"
+                },
+                {
+                  "parameter": "2593976169"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664604",
+              "vods": [
+                {
+                  "parameter": "Qb62SEZZLEU"
+                },
+                {
+                  "parameter": "2593969280"
+                },
+                {
+                  "parameter": "ruU53Lz_yOQ"
+                },
+                {
+                  "parameter": "HX_K6uRuiZw"
+                },
+                {
+                  "parameter": "ru7_LjlHUv8"
+                },
+                {
+                  "parameter": "t9sHbhZ_D0s"
+                },
+                {
+                  "parameter": "wb0ulqT58wI"
+                },
+                {
+                  "parameter": "2593976087"
+                },
+                {
+                  "parameter": "175138281"
+                },
+                {
+                  "parameter": "T6W26N4cy_g"
+                },
+                {
+                  "parameter": "d87WiD0gt7w"
+                },
+                {
+                  "parameter": "2593967276"
+                },
+                {
+                  "parameter": "dyoRyVA1gdU"
+                },
+                {
+                  "parameter": "fxS_ZywYrP0"
+                },
+                {
+                  "parameter": "2593976274"
+                },
+                {
+                  "parameter": "ANROJMFx2TI"
+                },
+                {
+                  "parameter": "2593976169"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664605",
+              "vods": []
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-17T11:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664606",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Anyone's Legend",
+                "code": "AL",
+                "image": "http://static.lolesports.com/teams/1641199582689_.png",
+                "result": {
+                  "gameWins": 2
+                }
+              },
+              {
+                "name": "CTBC Flying Oyster",
+                "code": "CFO",
+                "image": "http://static.lolesports.com/teams/1656307849320_CFO_Logo.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 3
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664607",
+              "vods": [
+                {
+                  "parameter": "Nmf5o_Wlm7I"
+                },
+                {
+                  "parameter": "2593969280"
+                },
+                {
+                  "parameter": "SGBSzc3XfV4"
+                },
+                {
+                  "parameter": "qsVxb0GgomM"
+                },
+                {
+                  "parameter": "h3j9ZAZ0O0o"
+                },
+                {
+                  "parameter": "w9UTbwQoQ2I"
+                },
+                {
+                  "parameter": "wb0ulqT58wI"
+                },
+                {
+                  "parameter": "2593976087"
+                },
+                {
+                  "parameter": "175142861"
+                },
+                {
+                  "parameter": "T6W26N4cy_g"
+                },
+                {
+                  "parameter": "d87WiD0gt7w"
+                },
+                {
+                  "parameter": "2593967276"
+                },
+                {
+                  "parameter": "dyoRyVA1gdU"
+                },
+                {
+                  "parameter": "fxS_ZywYrP0"
+                },
+                {
+                  "parameter": "2593976274"
+                },
+                {
+                  "parameter": "8S_FTGDn_Cw"
+                },
+                {
+                  "parameter": "2593976169"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664608",
+              "vods": [
+                {
+                  "parameter": "Nmf5o_Wlm7I"
+                },
+                {
+                  "parameter": "2593969280"
+                },
+                {
+                  "parameter": "GnL2vk9pPGU"
+                },
+                {
+                  "parameter": "niFv5oasIVY"
+                },
+                {
+                  "parameter": "I3Eyp5U9xyM"
+                },
+                {
+                  "parameter": "w9UTbwQoQ2I"
+                },
+                {
+                  "parameter": "wb0ulqT58wI"
+                },
+                {
+                  "parameter": "2593976087"
+                },
+                {
+                  "parameter": "175148103"
+                },
+                {
+                  "parameter": "T6W26N4cy_g"
+                },
+                {
+                  "parameter": "d87WiD0gt7w"
+                },
+                {
+                  "parameter": "2593967276"
+                },
+                {
+                  "parameter": "dyoRyVA1gdU"
+                },
+                {
+                  "parameter": "fxS_ZywYrP0"
+                },
+                {
+                  "parameter": "2593976274"
+                },
+                {
+                  "parameter": "EKGdHYYTGeY"
+                },
+                {
+                  "parameter": "2593976169"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664609",
+              "vods": [
+                {
+                  "parameter": "Nmf5o_Wlm7I"
+                },
+                {
+                  "parameter": "2593969280"
+                },
+                {
+                  "parameter": "Al-Se0wXiJA"
+                },
+                {
+                  "parameter": "F05QMPju1xE"
+                },
+                {
+                  "parameter": "Um2VS5OBRlQ"
+                },
+                {
+                  "parameter": "w9UTbwQoQ2I"
+                },
+                {
+                  "parameter": "wb0ulqT58wI"
+                },
+                {
+                  "parameter": "2593976087"
+                },
+                {
+                  "parameter": "175155795"
+                },
+                {
+                  "parameter": "T6W26N4cy_g"
+                },
+                {
+                  "parameter": "d87WiD0gt7w"
+                },
+                {
+                  "parameter": "2593967276"
+                },
+                {
+                  "parameter": "dyoRyVA1gdU"
+                },
+                {
+                  "parameter": "fxS_ZywYrP0"
+                },
+                {
+                  "parameter": "2593976274"
+                },
+                {
+                  "parameter": "LxkxrXoJAs0"
+                },
+                {
+                  "parameter": "2593976169"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-18T08:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664610",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Team Secret Whales",
+                "code": "TSW",
+                "image": "http://static.lolesports.com/teams/1774598000328_White_EyeText_600p.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "FlyQuest",
+                "code": "FLY",
+                "image": "http://static.lolesports.com/teams/flyquest-new-on-dark.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664611",
+              "vods": [
+                {
+                  "parameter": "K_WAbl0JvzM"
+                },
+                {
+                  "parameter": "2594859102"
+                },
+                {
+                  "parameter": "FqXzm4-FCCQ"
+                },
+                {
+                  "parameter": "AKSZl3DU-us"
+                },
+                {
+                  "parameter": "VXzZVW8cU5g"
+                },
+                {
+                  "parameter": "nHFrjibsRhk"
+                },
+                {
+                  "parameter": "2594858354"
+                },
+                {
+                  "parameter": "2594865111"
+                },
+                {
+                  "parameter": "175230597"
+                },
+                {
+                  "parameter": "yYJt0d4NOAM"
+                },
+                {
+                  "parameter": "1Iy5q4lpAVA"
+                },
+                {
+                  "parameter": "2594854361"
+                },
+                {
+                  "parameter": "JSm1aQRa8Wg"
+                },
+                {
+                  "parameter": "N7SHb7f6Nls"
+                },
+                {
+                  "parameter": "2594865304"
+                },
+                {
+                  "parameter": "nwO2Uc9x3vc"
+                },
+                {
+                  "parameter": "2594865186"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-18T09:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664612",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "T1",
+                "code": "T1",
+                "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "Gen.G Esports",
+                "code": "GEN",
+                "image": "http://static.lolesports.com/teams/1773829250929_GENGLOGO_GOLD.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664613",
+              "vods": [
+                {
+                  "parameter": "K_WAbl0JvzM"
+                },
+                {
+                  "parameter": "2594859102"
+                },
+                {
+                  "parameter": "jaAldAYENU0"
+                },
+                {
+                  "parameter": "qgsVpYUl0HY"
+                },
+                {
+                  "parameter": "P07FIlmdcxQ"
+                },
+                {
+                  "parameter": "qeULWV9qbhU"
+                },
+                {
+                  "parameter": "2594858354"
+                },
+                {
+                  "parameter": "2594865111"
+                },
+                {
+                  "parameter": "175236487"
+                },
+                {
+                  "parameter": "yYJt0d4NOAM"
+                },
+                {
+                  "parameter": "1Iy5q4lpAVA"
+                },
+                {
+                  "parameter": "2594854361"
+                },
+                {
+                  "parameter": "JSm1aQRa8Wg"
+                },
+                {
+                  "parameter": "N7SHb7f6Nls"
+                },
+                {
+                  "parameter": "2594865304"
+                },
+                {
+                  "parameter": "c2iqUCfn9Uo"
+                },
+                {
+                  "parameter": "2594865186"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-18T10:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664614",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "G2 Esports",
+                "code": "G2",
+                "image": "http://static.lolesports.com/teams/G2-FullonDark.png",
+                "result": {
+                  "gameWins": 1
+                }
+              },
+              {
+                "name": "BILIBILI GAMING",
+                "code": "BLG",
+                "image": "http://static.lolesports.com/teams/1682322954525_Bilibili_Gaming_logo_20211.png",
+                "result": {
+                  "gameWins": 0
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664615",
+              "vods": [
+                {
+                  "parameter": "K_WAbl0JvzM"
+                },
+                {
+                  "parameter": "2594859102"
+                },
+                {
+                  "parameter": "4cnUcX2JA6A"
+                },
+                {
+                  "parameter": "lwHQmbPMbkk"
+                },
+                {
+                  "parameter": "ArI6pU1RqiA"
+                },
+                {
+                  "parameter": "Tnix4jqDEOU"
+                },
+                {
+                  "parameter": "2594858354"
+                },
+                {
+                  "parameter": "2594865111"
+                },
+                {
+                  "parameter": "175240503"
+                },
+                {
+                  "parameter": "yYJt0d4NOAM"
+                },
+                {
+                  "parameter": "1Iy5q4lpAVA"
+                },
+                {
+                  "parameter": "2594854361"
+                },
+                {
+                  "parameter": "JSm1aQRa8Wg"
+                },
+                {
+                  "parameter": "N7SHb7f6Nls"
+                },
+                {
+                  "parameter": "2594865304"
+                },
+                {
+                  "parameter": "k6f1tusOMPM"
+                },
+                {
+                  "parameter": "2594865186"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-18T11:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664616",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "100 Thieves",
+                "code": "100T",
+                "image": "http://static.lolesports.com/teams/1631819887423_100t-2021-worlds.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "Hanwha Life Esports",
+                "code": "HLE",
+                "image": "http://static.lolesports.com/teams/1631819564399_hle-2021-worlds.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 1
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664617",
+              "vods": [
+                {
+                  "parameter": "K_WAbl0JvzM"
+                },
+                {
+                  "parameter": "2594859102"
+                },
+                {
+                  "parameter": "W2XI4fkvYbw"
+                },
+                {
+                  "parameter": "j7X95Rx3yoM"
+                },
+                {
+                  "parameter": "r34Wt0jgW_0"
+                },
+                {
+                  "parameter": "cxUv-hQhxXc"
+                },
+                {
+                  "parameter": "2594858354"
+                },
+                {
+                  "parameter": "2594865111"
+                },
+                {
+                  "parameter": "175246417"
+                },
+                {
+                  "parameter": "yYJt0d4NOAM"
+                },
+                {
+                  "parameter": "1Iy5q4lpAVA"
+                },
+                {
+                  "parameter": "2594854361"
+                },
+                {
+                  "parameter": "JSm1aQRa8Wg"
+                },
+                {
+                  "parameter": "N7SHb7f6Nls"
+                },
+                {
+                  "parameter": "2594865304"
+                },
+                {
+                  "parameter": "7qY7zR8eOCs"
+                },
+                {
+                  "parameter": "2594865186"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-19T08:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664618",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Fnatic",
+                "code": "FNC",
+                "image": "http://static.lolesports.com/teams/1631819669150_fnc-2021-worlds.png",
+                "result": {
+                  "gameWins": 1
+                }
+              },
+              {
+                "name": "Movistar KOI",
+                "code": "MKOI",
+                "image": "http://static.lolesports.com/teams/1734012609283_MKOI_FullColor_Blue.png",
+                "result": {
+                  "gameWins": 2
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 3
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664619",
+              "vods": [
+                {
+                  "parameter": "WPWThK4sCD0"
+                },
+                {
+                  "parameter": "2595772476"
+                },
+                {
+                  "parameter": "4Y8L2qO8SQ8"
+                },
+                {
+                  "parameter": "drX4xLtRWTM"
+                },
+                {
+                  "parameter": "vN0htgOY_Vw"
+                },
+                {
+                  "parameter": "CX6y3D5iFok"
+                },
+                {
+                  "parameter": "2595763593"
+                },
+                {
+                  "parameter": "2595768066"
+                },
+                {
+                  "parameter": "175325935"
+                },
+                {
+                  "parameter": "yme2M8gPBic"
+                },
+                {
+                  "parameter": "APa4CtaJHfE"
+                },
+                {
+                  "parameter": "2595757208"
+                },
+                {
+                  "parameter": "PqtUh76dJhs"
+                },
+                {
+                  "parameter": "1JaLZKjX56k"
+                },
+                {
+                  "parameter": "2595768280"
+                },
+                {
+                  "parameter": "b4zjgkugXKE"
+                },
+                {
+                  "parameter": "2595768859"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664620",
+              "vods": [
+                {
+                  "parameter": "WPWThK4sCD0"
+                },
+                {
+                  "parameter": "2595772476"
+                },
+                {
+                  "parameter": "tUKZ1P5mt2E"
+                },
+                {
+                  "parameter": "4QM4_bxsTxw"
+                },
+                {
+                  "parameter": "IkLvuh0749c"
+                },
+                {
+                  "parameter": "CX6y3D5iFok"
+                },
+                {
+                  "parameter": "8L79tRAzAOw"
+                },
+                {
+                  "parameter": "2595768066"
+                },
+                {
+                  "parameter": "175330361"
+                },
+                {
+                  "parameter": "yme2M8gPBic"
+                },
+                {
+                  "parameter": "APa4CtaJHfE"
+                },
+                {
+                  "parameter": "2595757208"
+                },
+                {
+                  "parameter": "PqtUh76dJhs"
+                },
+                {
+                  "parameter": "1JaLZKjX56k"
+                },
+                {
+                  "parameter": "2595768280"
+                },
+                {
+                  "parameter": "KbQYMXGjBkc"
+                },
+                {
+                  "parameter": "2595768859"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664621",
+              "vods": [
+                {
+                  "parameter": "WPWThK4sCD0"
+                },
+                {
+                  "parameter": "2595772476"
+                },
+                {
+                  "parameter": "I14xO6r59O4"
+                },
+                {
+                  "parameter": "mJWvgGTUvvs"
+                },
+                {
+                  "parameter": "5peIYwxBVpA"
+                },
+                {
+                  "parameter": "CX6y3D5iFok"
+                },
+                {
+                  "parameter": "lpD2F8e-XH8"
+                },
+                {
+                  "parameter": "2595768066"
+                },
+                {
+                  "parameter": "175335293"
+                },
+                {
+                  "parameter": "yme2M8gPBic"
+                },
+                {
+                  "parameter": "APa4CtaJHfE"
+                },
+                {
+                  "parameter": "2595757208"
+                },
+                {
+                  "parameter": "PqtUh76dJhs"
+                },
+                {
+                  "parameter": "1JaLZKjX56k"
+                },
+                {
+                  "parameter": "2595768280"
+                },
+                {
+                  "parameter": "dzstGFhYybE"
+                },
+                {
+                  "parameter": "2595768859"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-19T11:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664622",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Vivo Keyd Stars",
+                "code": "VKS",
+                "image": "http://static.lolesports.com/teams/1670542079678_vks.png",
+                "result": {
+                  "gameWins": 2
+                }
+              },
+              {
+                "name": "PSG Talon",
+                "code": "PSG",
+                "image": "http://static.lolesports.com/teams/1752559016251_PSG_TALON_COLOR.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 3
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664623",
+              "vods": [
+                {
+                  "parameter": "WPWThK4sCD0"
+                },
+                {
+                  "parameter": "2595772476"
+                },
+                {
+                  "parameter": "i_np25wp50M"
+                },
+                {
+                  "parameter": "gs7ElGWth_4"
+                },
+                {
+                  "parameter": "n97Hr0U0EXE"
+                },
+                {
+                  "parameter": "VEKmb3GlOCY"
+                },
+                {
+                  "parameter": "GuW46wysS94"
+                },
+                {
+                  "parameter": "2595768066"
+                },
+                {
+                  "parameter": "175339649"
+                },
+                {
+                  "parameter": "yme2M8gPBic"
+                },
+                {
+                  "parameter": "3TpW6nrr9JU"
+                },
+                {
+                  "parameter": "2595757208"
+                },
+                {
+                  "parameter": "PqtUh76dJhs"
+                },
+                {
+                  "parameter": "1JaLZKjX56k"
+                },
+                {
+                  "parameter": "2595768280"
+                },
+                {
+                  "parameter": "aMrR_FCDMaQ"
+                },
+                {
+                  "parameter": "2595768859"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664624",
+              "vods": [
+                {
+                  "parameter": "WPWThK4sCD0"
+                },
+                {
+                  "parameter": "2595772476"
+                },
+                {
+                  "parameter": "kzesj3bqT4c"
+                },
+                {
+                  "parameter": "Iys4m50atZI"
+                },
+                {
+                  "parameter": "0iAEci9JzqQ"
+                },
+                {
+                  "parameter": "VEKmb3GlOCY"
+                },
+                {
+                  "parameter": "2595763593"
+                },
+                {
+                  "parameter": "2595768066"
+                },
+                {
+                  "parameter": "175345353"
+                },
+                {
+                  "parameter": "yme2M8gPBic"
+                },
+                {
+                  "parameter": "ByjKisaPCnc"
+                },
+                {
+                  "parameter": "2595757208"
+                },
+                {
+                  "parameter": "PqtUh76dJhs"
+                },
+                {
+                  "parameter": "1JaLZKjX56k"
+                },
+                {
+                  "parameter": "2595768280"
+                },
+                {
+                  "parameter": "FFnSnFCo96c"
+                },
+                {
+                  "parameter": "2595768859"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664625",
+              "vods": [
+                {
+                  "parameter": "WPWThK4sCD0"
+                },
+                {
+                  "parameter": "2595772476"
+                },
+                {
+                  "parameter": "paHypoYZ4EU"
+                },
+                {
+                  "parameter": "uQj_ddDZs1k"
+                },
+                {
+                  "parameter": "RZX6EkRJLTw"
+                },
+                {
+                  "parameter": "VEKmb3GlOCY"
+                },
+                {
+                  "parameter": "2595763593"
+                },
+                {
+                  "parameter": "2595768066"
+                },
+                {
+                  "parameter": "175354619"
+                },
+                {
+                  "parameter": "yme2M8gPBic"
+                },
+                {
+                  "parameter": "FS6nAjIMotA"
+                },
+                {
+                  "parameter": "2595757208"
+                },
+                {
+                  "parameter": "PqtUh76dJhs"
+                },
+                {
+                  "parameter": "1JaLZKjX56k"
+                },
+                {
+                  "parameter": "2595768280"
+                },
+                {
+                  "parameter": "EyLr6PzYrvg"
+                },
+                {
+                  "parameter": "2595768859"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-22T08:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664626",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Hanwha Life Esports",
+                "code": "HLE",
+                "image": "http://static.lolesports.com/teams/1631819564399_hle-2021-worlds.png",
+                "result": {
+                  "gameWins": 2
+                }
+              },
+              {
+                "name": "CTBC Flying Oyster",
+                "code": "CFO",
+                "image": "http://static.lolesports.com/teams/1656307849320_CFO_Logo.png",
+                "result": {
+                  "gameWins": 0
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 3
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664627",
+              "vods": [
+                {
+                  "parameter": "xETXECGVdQs"
+                },
+                {
+                  "parameter": "2598260484"
+                },
+                {
+                  "parameter": "z-MArgF81J8"
+                },
+                {
+                  "parameter": "2uexVnRpuYI"
+                },
+                {
+                  "parameter": "wWu4DgIaDRw"
+                },
+                {
+                  "parameter": "mgfIzNJqaqw"
+                },
+                {
+                  "parameter": "0ZZWWBLEiio"
+                },
+                {
+                  "parameter": "2598263199"
+                },
+                {
+                  "parameter": "175589673"
+                },
+                {
+                  "parameter": "x1WvGrFId0E"
+                },
+                {
+                  "parameter": "ADQXzyNClZA"
+                },
+                {
+                  "parameter": "2598255499"
+                },
+                {
+                  "parameter": "CmO6B4QYV5E"
+                },
+                {
+                  "parameter": "lTI6uKLy3_I"
+                },
+                {
+                  "parameter": "2598263544"
+                },
+                {
+                  "parameter": "p4q4faIL4kk"
+                },
+                {
+                  "parameter": "vbGq3irCh_A"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664628",
+              "vods": [
+                {
+                  "parameter": "xETXECGVdQs"
+                },
+                {
+                  "parameter": "2598260484"
+                },
+                {
+                  "parameter": "zMMFksXpH98"
+                },
+                {
+                  "parameter": "KeXq8bE7fqA"
+                },
+                {
+                  "parameter": "16lT1kmy4Oc"
+                },
+                {
+                  "parameter": "mgfIzNJqaqw"
+                },
+                {
+                  "parameter": "0ZZWWBLEiio"
+                },
+                {
+                  "parameter": "2598263199"
+                },
+                {
+                  "parameter": "175596217"
+                },
+                {
+                  "parameter": "x1WvGrFId0E"
+                },
+                {
+                  "parameter": "ADQXzyNClZA"
+                },
+                {
+                  "parameter": "2598255499"
+                },
+                {
+                  "parameter": "CmO6B4QYV5E"
+                },
+                {
+                  "parameter": "lTI6uKLy3_I"
+                },
+                {
+                  "parameter": "2598263544"
+                },
+                {
+                  "parameter": "c8vb85SxpXw"
+                },
+                {
+                  "parameter": "vbGq3irCh_A"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664629",
+              "vods": []
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-22T11:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664630",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "G2 Esports",
+                "code": "G2",
+                "image": "http://static.lolesports.com/teams/G2-FullonDark.png",
+                "result": {
+                  "gameWins": 2
+                }
+              },
+              {
+                "name": "FlyQuest",
+                "code": "FLY",
+                "image": "http://static.lolesports.com/teams/flyquest-new-on-dark.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 3
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664631",
+              "vods": [
+                {
+                  "parameter": "xETXECGVdQs"
+                },
+                {
+                  "parameter": "2598260484"
+                },
+                {
+                  "parameter": "ZKb03Pumy2g"
+                },
+                {
+                  "parameter": "_RKOa32fybI"
+                },
+                {
+                  "parameter": "ds6Dpgg2wAk"
+                },
+                {
+                  "parameter": "XBSNNf5RVAY"
+                },
+                {
+                  "parameter": "0ZZWWBLEiio"
+                },
+                {
+                  "parameter": "2598263199"
+                },
+                {
+                  "parameter": "175601119"
+                },
+                {
+                  "parameter": "x1WvGrFId0E"
+                },
+                {
+                  "parameter": "ADQXzyNClZA"
+                },
+                {
+                  "parameter": "2598255499"
+                },
+                {
+                  "parameter": "CmO6B4QYV5E"
+                },
+                {
+                  "parameter": "lTI6uKLy3_I"
+                },
+                {
+                  "parameter": "2598263544"
+                },
+                {
+                  "parameter": "SrkfNxB7Ljg"
+                },
+                {
+                  "parameter": "vbGq3irCh_A"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664632",
+              "vods": [
+                {
+                  "parameter": "xETXECGVdQs"
+                },
+                {
+                  "parameter": "2598260484"
+                },
+                {
+                  "parameter": "CwlxKLhzxB8"
+                },
+                {
+                  "parameter": "CTJIWxfRwic"
+                },
+                {
+                  "parameter": "wOGF37jFkRY"
+                },
+                {
+                  "parameter": "XBSNNf5RVAY"
+                },
+                {
+                  "parameter": "0ZZWWBLEiio"
+                },
+                {
+                  "parameter": "2598263199"
+                },
+                {
+                  "parameter": "175606727"
+                },
+                {
+                  "parameter": "x1WvGrFId0E"
+                },
+                {
+                  "parameter": "ADQXzyNClZA"
+                },
+                {
+                  "parameter": "2598255499"
+                },
+                {
+                  "parameter": "CmO6B4QYV5E"
+                },
+                {
+                  "parameter": "lTI6uKLy3_I"
+                },
+                {
+                  "parameter": "2598263544"
+                },
+                {
+                  "parameter": "gTCmKQUmr_8"
+                },
+                {
+                  "parameter": "vbGq3irCh_A"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664633",
+              "vods": [
+                {
+                  "parameter": "xETXECGVdQs"
+                },
+                {
+                  "parameter": "2598260484"
+                },
+                {
+                  "parameter": "gqvXPbD3ntY"
+                },
+                {
+                  "parameter": "IZd_yMFw-cw"
+                },
+                {
+                  "parameter": "zDqzpOBBZ2Q"
+                },
+                {
+                  "parameter": "XBSNNf5RVAY"
+                },
+                {
+                  "parameter": "0ZZWWBLEiio"
+                },
+                {
+                  "parameter": "2598263199"
+                },
+                {
+                  "parameter": "175615399"
+                },
+                {
+                  "parameter": "x1WvGrFId0E"
+                },
+                {
+                  "parameter": "ADQXzyNClZA"
+                },
+                {
+                  "parameter": "2598255499"
+                },
+                {
+                  "parameter": "CmO6B4QYV5E"
+                },
+                {
+                  "parameter": "lTI6uKLy3_I"
+                },
+                {
+                  "parameter": "2598263544"
+                },
+                {
+                  "parameter": "MQhfxQ1eNzM"
+                },
+                {
+                  "parameter": "vbGq3irCh_A"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-23T08:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664638",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Team Secret Whales",
+                "code": "TSW",
+                "image": "http://static.lolesports.com/teams/1774598000328_White_EyeText_600p.png",
+                "result": {
+                  "gameWins": 1
+                }
+              },
+              {
+                "name": "Movistar KOI",
+                "code": "MKOI",
+                "image": "http://static.lolesports.com/teams/1734012609283_MKOI_FullColor_Blue.png",
+                "result": {
+                  "gameWins": 2
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 3
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664639",
+              "vods": [
+                {
+                  "parameter": "yQFGAUURxZo"
+                },
+                {
+                  "parameter": "2599081663"
+                },
+                {
+                  "parameter": "dK_e8CI3_SE"
+                },
+                {
+                  "parameter": "hbOO10puOi8"
+                },
+                {
+                  "parameter": "sGTjMTcgVZE"
+                },
+                {
+                  "parameter": "KAJ7NR077kg"
+                },
+                {
+                  "parameter": "KkNL2l22TPo"
+                },
+                {
+                  "parameter": "2599094956"
+                },
+                {
+                  "parameter": "175680521"
+                },
+                {
+                  "parameter": "sZkO889AnvI"
+                },
+                {
+                  "parameter": "a5V9YGyH3F8"
+                },
+                {
+                  "parameter": "2599085743"
+                },
+                {
+                  "parameter": "pG3iKeIu5Y4"
+                },
+                {
+                  "parameter": "2599095037"
+                },
+                {
+                  "parameter": "YOseq7PJ6Vw"
+                },
+                {
+                  "parameter": "Oo26veoDqAE"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664640",
+              "vods": [
+                {
+                  "parameter": "yQFGAUURxZo"
+                },
+                {
+                  "parameter": "2599081663"
+                },
+                {
+                  "parameter": "MvHWqcsCAiE"
+                },
+                {
+                  "parameter": "hbOO10puOi8"
+                },
+                {
+                  "parameter": "0kMnx7ZCtwU"
+                },
+                {
+                  "parameter": "KAJ7NR077kg"
+                },
+                {
+                  "parameter": "KkNL2l22TPo"
+                },
+                {
+                  "parameter": "2599094956"
+                },
+                {
+                  "parameter": "175685175"
+                },
+                {
+                  "parameter": "sZkO889AnvI"
+                },
+                {
+                  "parameter": "a5V9YGyH3F8"
+                },
+                {
+                  "parameter": "2599085743"
+                },
+                {
+                  "parameter": "pG3iKeIu5Y4"
+                },
+                {
+                  "parameter": "7Wu8VtTwTQw"
+                },
+                {
+                  "parameter": "2599095037"
+                },
+                {
+                  "parameter": "DUlRPo6Cbf0"
+                },
+                {
+                  "parameter": "Oo26veoDqAE"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664641",
+              "vods": [
+                {
+                  "parameter": "yQFGAUURxZo"
+                },
+                {
+                  "parameter": "2599081663"
+                },
+                {
+                  "parameter": "-Fq5ShYq074"
+                },
+                {
+                  "parameter": "hbOO10puOi8"
+                },
+                {
+                  "parameter": "N1hsSy4gGLI"
+                },
+                {
+                  "parameter": "KAJ7NR077kg"
+                },
+                {
+                  "parameter": "KkNL2l22TPo"
+                },
+                {
+                  "parameter": "2599094956"
+                },
+                {
+                  "parameter": "175691149"
+                },
+                {
+                  "parameter": "sZkO889AnvI"
+                },
+                {
+                  "parameter": "a5V9YGyH3F8"
+                },
+                {
+                  "parameter": "2599085743"
+                },
+                {
+                  "parameter": "pG3iKeIu5Y4"
+                },
+                {
+                  "parameter": "7Wu8VtTwTQw"
+                },
+                {
+                  "parameter": "2599095037"
+                },
+                {
+                  "parameter": "VZPUUqUyKgA"
+                },
+                {
+                  "parameter": "Oo26veoDqAE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-23T11:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664634",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "TOP ESPORTS",
+                "code": "TES",
+                "image": "http://static.lolesports.com/teams/1592592064571_TopEsportsTES-01-FullonDark.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "Gen.G Esports",
+                "code": "GEN",
+                "image": "http://static.lolesports.com/teams/1773829250929_GENGLOGO_GOLD.png",
+                "result": {
+                  "gameWins": 2
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 3
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664635",
+              "vods": [
+                {
+                  "parameter": "yQFGAUURxZo"
+                },
+                {
+                  "parameter": "2599081663"
+                },
+                {
+                  "parameter": "Um-c2SKLOeE"
+                },
+                {
+                  "parameter": "hbOO10puOi8"
+                },
+                {
+                  "parameter": "ifLIwplQe5g"
+                },
+                {
+                  "parameter": "SDvxxtfkVIg"
+                },
+                {
+                  "parameter": "KkNL2l22TPo"
+                },
+                {
+                  "parameter": "2599094956"
+                },
+                {
+                  "parameter": "175694721"
+                },
+                {
+                  "parameter": "sZkO889AnvI"
+                },
+                {
+                  "parameter": "a5V9YGyH3F8"
+                },
+                {
+                  "parameter": "2599085743"
+                },
+                {
+                  "parameter": "pG3iKeIu5Y4"
+                },
+                {
+                  "parameter": "7Wu8VtTwTQw"
+                },
+                {
+                  "parameter": "2599095037"
+                },
+                {
+                  "parameter": "HTN5_DzYvZM"
+                },
+                {
+                  "parameter": "Oo26veoDqAE"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664636",
+              "vods": [
+                {
+                  "parameter": "yQFGAUURxZo"
+                },
+                {
+                  "parameter": "2599081663"
+                },
+                {
+                  "parameter": "lpQZmiGBF6E"
+                },
+                {
+                  "parameter": "hbOO10puOi8"
+                },
+                {
+                  "parameter": "o-PINbElw2I"
+                },
+                {
+                  "parameter": "SDvxxtfkVIg"
+                },
+                {
+                  "parameter": "KkNL2l22TPo"
+                },
+                {
+                  "parameter": "2599094956"
+                },
+                {
+                  "parameter": "175701565"
+                },
+                {
+                  "parameter": "sZkO889AnvI"
+                },
+                {
+                  "parameter": "a5V9YGyH3F8"
+                },
+                {
+                  "parameter": "2599085743"
+                },
+                {
+                  "parameter": "pG3iKeIu5Y4"
+                },
+                {
+                  "parameter": "7Wu8VtTwTQw"
+                },
+                {
+                  "parameter": "2599095037"
+                },
+                {
+                  "parameter": "w33a-6nVK0U"
+                },
+                {
+                  "parameter": "Oo26veoDqAE"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664637",
+              "vods": []
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-24T08:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664642",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Vivo Keyd Stars",
+                "code": "VKS",
+                "image": "http://static.lolesports.com/teams/1670542079678_vks.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "BILIBILI GAMING",
+                "code": "BLG",
+                "image": "http://static.lolesports.com/teams/1682322954525_Bilibili_Gaming_logo_20211.png",
+                "result": {
+                  "gameWins": 2
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 3
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664643",
+              "vods": [
+                {
+                  "parameter": "Gs2C7hXxB2Y"
+                },
+                {
+                  "parameter": "2599924967"
+                },
+                {
+                  "parameter": "LBI5TE7TeSc"
+                },
+                {
+                  "parameter": "la7CcQDF0C0"
+                },
+                {
+                  "parameter": "i0VzZ-8dXwk"
+                },
+                {
+                  "parameter": "QnWWBV0_i6Q"
+                },
+                {
+                  "parameter": "KimdGeKceiU"
+                },
+                {
+                  "parameter": "2599930705"
+                },
+                {
+                  "parameter": "175773269"
+                },
+                {
+                  "parameter": "bk7ZD_dnvJ8"
+                },
+                {
+                  "parameter": "l0Z6lqHahY8"
+                },
+                {
+                  "parameter": "2599921475"
+                },
+                {
+                  "parameter": "n1tcFCDpeiM"
+                },
+                {
+                  "parameter": "nRviPAA0knk"
+                },
+                {
+                  "parameter": "2599930897"
+                },
+                {
+                  "parameter": "JrheIpKF1Pw"
+                },
+                {
+                  "parameter": "OQNAaHesSwY"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664644",
+              "vods": [
+                {
+                  "parameter": "Gs2C7hXxB2Y"
+                },
+                {
+                  "parameter": "2599924967"
+                },
+                {
+                  "parameter": "-fcvhX7u3IQ"
+                },
+                {
+                  "parameter": "eG67nDHHGOM"
+                },
+                {
+                  "parameter": "TAKK3SI2rm0"
+                },
+                {
+                  "parameter": "QnWWBV0_i6Q"
+                },
+                {
+                  "parameter": "KimdGeKceiU"
+                },
+                {
+                  "parameter": "2599930705"
+                },
+                {
+                  "parameter": "175779311"
+                },
+                {
+                  "parameter": "bk7ZD_dnvJ8"
+                },
+                {
+                  "parameter": "8TTv2b94Q6I"
+                },
+                {
+                  "parameter": "2599921475"
+                },
+                {
+                  "parameter": "n1tcFCDpeiM"
+                },
+                {
+                  "parameter": "nRviPAA0knk"
+                },
+                {
+                  "parameter": "2599930897"
+                },
+                {
+                  "parameter": "Gjx-SLtZf2Y"
+                },
+                {
+                  "parameter": "OQNAaHesSwY"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664645",
+              "vods": []
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-24T11:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664646",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "T1",
+                "code": "T1",
+                "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+                "result": {
+                  "gameWins": 2
+                }
+              },
+              {
+                "name": "100 Thieves",
+                "code": "100T",
+                "image": "http://static.lolesports.com/teams/1631819887423_100t-2021-worlds.png",
+                "result": {
+                  "gameWins": 0
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 3
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664647",
+              "vods": [
+                {
+                  "parameter": "Gs2C7hXxB2Y"
+                },
+                {
+                  "parameter": "2599924967"
+                },
+                {
+                  "parameter": "YSt1PEMDuho"
+                },
+                {
+                  "parameter": "4keRYC9tfHI"
+                },
+                {
+                  "parameter": "Zq5ol6coaXI"
+                },
+                {
+                  "parameter": "9L7zAOc3S4I"
+                },
+                {
+                  "parameter": "KimdGeKceiU"
+                },
+                {
+                  "parameter": "2599930705"
+                },
+                {
+                  "parameter": "175784643"
+                },
+                {
+                  "parameter": "bk7ZD_dnvJ8"
+                },
+                {
+                  "parameter": "6Mb1n6lIXJo"
+                },
+                {
+                  "parameter": "2599921475"
+                },
+                {
+                  "parameter": "n1tcFCDpeiM"
+                },
+                {
+                  "parameter": "nRviPAA0knk"
+                },
+                {
+                  "parameter": "2599930897"
+                },
+                {
+                  "parameter": "jVEgdReei-A"
+                },
+                {
+                  "parameter": "jVEgdReei-A"
+                },
+                {
+                  "parameter": "OQNAaHesSwY"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664648",
+              "vods": [
+                {
+                  "parameter": "Gs2C7hXxB2Y"
+                },
+                {
+                  "parameter": "2599924967"
+                },
+                {
+                  "parameter": "l_LzxGAHyIs"
+                },
+                {
+                  "parameter": "08Z5iFWne9E"
+                },
+                {
+                  "parameter": "bLQi8wRjLwM"
+                },
+                {
+                  "parameter": "9L7zAOc3S4I"
+                },
+                {
+                  "parameter": "KimdGeKceiU"
+                },
+                {
+                  "parameter": "2599930705"
+                },
+                {
+                  "parameter": "175792355"
+                },
+                {
+                  "parameter": "bk7ZD_dnvJ8"
+                },
+                {
+                  "parameter": "6Mb1n6lIXJo"
+                },
+                {
+                  "parameter": "2599921475"
+                },
+                {
+                  "parameter": "n1tcFCDpeiM"
+                },
+                {
+                  "parameter": "nRviPAA0knk"
+                },
+                {
+                  "parameter": "2599930897"
+                },
+                {
+                  "parameter": "m4O-cLod4mc"
+                },
+                {
+                  "parameter": "OQNAaHesSwY"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664649",
+              "vods": []
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-25T05:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664650",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "FlyQuest",
+                "code": "FLY",
+                "image": "http://static.lolesports.com/teams/flyquest-new-on-dark.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "CTBC Flying Oyster",
+                "code": "CFO",
+                "image": "http://static.lolesports.com/teams/1656307849320_CFO_Logo.png",
+                "result": {
+                  "gameWins": 2
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 3
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664651",
+              "vods": [
+                {
+                  "parameter": "hIdD7pGHNuM"
+                },
+                {
+                  "parameter": "2600732785"
+                },
+                {
+                  "parameter": "bCK-js4UE5M"
+                },
+                {
+                  "parameter": "OK-e6W98pgM"
+                },
+                {
+                  "parameter": "j6WEfqohIEk"
+                },
+                {
+                  "parameter": "UFjp265dW-c"
+                },
+                {
+                  "parameter": "2600716276"
+                },
+                {
+                  "parameter": "2600721425"
+                },
+                {
+                  "parameter": "175861869"
+                },
+                {
+                  "parameter": "HhKQSNVPxgs"
+                },
+                {
+                  "parameter": "2600704768"
+                },
+                {
+                  "parameter": "OGVw5ytTpy4"
+                },
+                {
+                  "parameter": "cxlBgIpYHis"
+                },
+                {
+                  "parameter": "2600722246"
+                },
+                {
+                  "parameter": "zN-2yV-6q68"
+                },
+                {
+                  "parameter": "OQNAaHesSwY"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664652",
+              "vods": [
+                {
+                  "parameter": "hIdD7pGHNuM"
+                },
+                {
+                  "parameter": "2600732785"
+                },
+                {
+                  "parameter": "qJFdgnR6OY8"
+                },
+                {
+                  "parameter": "_NMvWFl0dG4"
+                },
+                {
+                  "parameter": "UbTDREuzmPQ"
+                },
+                {
+                  "parameter": "UFjp265dW-c"
+                },
+                {
+                  "parameter": "2600716276"
+                },
+                {
+                  "parameter": "2600721425"
+                },
+                {
+                  "parameter": "175865703"
+                },
+                {
+                  "parameter": "HhKQSNVPxgs"
+                },
+                {
+                  "parameter": "2600704768"
+                },
+                {
+                  "parameter": "OGVw5ytTpy4"
+                },
+                {
+                  "parameter": "cxlBgIpYHis"
+                },
+                {
+                  "parameter": "2600722246"
+                },
+                {
+                  "parameter": "AKywCmWjZ8M"
+                },
+                {
+                  "parameter": "OQNAaHesSwY"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664653",
+              "vods": []
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-25T08:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664654",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "BILIBILI GAMING",
+                "code": "BLG",
+                "image": "http://static.lolesports.com/teams/1682322954525_Bilibili_Gaming_logo_20211.png",
+                "result": {
+                  "gameWins": 1
+                }
+              },
+              {
+                "name": "TOP ESPORTS",
+                "code": "TES",
+                "image": "http://static.lolesports.com/teams/1592592064571_TopEsportsTES-01-FullonDark.png",
+                "result": {
+                  "gameWins": 2
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 3
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664655",
+              "vods": [
+                {
+                  "parameter": "hIdD7pGHNuM"
+                },
+                {
+                  "parameter": "2600732785"
+                },
+                {
+                  "parameter": "JlQtK1VzeIY"
+                },
+                {
+                  "parameter": "jXjA3n6N6as"
+                },
+                {
+                  "parameter": "qIylq5zna2Y"
+                },
+                {
+                  "parameter": "Pr5xBQBnGG8"
+                },
+                {
+                  "parameter": "2600716276"
+                },
+                {
+                  "parameter": "2600721425"
+                },
+                {
+                  "parameter": "175868443"
+                },
+                {
+                  "parameter": "HhKQSNVPxgs"
+                },
+                {
+                  "parameter": "2600704768"
+                },
+                {
+                  "parameter": "OGVw5ytTpy4"
+                },
+                {
+                  "parameter": "cxlBgIpYHis"
+                },
+                {
+                  "parameter": "2600722246"
+                },
+                {
+                  "parameter": "-1IhER2hQKk"
+                },
+                {
+                  "parameter": "OQNAaHesSwY"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664656",
+              "vods": [
+                {
+                  "parameter": "hIdD7pGHNuM"
+                },
+                {
+                  "parameter": "2600732785"
+                },
+                {
+                  "parameter": "5UdhMa80a_Q"
+                },
+                {
+                  "parameter": "oESeiLtMdY0"
+                },
+                {
+                  "parameter": "gTVenthSjSw"
+                },
+                {
+                  "parameter": "Pr5xBQBnGG8"
+                },
+                {
+                  "parameter": "2600716276"
+                },
+                {
+                  "parameter": "2600721425"
+                },
+                {
+                  "parameter": "175872119"
+                },
+                {
+                  "parameter": "HhKQSNVPxgs"
+                },
+                {
+                  "parameter": "2600704768"
+                },
+                {
+                  "parameter": "OGVw5ytTpy4"
+                },
+                {
+                  "parameter": "cxlBgIpYHis"
+                },
+                {
+                  "parameter": "2600722246"
+                },
+                {
+                  "parameter": "eHcIyQ4maTQ"
+                },
+                {
+                  "parameter": "OQNAaHesSwY"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664657",
+              "vods": [
+                {
+                  "parameter": "hIdD7pGHNuM"
+                },
+                {
+                  "parameter": "2600732785"
+                },
+                {
+                  "parameter": "V9AgrsUzMHY"
+                },
+                {
+                  "parameter": "wW4_e-Gdn2M"
+                },
+                {
+                  "parameter": "8RFCv9UTeWg"
+                },
+                {
+                  "parameter": "Pr5xBQBnGG8"
+                },
+                {
+                  "parameter": "2600716276"
+                },
+                {
+                  "parameter": "2600721425"
+                },
+                {
+                  "parameter": "175877937"
+                },
+                {
+                  "parameter": "HhKQSNVPxgs"
+                },
+                {
+                  "parameter": "2600704768"
+                },
+                {
+                  "parameter": "OGVw5ytTpy4"
+                },
+                {
+                  "parameter": "cxlBgIpYHis"
+                },
+                {
+                  "parameter": "2600722246"
+                },
+                {
+                  "parameter": "yvp_Wo7A27U"
+                },
+                {
+                  "parameter": "OQNAaHesSwY"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-25T11:00:00Z",
+          "blockName": "瑞士制循環賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475798006664658",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "T1",
+                "code": "T1",
+                "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+                "result": {
+                  "gameWins": 2
+                }
+              },
+              {
+                "name": "Movistar KOI",
+                "code": "MKOI",
+                "image": "http://static.lolesports.com/teams/1734012609283_MKOI_FullColor_Blue.png",
+                "result": {
+                  "gameWins": 0
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 3
+            }
+          },
+          "games": [
+            {
+              "id": "113475798006664659",
+              "vods": [
+                {
+                  "parameter": "hIdD7pGHNuM"
+                },
+                {
+                  "parameter": "2600732785"
+                },
+                {
+                  "parameter": "QhKKq1S9TmQ"
+                },
+                {
+                  "parameter": "B0ow_neRzmo"
+                },
+                {
+                  "parameter": "AYZ8P5IbpK0"
+                },
+                {
+                  "parameter": "E9qSl4KSork"
+                },
+                {
+                  "parameter": "2600716276"
+                },
+                {
+                  "parameter": "2600721425"
+                },
+                {
+                  "parameter": "175882361"
+                },
+                {
+                  "parameter": "HhKQSNVPxgs"
+                },
+                {
+                  "parameter": "2600704768"
+                },
+                {
+                  "parameter": "OGVw5ytTpy4"
+                },
+                {
+                  "parameter": "cxlBgIpYHis"
+                },
+                {
+                  "parameter": "2600722246"
+                },
+                {
+                  "parameter": "_0tJenFMhyg"
+                },
+                {
+                  "parameter": "OQNAaHesSwY"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664660",
+              "vods": [
+                {
+                  "parameter": "hIdD7pGHNuM"
+                },
+                {
+                  "parameter": "2600732785"
+                },
+                {
+                  "parameter": "bsWZO4znz1E"
+                },
+                {
+                  "parameter": "YtlHx1kERGY"
+                },
+                {
+                  "parameter": "_v-NHjmC_Lc"
+                },
+                {
+                  "parameter": "E9qSl4KSork"
+                },
+                {
+                  "parameter": "2600716276"
+                },
+                {
+                  "parameter": "2600721425"
+                },
+                {
+                  "parameter": "175891161"
+                },
+                {
+                  "parameter": "HhKQSNVPxgs"
+                },
+                {
+                  "parameter": "2600704768"
+                },
+                {
+                  "parameter": "OGVw5ytTpy4"
+                },
+                {
+                  "parameter": "cxlBgIpYHis"
+                },
+                {
+                  "parameter": "2600722246"
+                },
+                {
+                  "parameter": "eJ-MvZLhuKs"
+                },
+                {
+                  "parameter": "OQNAaHesSwY"
+                }
+              ]
+            },
+            {
+              "id": "113475798006664661",
+              "vods": []
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-28T07:00:00Z",
+          "blockName": "八強賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475871523985223",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "Hanwha Life Esports",
+                "code": "HLE",
+                "image": "http://static.lolesports.com/teams/1631819564399_hle-2021-worlds.png",
+                "result": {
+                  "gameWins": 1
+                }
+              },
+              {
+                "name": "Gen.G Esports",
+                "code": "GEN",
+                "image": "http://static.lolesports.com/teams/1773829250929_GENGLOGO_GOLD.png",
+                "result": {
+                  "gameWins": 3
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 5
+            }
+          },
+          "games": [
+            {
+              "id": "113475871523985224",
+              "vods": [
+                {
+                  "parameter": "2603333124"
+                },
+                {
+                  "parameter": "7TgQARcaWDA"
+                },
+                {
+                  "parameter": "2603328763"
+                },
+                {
+                  "parameter": "YCWX3ilg3SI"
+                },
+                {
+                  "parameter": "A0cZYLk6ckM"
+                },
+                {
+                  "parameter": "Ghimqp7tIRQ"
+                },
+                {
+                  "parameter": "io8f5OvXRIc"
+                },
+                {
+                  "parameter": "ivpRfmee4Ec"
+                },
+                {
+                  "parameter": "2603335422"
+                },
+                {
+                  "parameter": "176146659"
+                },
+                {
+                  "parameter": "_7gkz028OV4"
+                },
+                {
+                  "parameter": "sdvT5rkCDUY"
+                },
+                {
+                  "parameter": "2603330789"
+                },
+                {
+                  "parameter": "bnnMAKIG73k"
+                },
+                {
+                  "parameter": "gF7Eag2MRFY"
+                },
+                {
+                  "parameter": "2603335834"
+                },
+                {
+                  "parameter": "1Zc5xGHhQfc"
+                },
+                {
+                  "parameter": "sGe1pR_FCO4"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985225",
+              "vods": [
+                {
+                  "parameter": "2603333124"
+                },
+                {
+                  "parameter": "7TgQARcaWDA"
+                },
+                {
+                  "parameter": "2603328763"
+                },
+                {
+                  "parameter": "ddLO50ERp3Y"
+                },
+                {
+                  "parameter": "KZXKvkbgWLM"
+                },
+                {
+                  "parameter": "22ypTsXqI7A"
+                },
+                {
+                  "parameter": "io8f5OvXRIc"
+                },
+                {
+                  "parameter": "ivpRfmee4Ec"
+                },
+                {
+                  "parameter": "2603335422"
+                },
+                {
+                  "parameter": "176152001"
+                },
+                {
+                  "parameter": "_7gkz028OV4"
+                },
+                {
+                  "parameter": "sdvT5rkCDUY"
+                },
+                {
+                  "parameter": "2603330789"
+                },
+                {
+                  "parameter": "bnnMAKIG73k"
+                },
+                {
+                  "parameter": "gF7Eag2MRFY"
+                },
+                {
+                  "parameter": "2603335834"
+                },
+                {
+                  "parameter": "2K9yrkdnxK8"
+                },
+                {
+                  "parameter": "sGe1pR_FCO4"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985226",
+              "vods": [
+                {
+                  "parameter": "2603333124"
+                },
+                {
+                  "parameter": "7TgQARcaWDA"
+                },
+                {
+                  "parameter": "2603328763"
+                },
+                {
+                  "parameter": "HIkkXzh5AuI"
+                },
+                {
+                  "parameter": "Q_dR-n-_4AA"
+                },
+                {
+                  "parameter": "qaFCu-E7cQQ"
+                },
+                {
+                  "parameter": "io8f5OvXRIc"
+                },
+                {
+                  "parameter": "ivpRfmee4Ec"
+                },
+                {
+                  "parameter": "2603335422"
+                },
+                {
+                  "parameter": "176156169"
+                },
+                {
+                  "parameter": "_7gkz028OV4"
+                },
+                {
+                  "parameter": "sdvT5rkCDUY"
+                },
+                {
+                  "parameter": "2603330789"
+                },
+                {
+                  "parameter": "bnnMAKIG73k"
+                },
+                {
+                  "parameter": "gF7Eag2MRFY"
+                },
+                {
+                  "parameter": "2603335834"
+                },
+                {
+                  "parameter": "s-GtL-zUYwE"
+                },
+                {
+                  "parameter": "sGe1pR_FCO4"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985227",
+              "vods": [
+                {
+                  "parameter": "2603333124"
+                },
+                {
+                  "parameter": "7TgQARcaWDA"
+                },
+                {
+                  "parameter": "2603328763"
+                },
+                {
+                  "parameter": "zFNKtfzkZVA"
+                },
+                {
+                  "parameter": "hdqO9Z0r4vM"
+                },
+                {
+                  "parameter": "0IBqL-Cy3IA"
+                },
+                {
+                  "parameter": "io8f5OvXRIc"
+                },
+                {
+                  "parameter": "ivpRfmee4Ec"
+                },
+                {
+                  "parameter": "2603335422"
+                },
+                {
+                  "parameter": "176163475"
+                },
+                {
+                  "parameter": "_7gkz028OV4"
+                },
+                {
+                  "parameter": "sdvT5rkCDUY"
+                },
+                {
+                  "parameter": "2603330789"
+                },
+                {
+                  "parameter": "bnnMAKIG73k"
+                },
+                {
+                  "parameter": "gF7Eag2MRFY"
+                },
+                {
+                  "parameter": "2603335834"
+                },
+                {
+                  "parameter": "EGt37eebWXM"
+                },
+                {
+                  "parameter": "sGe1pR_FCO4"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985228",
+              "vods": []
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-29T07:00:00Z",
+          "blockName": "八強賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475871523985229",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "CTBC Flying Oyster",
+                "code": "CFO",
+                "image": "http://static.lolesports.com/teams/1656307849320_CFO_Logo.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "kt Rolster",
+                "code": "KT",
+                "image": "http://static.lolesports.com/teams/kt_darkbackground.png",
+                "result": {
+                  "gameWins": 3
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 5
+            }
+          },
+          "games": [
+            {
+              "id": "113475871523985230",
+              "vods": [
+                {
+                  "parameter": "2604189215"
+                },
+                {
+                  "parameter": "0yNR9rxAsI4"
+                },
+                {
+                  "parameter": "2604192446"
+                },
+                {
+                  "parameter": "SKlzhi0si5M"
+                },
+                {
+                  "parameter": "zxRWA0y7644"
+                },
+                {
+                  "parameter": "taRyDkRES_s"
+                },
+                {
+                  "parameter": "x_Tic2dv22w"
+                },
+                {
+                  "parameter": "LWw1MUalmZ4"
+                },
+                {
+                  "parameter": "2604190328"
+                },
+                {
+                  "parameter": "176234055"
+                },
+                {
+                  "parameter": "oQH-29lJwMg"
+                },
+                {
+                  "parameter": "SO7WyVQY1sc"
+                },
+                {
+                  "parameter": "2604182657"
+                },
+                {
+                  "parameter": "pNF2w95aLns"
+                },
+                {
+                  "parameter": "uTWJM6Uz1pQ"
+                },
+                {
+                  "parameter": "2604190807"
+                },
+                {
+                  "parameter": "kVFzzlKK2Bo"
+                },
+                {
+                  "parameter": "iex8WqRGyDM"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985231",
+              "vods": [
+                {
+                  "parameter": "2604189215"
+                },
+                {
+                  "parameter": "0yNR9rxAsI4"
+                },
+                {
+                  "parameter": "2604192446"
+                },
+                {
+                  "parameter": "1jKdc15gTGk"
+                },
+                {
+                  "parameter": "Pk5-c4oFE3E"
+                },
+                {
+                  "parameter": "cg6pSYfVHJg"
+                },
+                {
+                  "parameter": "x_Tic2dv22w"
+                },
+                {
+                  "parameter": "LWw1MUalmZ4"
+                },
+                {
+                  "parameter": "2604190328"
+                },
+                {
+                  "parameter": "176237227"
+                },
+                {
+                  "parameter": "oQH-29lJwMg"
+                },
+                {
+                  "parameter": "SO7WyVQY1sc"
+                },
+                {
+                  "parameter": "2604182657"
+                },
+                {
+                  "parameter": "pNF2w95aLns"
+                },
+                {
+                  "parameter": "uTWJM6Uz1pQ"
+                },
+                {
+                  "parameter": "2604190807"
+                },
+                {
+                  "parameter": "NDZtr7LCgyk"
+                },
+                {
+                  "parameter": "iex8WqRGyDM"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985232",
+              "vods": [
+                {
+                  "parameter": "2604189215"
+                },
+                {
+                  "parameter": "0yNR9rxAsI4"
+                },
+                {
+                  "parameter": "2604192446"
+                },
+                {
+                  "parameter": "jlk-BXoo4-M"
+                },
+                {
+                  "parameter": "wD7IFieV6PY"
+                },
+                {
+                  "parameter": "TGiAmI9AblI"
+                },
+                {
+                  "parameter": "x_Tic2dv22w"
+                },
+                {
+                  "parameter": "LWw1MUalmZ4"
+                },
+                {
+                  "parameter": "2604190328"
+                },
+                {
+                  "parameter": "176242771"
+                },
+                {
+                  "parameter": "oQH-29lJwMg"
+                },
+                {
+                  "parameter": "SO7WyVQY1sc"
+                },
+                {
+                  "parameter": "2604182657"
+                },
+                {
+                  "parameter": "pNF2w95aLns"
+                },
+                {
+                  "parameter": "uTWJM6Uz1pQ"
+                },
+                {
+                  "parameter": "2604190807"
+                },
+                {
+                  "parameter": "ZfG3ozAQMWc"
+                },
+                {
+                  "parameter": "iex8WqRGyDM"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985233",
+              "vods": []
+            },
+            {
+              "id": "113475871523985234",
+              "vods": []
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-30T07:00:00Z",
+          "blockName": "八強賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475871523985217",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "G2 Esports",
+                "code": "G2",
+                "image": "http://static.lolesports.com/teams/G2-FullonDark.png",
+                "result": {
+                  "gameWins": 1
+                }
+              },
+              {
+                "name": "TOP ESPORTS",
+                "code": "TES",
+                "image": "http://static.lolesports.com/teams/1592592064571_TopEsportsTES-01-FullonDark.png",
+                "result": {
+                  "gameWins": 3
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 5
+            }
+          },
+          "games": [
+            {
+              "id": "113475871523985218",
+              "vods": [
+                {
+                  "parameter": "2605026405"
+                },
+                {
+                  "parameter": "dIGnTw4FYV0"
+                },
+                {
+                  "parameter": "2605025603"
+                },
+                {
+                  "parameter": "Y-amt3aw994"
+                },
+                {
+                  "parameter": "iHymM4dEOxU"
+                },
+                {
+                  "parameter": "jI4NWR2YxwM"
+                },
+                {
+                  "parameter": "_olVc_8aP6o"
+                },
+                {
+                  "parameter": "2605024392"
+                },
+                {
+                  "parameter": "2605027281"
+                },
+                {
+                  "parameter": "176343679"
+                },
+                {
+                  "parameter": "2605024163"
+                },
+                {
+                  "parameter": "ljbemggE0mc"
+                },
+                {
+                  "parameter": "2605017774"
+                },
+                {
+                  "parameter": "ocOGL-RF3rI"
+                },
+                {
+                  "parameter": "2605030435"
+                },
+                {
+                  "parameter": "2605027389"
+                },
+                {
+                  "parameter": "wIpQ5WcK_Oo"
+                },
+                {
+                  "parameter": "2605027302"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985219",
+              "vods": [
+                {
+                  "parameter": "2605026405"
+                },
+                {
+                  "parameter": "dIGnTw4FYV0"
+                },
+                {
+                  "parameter": "2605025603"
+                },
+                {
+                  "parameter": "bKfI3yAi1ek"
+                },
+                {
+                  "parameter": "TbUnerh68Us"
+                },
+                {
+                  "parameter": "v3fWcV8S55Y"
+                },
+                {
+                  "parameter": "_olVc_8aP6o"
+                },
+                {
+                  "parameter": "2605024392"
+                },
+                {
+                  "parameter": "2605027281"
+                },
+                {
+                  "parameter": "176343679"
+                },
+                {
+                  "parameter": "2605024163"
+                },
+                {
+                  "parameter": "ljbemggE0mc"
+                },
+                {
+                  "parameter": "2605017774"
+                },
+                {
+                  "parameter": "ocOGL-RF3rI"
+                },
+                {
+                  "parameter": "2605055057"
+                },
+                {
+                  "parameter": "2605027389"
+                },
+                {
+                  "parameter": "8NIjveZc7PQ"
+                },
+                {
+                  "parameter": "2605027302"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985220",
+              "vods": [
+                {
+                  "parameter": "2605026405"
+                },
+                {
+                  "parameter": "dIGnTw4FYV0"
+                },
+                {
+                  "parameter": "2605025603"
+                },
+                {
+                  "parameter": "fiM0YREYG_A"
+                },
+                {
+                  "parameter": "1K16D4xBwj4"
+                },
+                {
+                  "parameter": "E2HMeuuY-IQ"
+                },
+                {
+                  "parameter": "_olVc_8aP6o"
+                },
+                {
+                  "parameter": "2605024392"
+                },
+                {
+                  "parameter": "2605027281"
+                },
+                {
+                  "parameter": "176343679"
+                },
+                {
+                  "parameter": "2605024163"
+                },
+                {
+                  "parameter": "ljbemggE0mc"
+                },
+                {
+                  "parameter": "2605017774"
+                },
+                {
+                  "parameter": "ocOGL-RF3rI"
+                },
+                {
+                  "parameter": "2605055057"
+                },
+                {
+                  "parameter": "2605027389"
+                },
+                {
+                  "parameter": "gC3DpzJ0-ak"
+                },
+                {
+                  "parameter": "2605027302"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985221",
+              "vods": [
+                {
+                  "parameter": "2605026405"
+                },
+                {
+                  "parameter": "dIGnTw4FYV0"
+                },
+                {
+                  "parameter": "2605025603"
+                },
+                {
+                  "parameter": "OIXO37S96fs"
+                },
+                {
+                  "parameter": "2605022968"
+                },
+                {
+                  "parameter": "YFl-_k4J7Eg"
+                },
+                {
+                  "parameter": "_olVc_8aP6o"
+                },
+                {
+                  "parameter": "2605024392"
+                },
+                {
+                  "parameter": "2605027281"
+                },
+                {
+                  "parameter": "176343679"
+                },
+                {
+                  "parameter": "2605024163"
+                },
+                {
+                  "parameter": "ljbemggE0mc"
+                },
+                {
+                  "parameter": "2605017774"
+                },
+                {
+                  "parameter": "ocOGL-RF3rI"
+                },
+                {
+                  "parameter": "2605055057"
+                },
+                {
+                  "parameter": "2605027389"
+                },
+                {
+                  "parameter": "enw--2yY-3g"
+                },
+                {
+                  "parameter": "2605027302"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985222",
+              "vods": []
+            }
+          ]
+        },
+        {
+          "startTime": "2025-10-31T07:00:00Z",
+          "blockName": "八強賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475871523985211",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "T1",
+                "code": "T1",
+                "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+                "result": {
+                  "gameWins": 3
+                }
+              },
+              {
+                "name": "Anyone's Legend",
+                "code": "AL",
+                "image": "http://static.lolesports.com/teams/1641199582689_.png",
+                "result": {
+                  "gameWins": 2
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 5
+            }
+          },
+          "games": [
+            {
+              "id": "113475871523985212",
+              "vods": [
+                {
+                  "parameter": "2605877181"
+                },
+                {
+                  "parameter": "T1LvHOp-4fw"
+                },
+                {
+                  "parameter": "2605873122"
+                },
+                {
+                  "parameter": "tCJA61nFXHA"
+                },
+                {
+                  "parameter": "s6Vwf-xTfWo"
+                },
+                {
+                  "parameter": "SgMoLBb651Q"
+                },
+                {
+                  "parameter": "svc5fIX848k"
+                },
+                {
+                  "parameter": "F9pGrJd9TB4"
+                },
+                {
+                  "parameter": "pKg5gT-z1CE"
+                },
+                {
+                  "parameter": "2605878029"
+                },
+                {
+                  "parameter": "176429149"
+                },
+                {
+                  "parameter": "sbm_NpMNuEI"
+                },
+                {
+                  "parameter": "QAbxCpv6ZhA"
+                },
+                {
+                  "parameter": "2605870911"
+                },
+                {
+                  "parameter": "GqyQ7mq07Io"
+                },
+                {
+                  "parameter": "77j-2WOWCzA"
+                },
+                {
+                  "parameter": "2605878631"
+                },
+                {
+                  "parameter": "Iu-HkfZyqhg"
+                },
+                {
+                  "parameter": "HihR1MwmF3E"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985213",
+              "vods": [
+                {
+                  "parameter": "2605877181"
+                },
+                {
+                  "parameter": "T1LvHOp-4fw"
+                },
+                {
+                  "parameter": "2605873122"
+                },
+                {
+                  "parameter": "YRnRL_q1XQg"
+                },
+                {
+                  "parameter": "VruCZlFG58E"
+                },
+                {
+                  "parameter": "k4djODxjb1Y"
+                },
+                {
+                  "parameter": "svc5fIX848k"
+                },
+                {
+                  "parameter": "F9pGrJd9TB4"
+                },
+                {
+                  "parameter": "pKg5gT-z1CE"
+                },
+                {
+                  "parameter": "2605878029"
+                },
+                {
+                  "parameter": "176433481"
+                },
+                {
+                  "parameter": "sbm_NpMNuEI"
+                },
+                {
+                  "parameter": "QAbxCpv6ZhA"
+                },
+                {
+                  "parameter": "2605870911"
+                },
+                {
+                  "parameter": "GqyQ7mq07Io"
+                },
+                {
+                  "parameter": "77j-2WOWCzA"
+                },
+                {
+                  "parameter": "2605878631"
+                },
+                {
+                  "parameter": "pBd9OrQJJEw"
+                },
+                {
+                  "parameter": "HihR1MwmF3E"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985214",
+              "vods": [
+                {
+                  "parameter": "2605877181"
+                },
+                {
+                  "parameter": "T1LvHOp-4fw"
+                },
+                {
+                  "parameter": "2605873122"
+                },
+                {
+                  "parameter": "IFbTfJh8R3o"
+                },
+                {
+                  "parameter": "Oe2KQbURAl0"
+                },
+                {
+                  "parameter": "bgAWrQ3AkWc"
+                },
+                {
+                  "parameter": "svc5fIX848k"
+                },
+                {
+                  "parameter": "F9pGrJd9TB4"
+                },
+                {
+                  "parameter": "pKg5gT-z1CE"
+                },
+                {
+                  "parameter": "2605878029"
+                },
+                {
+                  "parameter": "176439753"
+                },
+                {
+                  "parameter": "sbm_NpMNuEI"
+                },
+                {
+                  "parameter": "QAbxCpv6ZhA"
+                },
+                {
+                  "parameter": "2605870911"
+                },
+                {
+                  "parameter": "GqyQ7mq07Io"
+                },
+                {
+                  "parameter": "77j-2WOWCzA"
+                },
+                {
+                  "parameter": "2605878631"
+                },
+                {
+                  "parameter": "sQkqGiEvy_M"
+                },
+                {
+                  "parameter": "HihR1MwmF3E"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985215",
+              "vods": [
+                {
+                  "parameter": "2605877181"
+                },
+                {
+                  "parameter": "T1LvHOp-4fw"
+                },
+                {
+                  "parameter": "2605873122"
+                },
+                {
+                  "parameter": "zvALENbYZjU"
+                },
+                {
+                  "parameter": "FMED1m_RRDY"
+                },
+                {
+                  "parameter": "j1-Pm49PEDc"
+                },
+                {
+                  "parameter": "svc5fIX848k"
+                },
+                {
+                  "parameter": "F9pGrJd9TB4"
+                },
+                {
+                  "parameter": "pKg5gT-z1CE"
+                },
+                {
+                  "parameter": "2605878029"
+                },
+                {
+                  "parameter": "176446109"
+                },
+                {
+                  "parameter": "sbm_NpMNuEI"
+                },
+                {
+                  "parameter": "QAbxCpv6ZhA"
+                },
+                {
+                  "parameter": "2605870911"
+                },
+                {
+                  "parameter": "GqyQ7mq07Io"
+                },
+                {
+                  "parameter": "77j-2WOWCzA"
+                },
+                {
+                  "parameter": "2605878631"
+                },
+                {
+                  "parameter": "qCR7byXmmVg"
+                },
+                {
+                  "parameter": "HihR1MwmF3E"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985216",
+              "vods": [
+                {
+                  "parameter": "2605877181"
+                },
+                {
+                  "parameter": "T1LvHOp-4fw"
+                },
+                {
+                  "parameter": "2605873122"
+                },
+                {
+                  "parameter": "dVw8MykeXuk"
+                },
+                {
+                  "parameter": "-faE0fgMSUw"
+                },
+                {
+                  "parameter": "GXLPQ92jcIY"
+                },
+                {
+                  "parameter": "svc5fIX848k"
+                },
+                {
+                  "parameter": "F9pGrJd9TB4"
+                },
+                {
+                  "parameter": "pKg5gT-z1CE"
+                },
+                {
+                  "parameter": "2605878029"
+                },
+                {
+                  "parameter": "176457619"
+                },
+                {
+                  "parameter": "sbm_NpMNuEI"
+                },
+                {
+                  "parameter": "QAbxCpv6ZhA"
+                },
+                {
+                  "parameter": "2605870911"
+                },
+                {
+                  "parameter": "GqyQ7mq07Io"
+                },
+                {
+                  "parameter": "77j-2WOWCzA"
+                },
+                {
+                  "parameter": "2605878631"
+                },
+                {
+                  "parameter": "A1brfdTNrSU"
+                },
+                {
+                  "parameter": "HihR1MwmF3E"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startTime": "2025-11-01T07:00:00Z",
+          "blockName": "準決賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475871523985241",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "kt Rolster",
+                "code": "KT",
+                "image": "http://static.lolesports.com/teams/kt_darkbackground.png",
+                "result": {
+                  "gameWins": 3
+                }
+              },
+              {
+                "name": "Gen.G Esports",
+                "code": "GEN",
+                "image": "http://static.lolesports.com/teams/1773829250929_GENGLOGO_GOLD.png",
+                "result": {
+                  "gameWins": 1
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 5
+            }
+          },
+          "games": [
+            {
+              "id": "113475871523985242",
+              "vods": [
+                {
+                  "parameter": "2606743436"
+                },
+                {
+                  "parameter": "jEMKzyJElws"
+                },
+                {
+                  "parameter": "V145uI3ILwY"
+                },
+                {
+                  "parameter": "NmvhxwPcrL4"
+                },
+                {
+                  "parameter": "YGMozG1Hee8"
+                },
+                {
+                  "parameter": "2606738151"
+                },
+                {
+                  "parameter": "YvP6_FDLckw"
+                },
+                {
+                  "parameter": "176569319"
+                },
+                {
+                  "parameter": "cMJ9jlnUgyI"
+                },
+                {
+                  "parameter": "2606737689"
+                },
+                {
+                  "parameter": "Ulp7zI13QwE"
+                },
+                {
+                  "parameter": "2606749110"
+                },
+                {
+                  "parameter": "5dcgeIauwpQ"
+                },
+                {
+                  "parameter": "2606748883"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985243",
+              "vods": [
+                {
+                  "parameter": "2606743436"
+                },
+                {
+                  "parameter": "lwS8mBsBv3w"
+                },
+                {
+                  "parameter": "c7FHVL0Debo"
+                },
+                {
+                  "parameter": "pBC5sTPb86o"
+                },
+                {
+                  "parameter": "YGMozG1Hee8"
+                },
+                {
+                  "parameter": "2606738151"
+                },
+                {
+                  "parameter": "99haZr04-Z0"
+                },
+                {
+                  "parameter": "176569319"
+                },
+                {
+                  "parameter": "cMJ9jlnUgyI"
+                },
+                {
+                  "parameter": "2606737689"
+                },
+                {
+                  "parameter": "Ulp7zI13QwE"
+                },
+                {
+                  "parameter": "2606749110"
+                },
+                {
+                  "parameter": "8QbYdVFFV1w"
+                },
+                {
+                  "parameter": "2606748883"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985244",
+              "vods": [
+                {
+                  "parameter": "2606743436"
+                },
+                {
+                  "parameter": "-xuXNryO3CA"
+                },
+                {
+                  "parameter": "K8dmOhi66pk"
+                },
+                {
+                  "parameter": "Bhv_0CS2jCE"
+                },
+                {
+                  "parameter": "YGMozG1Hee8"
+                },
+                {
+                  "parameter": "2606738151"
+                },
+                {
+                  "parameter": "_gHwKy0veSA"
+                },
+                {
+                  "parameter": "176569319"
+                },
+                {
+                  "parameter": "cMJ9jlnUgyI"
+                },
+                {
+                  "parameter": "2606737689"
+                },
+                {
+                  "parameter": "Ulp7zI13QwE"
+                },
+                {
+                  "parameter": "2606749110"
+                },
+                {
+                  "parameter": "aiD6l0HMx1A"
+                },
+                {
+                  "parameter": "2606748883"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985245",
+              "vods": [
+                {
+                  "parameter": "2606743436"
+                },
+                {
+                  "parameter": "4lVbhCxL3CI"
+                },
+                {
+                  "parameter": "DJwXTvJ7ywI"
+                },
+                {
+                  "parameter": "zsKKg17VJzo"
+                },
+                {
+                  "parameter": "YGMozG1Hee8"
+                },
+                {
+                  "parameter": "2606738151"
+                },
+                {
+                  "parameter": "6fRMv0PGgBU"
+                },
+                {
+                  "parameter": "176569319"
+                },
+                {
+                  "parameter": "cMJ9jlnUgyI"
+                },
+                {
+                  "parameter": "2606737689"
+                },
+                {
+                  "parameter": "Ulp7zI13QwE"
+                },
+                {
+                  "parameter": "2606749110"
+                },
+                {
+                  "parameter": "EEZZVe_1Bo8"
+                },
+                {
+                  "parameter": "2606748883"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985246",
+              "vods": []
+            }
+          ]
+        },
+        {
+          "startTime": "2025-11-02T07:00:00Z",
+          "blockName": "準決賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475871523985235",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "TOP ESPORTS",
+                "code": "TES",
+                "image": "http://static.lolesports.com/teams/1592592064571_TopEsportsTES-01-FullonDark.png",
+                "result": {
+                  "gameWins": 0
+                }
+              },
+              {
+                "name": "T1",
+                "code": "T1",
+                "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+                "result": {
+                  "gameWins": 3
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 5
+            }
+          },
+          "games": [
+            {
+              "id": "113475871523985236",
+              "vods": [
+                {
+                  "parameter": "2607659920"
+                },
+                {
+                  "parameter": "j6Ya-AAet9E"
+                },
+                {
+                  "parameter": "2607653024"
+                },
+                {
+                  "parameter": "pGgNECY1iJM"
+                },
+                {
+                  "parameter": "w4WgowhrLZo"
+                },
+                {
+                  "parameter": "KLgpQGFZ5Lo"
+                },
+                {
+                  "parameter": "z-nGa-1wlx4"
+                },
+                {
+                  "parameter": "2607662586"
+                },
+                {
+                  "parameter": "2607661863"
+                },
+                {
+                  "parameter": "176664369"
+                },
+                {
+                  "parameter": "2607658011"
+                },
+                {
+                  "parameter": "qNHBYboJGts"
+                },
+                {
+                  "parameter": "2607650275"
+                },
+                {
+                  "parameter": "lzimnR9uhnw"
+                },
+                {
+                  "parameter": "2607686072"
+                },
+                {
+                  "parameter": "2607662231"
+                },
+                {
+                  "parameter": "9NhoSITZS9U"
+                },
+                {
+                  "parameter": "2607661887"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985237",
+              "vods": [
+                {
+                  "parameter": "2607659920"
+                },
+                {
+                  "parameter": "j6Ya-AAet9E"
+                },
+                {
+                  "parameter": "2607653024"
+                },
+                {
+                  "parameter": "NXX7X3PoE60"
+                },
+                {
+                  "parameter": "2607656037"
+                },
+                {
+                  "parameter": "wAaWfp61UYI"
+                },
+                {
+                  "parameter": "z-nGa-1wlx4"
+                },
+                {
+                  "parameter": "2607662586"
+                },
+                {
+                  "parameter": "2607661863"
+                },
+                {
+                  "parameter": "176664369"
+                },
+                {
+                  "parameter": "2607658011"
+                },
+                {
+                  "parameter": "qNHBYboJGts"
+                },
+                {
+                  "parameter": "2607650275"
+                },
+                {
+                  "parameter": "lzimnR9uhnw"
+                },
+                {
+                  "parameter": "2607662231"
+                },
+                {
+                  "parameter": "DuTkPy9KX3I"
+                },
+                {
+                  "parameter": "2607661887"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985238",
+              "vods": [
+                {
+                  "parameter": "2607659920"
+                },
+                {
+                  "parameter": "j6Ya-AAet9E"
+                },
+                {
+                  "parameter": "2607653024"
+                },
+                {
+                  "parameter": "9xw1Mz1L5Uk"
+                },
+                {
+                  "parameter": "2607656037"
+                },
+                {
+                  "parameter": "gYPnO--4n3g"
+                },
+                {
+                  "parameter": "z-nGa-1wlx4"
+                },
+                {
+                  "parameter": "2607662586"
+                },
+                {
+                  "parameter": "2607661863"
+                },
+                {
+                  "parameter": "176664369"
+                },
+                {
+                  "parameter": "2607658011"
+                },
+                {
+                  "parameter": "qNHBYboJGts"
+                },
+                {
+                  "parameter": "2607650275"
+                },
+                {
+                  "parameter": "lzimnR9uhnw"
+                },
+                {
+                  "parameter": "2607712448"
+                },
+                {
+                  "parameter": "2607662231"
+                },
+                {
+                  "parameter": "c5H2INCqCWg"
+                },
+                {
+                  "parameter": "2607661887"
+                }
+              ]
+            },
+            {
+              "id": "113475871523985239",
+              "vods": []
+            },
+            {
+              "id": "113475871523985240",
+              "vods": []
+            }
+          ]
+        },
+        {
+          "startTime": "2025-11-09T07:00:00Z",
+          "blockName": "決賽",
+          "league": {
+            "name": "Worlds"
+          },
+          "match": {
+            "id": "113475871524050783",
+            "type": "normal",
+            "teams": [
+              {
+                "name": "T1",
+                "code": "T1",
+                "image": "http://static.lolesports.com/teams/1726801573959_539px-T1_2019_full_allmode.png",
+                "result": {
+                  "gameWins": 3
+                }
+              },
+              {
+                "name": "kt Rolster",
+                "code": "KT",
+                "image": "http://static.lolesports.com/teams/kt_darkbackground.png",
+                "result": {
+                  "gameWins": 2
+                }
+              }
+            ],
+            "strategy": {
+              "type": "bestOf",
+              "count": 5
+            }
+          },
+          "games": [
+            {
+              "id": "113475871524050784",
+              "vods": [
+                {
+                  "parameter": "2613709438"
+                },
+                {
+                  "parameter": "hUyBQ0JOFTU"
+                },
+                {
+                  "parameter": "2613657810"
+                },
+                {
+                  "parameter": "sfVFGFfec64"
+                },
+                {
+                  "parameter": "wNQs4fvWNyo"
+                },
+                {
+                  "parameter": "VBe6GSyeP0E"
+                },
+                {
+                  "parameter": "SWGR7w2KaZ8"
+                },
+                {
+                  "parameter": "2613685544"
+                },
+                {
+                  "parameter": "177352547"
+                },
+                {
+                  "parameter": "kpRLhF6pJ5o"
+                },
+                {
+                  "parameter": "T5KLIoZRFCw"
+                },
+                {
+                  "parameter": "2613676810"
+                },
+                {
+                  "parameter": "pkXHMFIOsUo"
+                },
+                {
+                  "parameter": "2613709429"
+                },
+                {
+                  "parameter": "2613672268"
+                },
+                {
+                  "parameter": "m_oMr6GenhM"
+                },
+                {
+                  "parameter": "_tEivTHXNUw"
+                }
+              ]
+            },
+            {
+              "id": "113475871524050785",
+              "vods": [
+                {
+                  "parameter": "2613709438"
+                },
+                {
+                  "parameter": "hUyBQ0JOFTU"
+                },
+                {
+                  "parameter": "2613657810"
+                },
+                {
+                  "parameter": "2ZldH1dHIjQ"
+                },
+                {
+                  "parameter": "TBxvtis8h_Q"
+                },
+                {
+                  "parameter": "-8OpFaotMyY"
+                },
+                {
+                  "parameter": "atXeF6pK1oI"
+                },
+                {
+                  "parameter": "2613685544"
+                },
+                {
+                  "parameter": "177357561"
+                },
+                {
+                  "parameter": "kpRLhF6pJ5o"
+                },
+                {
+                  "parameter": "T5KLIoZRFCw"
+                },
+                {
+                  "parameter": "2613676810"
+                },
+                {
+                  "parameter": "pkXHMFIOsUo"
+                },
+                {
+                  "parameter": "2613709429"
+                },
+                {
+                  "parameter": "2613672268"
+                },
+                {
+                  "parameter": "kj21rOSBl70"
+                },
+                {
+                  "parameter": "_tEivTHXNUw"
+                }
+              ]
+            },
+            {
+              "id": "113475871524050786",
+              "vods": [
+                {
+                  "parameter": "2613709438"
+                },
+                {
+                  "parameter": "hUyBQ0JOFTU"
+                },
+                {
+                  "parameter": "2613657810"
+                },
+                {
+                  "parameter": "RG8c8OqnvVg"
+                },
+                {
+                  "parameter": "u2Ptso2jk9o"
+                },
+                {
+                  "parameter": "O9JtiOYjmnI"
+                },
+                {
+                  "parameter": "JPnxwhZhF40"
+                },
+                {
+                  "parameter": "2613685544"
+                },
+                {
+                  "parameter": "177362729"
+                },
+                {
+                  "parameter": "kpRLhF6pJ5o"
+                },
+                {
+                  "parameter": "T5KLIoZRFCw"
+                },
+                {
+                  "parameter": "2613676810"
+                },
+                {
+                  "parameter": "pkXHMFIOsUo"
+                },
+                {
+                  "parameter": "2613709429"
+                },
+                {
+                  "parameter": "2613672268"
+                },
+                {
+                  "parameter": "N_yX6cWapr0"
+                },
+                {
+                  "parameter": "_tEivTHXNUw"
+                }
+              ]
+            },
+            {
+              "id": "113475871524050787",
+              "vods": [
+                {
+                  "parameter": "2613709438"
+                },
+                {
+                  "parameter": "hUyBQ0JOFTU"
+                },
+                {
+                  "parameter": "2613657810"
+                },
+                {
+                  "parameter": "l47xGNAvX4M"
+                },
+                {
+                  "parameter": "aT3jyPclcu0"
+                },
+                {
+                  "parameter": "TRn0fLAQ7OI"
+                },
+                {
+                  "parameter": "6jRZ19SYifs"
+                },
+                {
+                  "parameter": "2613685544"
+                },
+                {
+                  "parameter": "177367005"
+                },
+                {
+                  "parameter": "kpRLhF6pJ5o"
+                },
+                {
+                  "parameter": "T5KLIoZRFCw"
+                },
+                {
+                  "parameter": "2613676810"
+                },
+                {
+                  "parameter": "pkXHMFIOsUo"
+                },
+                {
+                  "parameter": "2613709429"
+                },
+                {
+                  "parameter": "2613672268"
+                },
+                {
+                  "parameter": "N1Pw7KRDIl0"
+                },
+                {
+                  "parameter": "_tEivTHXNUw"
+                }
+              ]
+            },
+            {
+              "id": "113475871524050788",
+              "vods": [
+                {
+                  "parameter": "2613709438"
+                },
+                {
+                  "parameter": "hUyBQ0JOFTU"
+                },
+                {
+                  "parameter": "2613657810"
+                },
+                {
+                  "parameter": "AXp6hL8MuDE"
+                },
+                {
+                  "parameter": "kLT994twe1U"
+                },
+                {
+                  "parameter": "eHrODdS3Ae8"
+                },
+                {
+                  "parameter": "8ejWu4W2Z2o"
+                },
+                {
+                  "parameter": "2613685544"
+                },
+                {
+                  "parameter": "177381135"
+                },
+                {
+                  "parameter": "kpRLhF6pJ5o"
+                },
+                {
+                  "parameter": "T5KLIoZRFCw"
+                },
+                {
+                  "parameter": "2613676810"
+                },
+                {
+                  "parameter": "pkXHMFIOsUo"
+                },
+                {
+                  "parameter": "2613709429"
+                },
+                {
+                  "parameter": "2613672268"
+                },
+                {
+                  "parameter": "Gt_Y6fXc1ac"
+                },
+                {
+                  "parameter": "_tEivTHXNUw"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
