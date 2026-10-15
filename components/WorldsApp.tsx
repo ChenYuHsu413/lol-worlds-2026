@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { taipeiDateTime, TZ_LABEL } from "@/lib/time";
-import type { Stage, WorldsPayload } from "@/lib/types";
+import { taipeiDateTime, taipeiMonthDay, taipeiTime, TZ_LABEL } from "@/lib/time";
+import type { Stage, WorldsData, WorldsPayload } from "@/lib/types";
 import { GamesContext } from "./games-context";
 import { GamesPanel } from "./GamesPanel";
 import { KnockoutBracket } from "./KnockoutBracket";
@@ -13,12 +13,12 @@ import { SwissPools } from "./SwissPools";
 import { TeamsView } from "./TeamsView";
 
 type Tab = Stage | "schedule" | "teams";
-const TABS: { key: Tab; label: string }[] = [
-  { key: "playin", label: "Play-In" },
-  { key: "swiss", label: "瑞士輪" },
-  { key: "knockout", label: "淘汰賽" },
-  { key: "schedule", label: "全部賽程" },
-  { key: "teams", label: "參賽隊伍" },
+const TABS: { key: Tab; label: string; short: string }[] = [
+  { key: "playin", label: "Play-In", short: "Play-In" },
+  { key: "swiss", label: "瑞士輪", short: "瑞士輪" },
+  { key: "knockout", label: "淘汰賽", short: "淘汰賽" },
+  { key: "schedule", label: "全部賽程", short: "賽程" },
+  { key: "teams", label: "參賽隊伍", short: "隊伍" },
 ];
 
 const CACHE_KEY = "worlds:last";
@@ -79,7 +79,8 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 pb-16">
-      <header className="flex flex-wrap items-center gap-x-4 gap-y-2 py-4">
+      {/* 桌機（≥ 768px）頁首 */}
+      <header className="hidden flex-wrap items-center gap-x-4 gap-y-2 py-4 md:flex">
         <h1 className="text-xl font-black tracking-wide">
           <span className="text-accent">WORLDS</span> 2026
         </h1>
@@ -89,21 +90,26 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
         </div>
         <div className="ml-auto flex flex-wrap items-center gap-2">
           {data && (
-            <select
-              value={focus ?? ""}
-              onChange={(e) => setFocus(e.target.value || null)}
-              className="max-w-40 rounded border border-line bg-panel px-2 py-1 text-sm"
-              aria-label="隊伍篩選"
-            >
-              <option value="">全部隊伍</option>
-              {data.teams.map((t) => (
-                <option key={t.id} value={t.id}>
-                  {t.code}・{t.name}
-                </option>
-              ))}
-            </select>
+            <TeamSelect data={data} focus={focus} onChange={setFocus} className="max-w-40" />
           )}
           <ThemeToggle />
+        </div>
+      </header>
+
+      {/* 手機（< 768px）頁首：標題＋主題切換／隊伍篩選滿寬／最後更新 */}
+      <header className="space-y-2 pb-2 pt-3 md:hidden">
+        <div className="flex items-center">
+          <h1 className="text-xl font-black tracking-wide">
+            <span className="text-accent">WORLDS</span> 2026
+          </h1>
+          <div className="ml-auto">
+            <ThemeToggle />
+          </div>
+        </div>
+        {data && <TeamSelect data={data} focus={focus} onChange={setFocus} className="w-full" />}
+        <div className="text-[11px] text-muted">
+          {data ? `最後更新 ${taipeiMonthDay(data.fetchedAt)} ${taipeiTime(data.fetchedAt)}・時間皆為台灣時間 ${TZ_LABEL}` : "尚無資料"}
+          {data && data.source !== "live" && <span className="ml-2 rounded bg-accent-2/20 px-1.5 text-accent-2">{data.source}</span>}
         </div>
       </header>
 
@@ -120,7 +126,7 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
 
       {data && (
         <GamesContext.Provider value={setGamesId}>
-          <nav className="mb-4 flex gap-1 overflow-x-auto border-b border-line" role="tablist">
+          <nav className="mb-4 hidden gap-1 overflow-x-auto border-b border-line md:flex" role="tablist">
             {TABS.map((t) => (
               <button
                 key={t.key}
@@ -136,6 +142,30 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
               >
                 {t.label}
                 {data.currentStage === t.key && <span className="ml-1.5 inline-block h-1.5 w-1.5 rounded-full bg-live align-middle" />}
+              </button>
+            ))}
+          </nav>
+
+          {/* 手機頁籤：五個平均分配、固定在頂部 */}
+          <nav
+            className="sticky top-0 z-30 -mx-4 mb-3 grid grid-cols-5 border-b border-line bg-bg/95 px-1 backdrop-blur md:hidden"
+            role="tablist"
+          >
+            {TABS.map((t) => (
+              <button
+                key={t.key}
+                role="tab"
+                aria-selected={tab === t.key}
+                onClick={() => {
+                  setTab(t.key);
+                  setJumpTo(null);
+                }}
+                className={`relative border-b-2 py-2.5 text-[13px] font-semibold ${
+                  tab === t.key ? "border-accent text-accent" : "border-transparent text-muted"
+                }`}
+              >
+                {t.short}
+                {data.currentStage === t.key && <span className="absolute right-1 top-2 h-1.5 w-1.5 rounded-full bg-live" />}
               </button>
             ))}
           </nav>
@@ -170,6 +200,34 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
         </GamesContext.Provider>
       )}
     </div>
+  );
+}
+
+function TeamSelect({
+  data,
+  focus,
+  onChange,
+  className,
+}: {
+  data: WorldsData;
+  focus: string | null;
+  onChange: (id: string | null) => void;
+  className: string;
+}) {
+  return (
+    <select
+      value={focus ?? ""}
+      onChange={(e) => onChange(e.target.value || null)}
+      className={`rounded border border-line bg-panel px-2 py-1 text-sm ${className}`}
+      aria-label="隊伍篩選"
+    >
+      <option value="">全部隊伍</option>
+      {data.teams.map((t) => (
+        <option key={t.id} value={t.id}>
+          {t.code}・{t.name}
+        </option>
+      ))}
+    </select>
   );
 }
 
