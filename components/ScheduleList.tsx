@@ -1,5 +1,6 @@
 import { taipeiDateKey, taipeiDayHeading, taipeiTime, TZ_LABEL } from "@/lib/time";
 import type { Match } from "@/lib/types";
+import { MatchCardMobile } from "./MatchCardMobile";
 import { MatchState } from "./MatchState";
 import { hasGames, useOpenGames } from "./games-context";
 import { TeamLogo, TeamName } from "./TeamLogo";
@@ -23,6 +24,44 @@ export function ScheduleList({
     days.set(k, [...(days.get(k) ?? []), m]);
   }
 
+  return (
+    <>
+      <div className="hidden md:block">{desktop(days, focus, highlight)}</div>
+      <div className="md:hidden">{mobile(days, focus, highlight)}</div>
+    </>
+  );
+}
+
+// ---- 手機（< 768px）：共用對戰卡；時區說明已在頁首顯示一次 ----
+
+const mobileLabel = (m: Match) =>
+  m.stage === "swiss" ? `瑞士輪${m.round ? ` R${m.round}` : ""}` : m.stage === "knockout" ? m.blockName : STAGE_LABEL[m.stage];
+
+function mobile(days: Map<string, Match[]>, focus: string | null, highlight: string | null) {
+  return (
+    <div className="space-y-4">
+      {[...days.entries()].map(([day, ms]) => (
+        <section key={day}>
+          {/* 固定在 sticky 頁籤下方 */}
+          <h3 className="sticky top-[42px] z-20 -mx-4 bg-bg/95 px-4 py-1.5 text-sm font-bold text-accent backdrop-blur">
+            {taipeiDayHeading(ms[0].startTime)}
+          </h3>
+          <div className="space-y-2">
+            {ms.map((m) => (
+              <div key={m.id} id={`m-match-${m.id}`} className={`rounded-lg ${m.id === highlight ? "ring-2 ring-accent" : ""}`}>
+                <MatchCardMobile match={m} label={mobileLabel(m)} focus={focus} timeOnly />
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+}
+
+// ---- 桌機（≥ 768px）----
+
+function desktop(days: Map<string, Match[]>, focus: string | null, highlight: string | null) {
   return (
     <div className="space-y-6">
       <p className="text-xs text-muted">所有時間為台灣時間 {TZ_LABEL}</p>

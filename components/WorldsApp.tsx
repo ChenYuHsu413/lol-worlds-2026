@@ -40,7 +40,13 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
   useEffect(() => {
     if (tab !== "schedule" || !jumpTo) return;
     // 等切換 Tab 後的版面完成再捲動
-    const id = setTimeout(() => document.getElementById(`match-${jumpTo}`)?.scrollIntoView({ block: "center" }));
+    // 桌機列與手機卡各有一份，捲到目前看得到的那一個
+    const id = setTimeout(() =>
+      [`match-${jumpTo}`, `m-match-${jumpTo}`]
+        .map((x) => document.getElementById(x))
+        .find((el) => el?.offsetParent)
+        ?.scrollIntoView({ block: "center" }),
+    );
     return () => clearTimeout(id);
   }, [tab, jumpTo]);
 
