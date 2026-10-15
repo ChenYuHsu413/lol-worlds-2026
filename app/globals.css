@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
+/* 深色為預設（電競風），html.light 切換亮色 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0a0e17;
+  --panel: #121826;
+  --panel-2: #1a2234;
+  --line: #2a3550;
+  --fg: #e6ebf5;
+  --muted: #8a96b0;
+  --accent: #c8aa6e;
+  --accent-2: #0ac8b9;
+  --win: #2ecc71;
+  --win-bg: rgba(46, 204, 113, 0.14);
+  --loss: #6b7280;
+  --loss-bg: rgba(107, 114, 128, 0.18);
+  --live: #ff3b5c;
+  color-scheme: dark;
+}
+
+html.light {
+  --bg: #f4f6fb;
+  --panel: #ffffff;
+  --panel-2: #eef1f7;
+  --line: #d5dbe8;
+  --fg: #141a26;
+  --muted: #5d6880;
+  --accent: #9a7a3a;
+  --accent-2: #0a8f85;
+  --win: #16a34a;
+  --win-bg: rgba(22, 163, 74, 0.12);
+  --loss: #6b7280;
+  --loss-bg: rgba(107, 114, 128, 0.14);
+  --live: #e11d48;
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-win: var(--win);
+  --color-win-bg: var(--win-bg);
+  --color-loss: var(--loss);
+  --color-loss-bg: var(--loss-bg);
+  --color-live: var(--live);
+  --font-sans: var(--font-geist-sans), "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+}
+
+@keyframes live-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.live-blink {
+  animation: live-blink 1.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-blink {
+    animation: none;
+  }
 }

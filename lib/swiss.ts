@@ -76,8 +76,11 @@ export function buildSwiss(
     if (a.wins !== b.wins || a.losses !== b.losses)
       warn(`瑞士輪 ${m.id} 雙方賽前戰績不同：${m.teamA.code} ${a.wins}-${a.losses} vs ${m.teamB.code} ${b.wins}-${b.losses}`);
     actual.set(m.id, { round: a.wins + a.losses + 1, wins: a.wins, losses: a.losses });
-    if (m.winner === "A") (a.wins++, b.losses++);
-    else if (m.winner === "B") (b.wins++, a.losses++);
+    const [w, l] = m.winner === "A" ? [a, b] : m.winner === "B" ? [b, a] : [null, null];
+    if (w && l) {
+      w.wins++;
+      l.losses++;
+    }
   }
 
   // 未完賽但隊伍已知：賽前戰績 = 目前戰績

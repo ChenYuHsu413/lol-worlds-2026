@@ -35,10 +35,11 @@ export async function apiGet<T>(
   revalidate: number,
 ): Promise<T> {
   const qs = new URLSearchParams({ hl: HL, ...params });
+  const key = apiKey();
   let res: Response;
   try {
     res = await fetch(`${BASE}/${endpoint}?${qs}`, {
-      headers: { "x-api-key": apiKey() },
+      headers: { "x-api-key": key },
       next: { revalidate },
     });
   } catch (err) {

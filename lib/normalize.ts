@@ -41,7 +41,9 @@ export function mergeMatches(
     if (isTbd(t)) return null;
     let team = teams.get(t.id);
     if (!team) {
-      team = { id: t.id, code: t.code, name: t.name, logo: t.image, region: regionById.get(t.id) ?? null };
+      // API 給 http:// 圖片網址，改用 https 避免 mixed content
+      const logo = t.image.replace(/^http:\/\//, "https://");
+      team = { id: t.id, code: t.code, name: t.name, logo, region: regionById.get(t.id) ?? null };
       teams.set(t.id, team);
     }
     return team;
