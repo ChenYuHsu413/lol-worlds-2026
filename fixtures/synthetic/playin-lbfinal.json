@@ -1,0 +1,2843 @@
+{
+ "tournamentSlug": "worlds_2026",
+ "standings": {
+  "data": {
+   "standings": [
+    {
+     "stages": [
+      {
+       "id": "115660540725570705",
+       "name": "入圍賽",
+       "type": null,
+       "slug": "play_ins",
+       "sections": [
+        {
+         "name": "入圍賽",
+         "matches": [
+          {
+           "id": "115660588583040710",
+           "state": "completed",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "100205576309502431",
+             "slug": "furia",
+             "name": "FURIA",
+             "code": "FUR",
+             "image": "http://static.lolesports.com/teams/FURIA---black.png",
+             "result": {
+              "outcome": "loss",
+              "gameWins": 2
+             }
+            },
+            {
+             "id": "107251245690956393",
+             "slug": "saigon-buffalo-esports",
+             "name": "MVK Esports",
+             "code": "MVK",
+             "image": "http://static.lolesports.com/teams/1767089709161_White_Logo.png",
+             "result": {
+              "outcome": "win",
+              "gameWins": 3
+             }
+            }
+           ]
+          },
+          {
+           "id": "115660588583171786",
+           "state": "completed",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "98767991877340524",
+             "slug": "cloud9",
+             "name": "Cloud9 Kia",
+             "code": "C9",
+             "image": "http://static.lolesports.com/teams/1736924120254_C9Kia_IconBlue_Transparent_2000x2000.png",
+             "result": {
+              "outcome": "win",
+              "gameWins": 3
+             }
+            },
+            {
+             "id": "111692118851466302",
+             "slug": "karmine-corp",
+             "name": "Karmine Corp",
+             "code": "KC",
+             "image": "http://static.lolesports.com/teams/1704714951336_KC.png",
+             "result": {
+              "outcome": "loss",
+              "gameWins": 1
+             }
+            }
+           ]
+          },
+          {
+           "id": "115660588583171790",
+           "state": "completed",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "111692118851466302",
+             "slug": "karmine-corp",
+             "name": "Karmine Corp",
+             "code": "KC",
+             "image": "http://static.lolesports.com/teams/1704714951336_KC.png",
+             "result": {
+              "outcome": "win",
+              "gameWins": 3
+             }
+            },
+            {
+             "id": "100205576309502431",
+             "slug": "furia",
+             "name": "FURIA",
+             "code": "FUR",
+             "image": "http://static.lolesports.com/teams/FURIA---black.png",
+             "result": {
+              "outcome": "loss",
+              "gameWins": 0
+             }
+            }
+           ]
+          },
+          {
+           "id": "115660588583171794",
+           "state": "completed",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "98767991877340524",
+             "slug": "cloud9",
+             "name": "Cloud9 Kia",
+             "code": "C9",
+             "image": "http://static.lolesports.com/teams/1736924120254_C9Kia_IconBlue_Transparent_2000x2000.png",
+             "result": {
+              "outcome": "win",
+              "gameWins": 3
+             }
+            },
+            {
+             "id": "107251245690956393",
+             "slug": "saigon-buffalo-esports",
+             "name": "MVK Esports",
+             "code": "MVK",
+             "image": "http://static.lolesports.com/teams/1767089709161_White_Logo.png",
+             "result": {
+              "outcome": "loss",
+              "gameWins": 2
+             }
+            }
+           ]
+          },
+          {
+           "id": "115660588583171798",
+           "state": "inProgress",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "107251245690956393",
+             "slug": "saigon-buffalo-esports",
+             "name": "MVK Esports",
+             "code": "MVK",
+             "image": "http://static.lolesports.com/teams/1767089709161_White_Logo.png",
+             "result": {
+              "outcome": null,
+              "gameWins": 1
+             }
+            },
+            {
+             "id": "111692118851466302",
+             "slug": "karmine-corp",
+             "name": "Karmine Corp",
+             "code": "KC",
+             "image": "http://static.lolesports.com/teams/1704714951336_KC.png",
+             "result": {
+              "outcome": null,
+              "gameWins": 1
+             }
+            }
+           ]
+          },
+          {
+           "id": "116299649498303884",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          }
+         ],
+         "rankings": []
+        }
+       ]
+      },
+      {
+       "id": "115660540725570706",
+       "name": "瑞士制循環賽",
+       "type": null,
+       "slug": "swiss",
+       "sections": [
+        {
+         "name": "瑞士制循環賽",
+         "matches": [
+          {
+           "id": "115660540726095005",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095007",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095009",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095011",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095013",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095015",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095017",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095019",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095021",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095023",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095025",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095027",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095029",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095031",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095033",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095035",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095037",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095041",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095045",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095047",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095049",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095051",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095053",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095057",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095061",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095065",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095069",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095073",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095077",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095081",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095085",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095089",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095093",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          }
+         ],
+         "rankings": []
+        }
+       ]
+      },
+      {
+       "id": "115660540725570707",
+       "name": "淘汰賽",
+       "type": null,
+       "slug": "knockouts",
+       "sections": [
+        {
+         "name": "淘汰賽",
+         "matches": [
+          {
+           "id": "115660540726095097",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095103",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095109",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095115",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095121",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095127",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          },
+          {
+           "id": "115660540726095133",
+           "state": "unstarted",
+           "previousMatchIds": [],
+           "flags": [],
+           "teams": [
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            },
+            {
+             "id": "0",
+             "slug": "tbd",
+             "name": "TBD",
+             "code": "TBD",
+             "image": "https://static.lolesports.com/teams/team-tbd.png",
+             "result": null
+            }
+           ]
+          }
+         ],
+         "rankings": []
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "events": [
+  {
+   "startTime": "2026-10-15T18:00:00Z",
+   "state": "completed",
+   "type": "match",
+   "blockName": "入圍賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660588583171786",
+    "flags": [],
+    "teams": [
+     {
+      "name": "Cloud9 Kia",
+      "code": "C9",
+      "image": "http://static.lolesports.com/teams/1736924120254_C9Kia_IconBlue_Transparent_2000x2000.png",
+      "result": {
+       "outcome": "win",
+       "gameWins": 3
+      },
+      "record": null
+     },
+     {
+      "name": "Karmine Corp",
+      "code": "KC",
+      "image": "http://static.lolesports.com/teams/1704714951336_KC.png",
+      "result": {
+       "outcome": "loss",
+       "gameWins": 1
+      },
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 5
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-15T23:00:00Z",
+   "state": "completed",
+   "type": "match",
+   "blockName": "入圍賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660588583040710",
+    "flags": [],
+    "teams": [
+     {
+      "name": "FURIA",
+      "code": "FUR",
+      "image": "http://static.lolesports.com/teams/FURIA---black.png",
+      "result": {
+       "outcome": "loss",
+       "gameWins": 2
+      },
+      "record": null
+     },
+     {
+      "name": "MVK Esports",
+      "code": "MVK",
+      "image": "http://static.lolesports.com/teams/1767089709161_White_Logo.png",
+      "result": {
+       "outcome": "win",
+       "gameWins": 3
+      },
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 5
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-16T18:00:00Z",
+   "state": "completed",
+   "type": "match",
+   "blockName": "入圍賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660588583171790",
+    "flags": [],
+    "teams": [
+     {
+      "name": "Karmine Corp",
+      "code": "KC",
+      "image": "http://static.lolesports.com/teams/1704714951336_KC.png",
+      "result": {
+       "outcome": "win",
+       "gameWins": 3
+      },
+      "record": null
+     },
+     {
+      "name": "FURIA",
+      "code": "FUR",
+      "image": "http://static.lolesports.com/teams/FURIA---black.png",
+      "result": {
+       "outcome": "loss",
+       "gameWins": 0
+      },
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 5
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-16T23:00:00Z",
+   "state": "completed",
+   "type": "match",
+   "blockName": "入圍賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660588583171794",
+    "flags": [],
+    "teams": [
+     {
+      "name": "Cloud9 Kia",
+      "code": "C9",
+      "image": "http://static.lolesports.com/teams/1736924120254_C9Kia_IconBlue_Transparent_2000x2000.png",
+      "result": {
+       "outcome": "win",
+       "gameWins": 3
+      },
+      "record": null
+     },
+     {
+      "name": "MVK Esports",
+      "code": "MVK",
+      "image": "http://static.lolesports.com/teams/1767089709161_White_Logo.png",
+      "result": {
+       "outcome": "loss",
+       "gameWins": 2
+      },
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 5
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-17T18:00:00Z",
+   "state": "inProgress",
+   "type": "match",
+   "blockName": "入圍賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660588583171798",
+    "flags": [],
+    "teams": [
+     {
+      "name": "MVK Esports",
+      "code": "MVK",
+      "image": "http://static.lolesports.com/teams/1767089709161_White_Logo.png",
+      "result": {
+       "outcome": null,
+       "gameWins": 1
+      },
+      "record": null
+     },
+     {
+      "name": "Karmine Corp",
+      "code": "KC",
+      "image": "http://static.lolesports.com/teams/1704714951336_KC.png",
+      "result": {
+       "outcome": null,
+       "gameWins": 1
+      },
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 5
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-18T18:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "入圍賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "116299649498303884",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 5
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-23T17:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095005",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-23T18:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095007",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-23T19:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095009",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-23T20:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095011",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-23T21:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095013",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-23T22:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095015",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-23T23:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095017",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-24T00:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095019",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-24T17:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095021",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-24T18:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095023",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-24T19:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095025",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-24T20:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095027",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-24T21:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095029",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-24T22:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095031",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-24T23:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095033",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-25T00:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095035",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-25T17:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095045",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-25T18:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095047",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-25T19:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095037",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 3
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-25T22:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095041",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 3
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-26T17:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095049",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-26T18:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095051",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 1
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-26T19:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095053",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 3
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-26T22:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095057",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 3
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-28T20:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095061",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 3
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-28T23:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095065",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 3
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-29T20:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095069",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 3
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-29T23:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095073",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 3
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-30T20:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095077",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 3
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-30T23:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095081",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 3
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-31T17:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095085",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 3
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-31T20:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095089",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 3
+    }
+   }
+  },
+  {
+   "startTime": "2026-10-31T23:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "瑞士制循環賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095093",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 3
+    }
+   }
+  },
+  {
+   "startTime": "2026-11-03T22:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "八強賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095097",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 5
+    }
+   }
+  },
+  {
+   "startTime": "2026-11-04T22:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "八強賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095103",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 5
+    }
+   }
+  },
+  {
+   "startTime": "2026-11-05T22:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "八強賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095109",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 5
+    }
+   }
+  },
+  {
+   "startTime": "2026-11-06T22:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "八強賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095115",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 5
+    }
+   }
+  },
+  {
+   "startTime": "2026-11-07T22:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "準決賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095121",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 5
+    }
+   }
+  },
+  {
+   "startTime": "2026-11-08T22:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "準決賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095127",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 5
+    }
+   }
+  },
+  {
+   "startTime": "2026-11-14T19:00:00Z",
+   "state": "unstarted",
+   "type": "match",
+   "blockName": "決賽",
+   "league": {
+    "name": "Worlds",
+    "slug": "worlds"
+   },
+   "match": {
+    "id": "115660540726095133",
+    "flags": [],
+    "teams": [
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     },
+     {
+      "name": "TBD",
+      "code": "TBD",
+      "image": "https://static.lolesports.com/teams/team-tbd.png",
+      "result": null,
+      "record": null
+     }
+    ],
+    "strategy": {
+     "type": "bestOf",
+     "count": 5
+    }
+   }
+  }
+ ],
+ "teams": [
+  {
+   "id": "100205576309502431",
+   "slug": "furia",
+   "name": "FURIA",
+   "code": "FUR",
+   "image": "http://static.lolesports.com/teams/FURIA---black.png",
+   "alternativeImage": "http://static.lolesports.com/teams/FURIA---black.png",
+   "backgroundImage": "http://static.lolesports.com/teams/FuriaUppercutFUR.png",
+   "status": "active",
+   "homeLeague": {
+    "name": "CBLOL",
+    "region": "巴西"
+   }
+  },
+  {
+   "id": "107251245690956393",
+   "slug": "saigon-buffalo-esports",
+   "name": "MVK Esports",
+   "code": "MVK",
+   "image": "http://static.lolesports.com/teams/1767089709161_White_Logo.png",
+   "alternativeImage": "http://static.lolesports.com/teams/1767089709161_Orange_Black_Logo.png",
+   "backgroundImage": null,
+   "status": "active",
+   "homeLeague": {
+    "name": "LCP",
+    "region": "太平洋"
+   }
+  },
+  {
+   "id": "98767991877340524",
+   "slug": "cloud9",
+   "name": "Cloud9 Kia",
+   "code": "C9",
+   "image": "http://static.lolesports.com/teams/1736924120254_C9Kia_IconBlue_Transparent_2000x2000.png",
+   "alternativeImage": "http://static.lolesports.com/teams/1736924120255_C9Kia_IconBlue_Transparent_2000x2000.png",
+   "backgroundImage": "https://lolstatic-a.akamaihd.net/esports-assets/production/team/cloud9-9vnfum22.png",
+   "status": "active",
+   "homeLeague": {
+    "name": "LCS",
+    "region": "北美洲"
+   }
+  },
+  {
+   "id": "111692118851466302",
+   "slug": "karmine-corp",
+   "name": "Karmine Corp",
+   "code": "KC",
+   "image": "http://static.lolesports.com/teams/1704714951336_KC.png",
+   "alternativeImage": "http://static.lolesports.com/teams/1704714951337_KC.png",
+   "backgroundImage": null,
+   "status": "active",
+   "homeLeague": {
+    "name": "LEC",
+    "region": "歐洲、中東與非洲"
+   }
+  }
+ ]
+}

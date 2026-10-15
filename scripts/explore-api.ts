@@ -4,7 +4,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 
 const BASE = "https://esports-api.lolesports.com/persisted/gw";
-const API_KEY = process.env.LOLESPORTS_API_KEY ?? "<ESPORTS_API_KEY>";
+const API_KEY = process.env.ESPORTS_API_KEY ?? "<ESPORTS_API_KEY>";
 const HL = "zh-TW";
 const OUT = new URL("../fixtures/", import.meta.url);
 
