@@ -3,7 +3,7 @@
 import { PLAYIN_QUALIFIER_POOL, SWISS, SWISS_R1_POOL_PAIRS } from "../config/format-2026";
 import type { ApiScheduleEvent } from "./api-types";
 import { consoleWarn, type Warn } from "./normalize";
-import type { Match, SwissRecord, SwissSlot, SwissView, Team, TeamProfile } from "./types";
+import type { Match, PoolSeat, SwissDrawView, SwissRecord, SwissSlot, SwissView, Team, TeamProfile } from "./types";
 
 type Bucket = { round: number; wins: number; losses: number };
 type SwissConfig = typeof SWISS;
@@ -157,4 +157,34 @@ export function checkRound1Draw(slots: SwissSlot[], profiles: TeamProfile[], war
   }
   if (issues.length) warn("瑞士輪第一輪配對與抽籤規則不符", issues);
   return issues;
+}
+
+export const PLAYIN_WINNER_PLACEHOLDER = "Play-In 勝隊";
+
+/**
+ * 第一輪分池：直接晉級瑞士輪的隊伍依 config 的 pool 分欄；Play-In 勝隊產生前以佔位表示。
+ * 席位總數應為瑞士輪隊伍數（16），否則 warn
+ */
+export function buildSwissDraw(
+  profiles: TeamProfile[],
+  slots: SwissSlot[],
+  qualifier: Team | null,
+  warn: Warn = consoleWarn,
+): SwissDrawView {
+  const byPool = new Map<number, PoolSeat[]>();
+  const seat = (pool: number, s: PoolSeat) => byPool.set(pool, [...(byPool.get(pool) ?? []), s]);
+  for (const p of profiles) if (p.startStage === "swiss" && p.pool !== null) seat(p.pool, { team: p.team, placeholder: null });
+  if (profiles.some((p) => p.startStage === "playin"))
+    seat(PLAYIN_QUALIFIER_POOL, qualifier ? { team: qualifier, placeholder: null } : { team: null, placeholder: PLAYIN_WINNER_PLACEHOLDER });
+
+  const pools = [...byPool.entries()].sort(([a], [b]) => a - b).map(([pool, seats]) => ({ pool, seats }));
+  const total = pools.reduce((n, p) => n + p.seats.length, 0);
+  if (pools.length && total !== SWISS.teams) warn(`瑞士輪分池共 ${total} 席，與賽制 ${SWISS.teams} 隊不符`);
+
+  const r1 = slots.filter((s) => s.round === 1 && !s.provisional && s.match.teamA && s.match.teamB);
+  return {
+    pools,
+    round1: r1.map((s) => [s.match.teamA!.id, s.match.teamB!.id]),
+    issues: r1.length ? checkRound1Draw(slots, profiles, warn) : null,
+  };
 }

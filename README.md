@@ -28,6 +28,18 @@ Leaguepedia Cargo API 匿名查詢會被限流（實測連續兩次都回 `ratel
 - 合併資料、輪次推算、籤表推進只要有不一致，都會在伺服器端 `console.warn`。
 - **抽籤規則檢查**：官方第一輪配對如果違反「第 1 池對第 4 池、第 2 池對第 3 池、同賽區不交手」，或八強籤表違反「兩支 3-0 分在兩側、對手為 3-2」，就會 `console.warn`。淘汰賽這兩條規則只有媒體報導當出處，見 `config/format-2026.ts`。
 
+## 瑞士輪分池與抽籤規則
+
+瑞士輪 Tab 上方有可收合的「分池與抽籤規則」區塊（桌機預設展開、手機預設收合，手機上分池改成上下排列）。
+
+- **分池**：依第 1～4 池分欄，顯示各隊的 logo、隊名、賽區和種子序。Play-In 勝隊產生前顯示「Play-In 勝隊」佔位卡，產生後自動填入第 4 池。
+  - 出處：[LoL Esports《Worlds 2026 Primer》](https://lolesports.com/en-US/news/worlds-2026-primer)（官方稱 Tier）、[Leaguepedia Main Event](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event)。
+  - 各隊所屬的池記錄在 `config/teams-2026.json`。
+- **抽籤規則**：`config/format-2026.ts` 的 `SWISS_DRAW_RULES` 只收錄官方 Primer 原文有寫的規則，每條都附出處。
+- **第一輪對戰**：公布後，兩隊會掛上同色的「R1-n vs 對手」標籤，並顯示 `checkRound1Draw` 的檢查結果；不符合規則時會列出違規的配對並 `console.warn`。
+- **參賽隊伍頁**：直接晉級瑞士輪的隊伍卡會標示「第 n 池」，Play-In 隊伍不標示。
+- **開發預覽**：`?fixture=synthetic-swiss-r1` 會顯示第一輪已公布的情境。
+
 ## 小局細節
 
 點選已完賽或進行中的系列賽（賽程列表、籤表卡片、瑞士輪分桶都可以），就會開啟小局面板。面板以 Tab 切換 Game 1／2／…，Bo3／Bo5 另有 Fearless 頁。資料在展開時才向 `/api/games/[matchId]` 抓取。
@@ -75,6 +87,7 @@ npm run dev
 
 - `?fixture=2025`：2025 完整資料（瑞士輪、淘汰賽都已打完）
 - `?fixture=synthetic-playin-none`、`-r1`、`-lbfinal`、`-done`：Play-In 合成情境
+- `?fixture=synthetic-swiss-r1`：Play-In 打完，加上一組符合規則的瑞士輪第一輪對戰
 
 其他指令：
 

@@ -80,3 +80,25 @@ for (const [name, results] of Object.entries(scenarios)) {
   await writeFile(new URL(`synthetic/playin-${name}.json`, dir), JSON.stringify(scenario(results), null, 1));
   console.log(`saved fixtures/synthetic/playin-${name}.json`);
 }
+
+// 瑞士輪第一輪已公布（Play-In 打完、MVK 晉級），配對符合官方分池與同賽區規則：fixtures/synthetic/swiss-r1.json
+{
+  const base = scenario(scenarios.done);
+  const teamOf = (code: string) => {
+    const t = base.teams.find((x: any) => x.code === code);
+    return { id: t.id, slug: t.slug, name: t.name, code: t.code, image: t.image, result: { outcome: null, gameWins: 0 } };
+  };
+  const pairs = [
+    ["GEN", "IG"], ["AL", "DK"], ["TLAW", "CFO"], ["G2", "MVK"],
+    ["TSW", "LYON"], ["LOS", "MKOI"], ["HLE", "TES"], ["BLG", "T1"],
+  ];
+  const swiss = base.standings.data.standings[0].stages.find((s: any) => s.slug === "swiss").sections[0].matches;
+  const r1 = [...swiss].sort((a: any, b: any) => (BigInt(a.id) < BigInt(b.id) ? -1 : 1)).slice(0, 8);
+  r1.forEach((m: any, i: number) => {
+    m.teams = pairs[i].map(teamOf);
+    const e = base.events.find((x: any) => x.match.id === m.id);
+    e.match.teams = m.teams.map((t: any) => ({ name: t.name, code: t.code, image: t.image, result: t.result, record: null }));
+  });
+  await writeFile(new URL("synthetic/swiss-r1.json", dir), JSON.stringify(base, null, 1));
+  console.log("saved fixtures/synthetic/swiss-r1.json");
+}

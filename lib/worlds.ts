@@ -20,7 +20,7 @@ import {
   tournamentRange,
 } from "./lolesports";
 import { consoleWarn, mergeMatches, teamSlugs, type RawBundle, type Warn } from "./normalize";
-import { checkRound1Draw, crossCheckRecords } from "./swiss";
+import { buildSwissDraw, crossCheckRecords } from "./swiss";
 import { buildProfiles, type TeamsConfig } from "./teams";
 import teamsConfig2026 from "../config/teams-2026.json";
 import type { DataErrorKind, Match, Stage, WorldsData, WorldsPayload } from "./types";
@@ -56,7 +56,8 @@ export function buildWorldsData(
   const config = (teamsConfig2026 as TeamsConfig).tournamentSlug === tournament.slug ? (teamsConfig2026 as TeamsConfig) : null;
   const teamMap = new Map(teams.map((t) => [t.id, t]));
   const profiles = buildProfiles(bundle.teams, teamMap, of("playin"), config, warn);
-  if (config) checkRound1Draw(swiss.slots, profiles, warn);
+  // 分池只有 2026 config 有資料；其他年份沒有分池時 pools 為空
+  const swissDraw = buildSwissDraw(config ? profiles : [], swiss.slots, playin.qualified, warn);
 
   return {
     tournamentId: tournament.id,
@@ -67,6 +68,7 @@ export function buildWorldsData(
     swiss,
     playin,
     knockout,
+    swissDraw,
     currentStage: currentStage(matches),
     fetchedAt: new Date().toISOString(),
     revalidateSeconds: isLiveWindow(matches) ? REVALIDATE_LIVE : REVALIDATE_IDLE,

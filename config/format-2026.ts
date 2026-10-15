@@ -27,17 +27,44 @@ export const PLAYIN_SLOT_ORDER = ["ub1a", "ub1b", "day2a", "day2b", "lbFinal", "
 export const KNOCKOUT_ROUND_SIZES = [4, 2, 1];
 export const KNOCKOUT_ROUND_NAMES = ["八強賽", "四強賽", "決賽"];
 
-// 瑞士輪第一輪抽籤：第 1 池對第 4 池、第 2 池對第 3 池，同賽區不得交手（Leaguepedia 賽制說明）。
-// 各隊分池見 config/teams-2026.json；Play-In 晉級隊伍為第 4 池。lib/swiss.ts 用來檢查官方配對
+// ---- 瑞士輪分池與抽籤規則 ----
+// 規則文字只收錄官方公告原文有寫的內容；查不到的規則（例如 Bo1/Bo3 的場次劃分）不列
+
+export interface Source {
+  title: string;
+  url: string;
+}
+
+export const WORLDS_2026_PRIMER: Source = {
+  title: "LoL Esports《Worlds 2026 Primer》（2026-10-05）",
+  url: "https://lolesports.com/en-US/news/worlds-2026-primer",
+};
+
+// 分池（官方稱 Tier）出處；各隊所屬池記錄在 config/teams-2026.json 的 pool 欄位
+export const POOL_SOURCES: Source[] = [
+  WORLDS_2026_PRIMER,
+  { title: "Leaguepedia：Worlds 2026 Main Event 參賽隊伍", url: "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event" },
+];
+
+export const SWISS_DRAW_RULES: { text: string; source: Source }[] = [
+  { text: "第一輪對戰在 Play-In 結束後（10/18）隨機抽籤決定", source: WORLDS_2026_PRIMER },
+  { text: "第一輪：第 1 池對第 4 池、第 2 池對第 3 池", source: WORLDS_2026_PRIMER },
+  { text: "第一輪：同賽區隊伍不交手；第二輪起允許同賽區對戰", source: WORLDS_2026_PRIMER },
+  { text: "整個瑞士輪不會與同一隊重複交手", source: WORLDS_2026_PRIMER },
+  { text: "第 2～5 輪：與戰績相同的隊伍隨機配對（例如 1-0 對 1-0）", source: WORLDS_2026_PRIMER },
+];
+
+// 第一輪：第 1 池對第 4 池、第 2 池對第 3 池（出處同上）。lib/swiss.ts 用來檢查官方配對
 export const SWISS_R1_POOL_PAIRS: [number, number][] = [
   [1, 4],
   [2, 3],
 ];
+// 官方 Tier 4 含「Play-Ins Winner」
 export const PLAYIN_QUALIFIER_POOL = 4;
 
-// 淘汰賽抽籤（媒體報導，未取得官方規則書原文）：兩支 3-0 隊伍各對一支 3-2 隊伍，且分在籤表兩側。
+// 淘汰賽抽籤：兩支 3-0 隊伍各對一支 3-2 隊伍（官方 Primer）；「分在籤表兩側」僅 Inven Global 報導，官方 Primer 未提及。
 // lib/knockout.ts 用來檢查官方籤表
 export const KNOCKOUT_DRAW_SOURCES = [
-  "https://insider-gaming.com/when-will-all-the-lol-worlds-2026-draws-take-place/",
+  WORLDS_2026_PRIMER.url,
   "https://www.invenglobal.com/articles/26835/2026-lol-world-championship-kicks-off-october-16",
 ];

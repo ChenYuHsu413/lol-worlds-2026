@@ -43,6 +43,17 @@ export interface SwissSlot {
   provisional: boolean; // true = 隊伍未定，位置由 id 排序推測
 }
 
+export interface PoolSeat {
+  team: Team | null;
+  placeholder: string | null; // 隊伍未產生時的佔位文字，例如「Play-In 勝隊」
+}
+
+export interface SwissDrawView {
+  pools: { pool: number; seats: PoolSeat[] }[];
+  round1: [string, string][]; // 官方已公布的第一輪對戰（team id）
+  issues: string[] | null; // checkRound1Draw 結果；null = 第一輪尚未公布
+}
+
 export interface SwissView {
   slots: SwissSlot[];
   records: SwissRecord[];
@@ -102,6 +113,7 @@ export interface WorldsData {
   swiss: SwissView;
   playin: PlayInView;
   knockout: KnockoutView;
+  swissDraw: SwissDrawView;
   profiles: TeamProfile[];
   currentStage: Stage;
   fetchedAt: string; // ISO，資料最後成功更新時間

@@ -9,6 +9,7 @@ import { KnockoutBracket } from "./KnockoutBracket";
 import { PlayInBracket } from "./PlayInBracket";
 import { ScheduleList } from "./ScheduleList";
 import { SwissBuckets } from "./SwissBuckets";
+import { SwissPools } from "./SwissPools";
 import { TeamsView } from "./TeamsView";
 
 type Tab = Stage | "schedule" | "teams";
@@ -144,7 +145,12 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
             <TeamsView data={data} focus={focus} onFocus={setFocus} onJump={jump} open={openTeam} onOpen={setOpenTeam} />
           )}
           {tab === "playin" && <PlayInBracket view={data.playin} focus={focus} />}
-          {tab === "swiss" && <SwissBuckets view={data.swiss} focus={focus} />}
+          {tab === "swiss" && (
+            <>
+              <SwissPools draw={data.swissDraw} teams={data.teams} />
+              <SwissBuckets view={data.swiss} focus={focus} />
+            </>
+          )}
           {tab === "knockout" && <KnockoutBracket view={data.knockout} focus={focus} />}
 
           {gamesId && (

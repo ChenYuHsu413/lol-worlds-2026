@@ -119,6 +119,9 @@ function TeamCard({
                 {p.startStage === "playin" ? "從 Play-In 出發" : "直接進瑞士輪"}
               </span>
             )}
+            {p.startStage === "swiss" && p.pool !== null && (
+              <span className="rounded border border-accent/50 px-1.5 py-0.5 text-accent">第 {p.pool} 池</span>
+            )}
             <span className={`rounded border px-1.5 py-0.5 font-semibold ${TONE[s.tone]}`}>{s.label}</span>
             {s.record && <span className="rounded bg-panel-2 px-1.5 py-0.5 font-mono">{s.record}</span>}
           </div>
