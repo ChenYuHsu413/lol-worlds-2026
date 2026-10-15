@@ -2,6 +2,7 @@ import { loserOf, winnerOf } from "@/lib/playin";
 import type { PlayInSlot, PlayInSlotKey, PlayInView, Team } from "@/lib/types";
 import { BracketLines, targetRow, type Line } from "./BracketLines";
 import { CARD_H, CARD_W, MatchCard } from "./MatchCard";
+import { MatchCardMobile } from "./MatchCardMobile";
 import { TeamLogo } from "./TeamLogo";
 
 const COL = CARD_W + 56;
@@ -33,6 +34,87 @@ const into = (p: { x: number; y: number }, team: Team | null, target: PlayInSlot
 const out = (p: { x: number; y: number }) => ({ x: p.x + CARD_W, y: p.y + CARD_H / 2 + 9 });
 
 export function PlayInBracket({ view, focus }: { view: PlayInView; focus: string | null }) {
+  return (
+    <>
+      <div className="hidden md:block">
+        <PlayInDesktop view={view} focus={focus} />
+      </div>
+      <div className="md:hidden">
+        <PlayInMobile view={view} focus={focus} />
+      </div>
+    </>
+  );
+}
+
+// ---- 手機（< 768px）：依階段由上往下的列表，以文字標示勝敗去向 ----
+
+const NEXT: Record<PlayInSlotKey, string> = {
+  ub1a: "勝者 → 勝部決賽・敗者 → 敗部首輪",
+  ub1b: "勝者 → 勝部決賽・敗者 → 敗部首輪",
+  ubFinal: "勝者 → 總決賽・敗者 → 敗部決賽",
+  lbRound1: "勝者 → 敗部決賽・敗者淘汰",
+  lbFinal: "勝者 → 總決賽・敗者淘汰",
+  grandFinal: "勝者晉級瑞士輪・敗者淘汰",
+};
+const PROVISIONAL_NEXT = "勝部決賽或敗部首輪，待勝部首輪結束後判定";
+
+function PlayInMobile({ view, focus }: { view: PlayInView; focus: string | null }) {
+  const card = (s: PlayInSlot) => (
+    <MatchCardMobile
+      key={s.match.id}
+      match={s.match}
+      label={s.label}
+      provisional={s.provisional}
+      next={s.key ? NEXT[s.key] : PROVISIONAL_NEXT}
+      sourceLabels={s.key ? SOURCES[s.key] : null}
+      focus={focus}
+    />
+  );
+  const sections: { title: string; slots: PlayInSlot[] }[] =
+    view.slots.length === 6
+      ? [
+          { title: "勝部首輪", slots: view.slots.slice(0, 2) },
+          { title: "勝部決賽 / 敗部首輪", slots: view.slots.slice(2, 4) },
+          { title: "敗部決賽", slots: [view.slots[4]] },
+          { title: "總決賽", slots: [view.slots[5]] },
+        ]
+      : [{ title: "Play-In", slots: view.slots }];
+
+  return (
+    <div className="space-y-4">
+      <p className="text-sm">
+        <span className="text-muted">晉級瑞士輪：</span>
+        {view.qualified ? (
+          <span className="inline-flex items-center gap-1.5 font-bold text-win">
+            <TeamLogo team={view.qualified} size={18} /> {view.qualified.name}
+          </span>
+        ) : (
+          <span className="text-muted">待定</span>
+        )}
+      </p>
+      {sections.map((sec) => (
+        <section key={sec.title}>
+          <h3 className="mb-1.5 text-xs font-bold text-accent">{sec.title}</h3>
+          <div className="space-y-2">{sec.slots.map(card)}</div>
+        </section>
+      ))}
+      {view.eliminated.length > 0 && (
+        <p className="flex flex-wrap items-center gap-2 text-xs text-muted">
+          淘汰：
+          {view.eliminated.map((t) => (
+            <span key={t.id} className="flex items-center gap-1 line-through">
+              <TeamLogo team={t} size={14} /> {t.code}
+            </span>
+          ))}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ---- 桌機（≥ 768px）：SVG 連線籤表 ----
+
+function PlayInDesktop({ view, focus }: { view: PlayInView; focus: string | null }) {
   const unknownLayout = view.slots.length !== 6;
   if (unknownLayout) {
     // 場數不符預期時退回簡單列表（lib/playin.ts 已 warn）
