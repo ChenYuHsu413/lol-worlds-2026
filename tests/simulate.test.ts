@@ -9,6 +9,7 @@ import {
   parsePrediction,
   rng,
   setPick,
+  settle,
   simulate,
   swapKo,
   swapSwiss,
@@ -155,6 +156,25 @@ describe("手動配對與排籤", () => {
     expect(swapKo(state, sim, ones[0], ones[1])).not.toBeNull();
     expect(swapKo(state, sim, draw[0], ones[0])).toBeNull();
     expect(validKoDraw([...draw].reverse(), draw, rec)).toBe(false);
+  });
+});
+
+describe("上游改動的連鎖移除與復原", () => {
+  it("改 R2 配對 → 下游預測被移除；復原後與改動前完全相同", () => {
+    const data = data2026();
+    const { state, sim } = pickAll(data);
+    const before = structuredClone(state);
+    const bucket = sim.swissDrawn[2].filter((d) => d.bucket === "1-0");
+    const changed = swapSwiss(state, sim, 2, bucket[0].pair[0], bucket[1].pair[0])!;
+    const { state: settled, removed } = settle(changed, data.matches, data.profiles);
+    expect(removed.length).toBeGreaterThan(0);
+    expect(new Set(removed).size).toBe(removed.length);
+    for (const id of removed) expect(settled.picks[id]).toBeUndefined();
+    expect(simulate(data.matches, data.profiles, settled).stale).toEqual([]);
+    // 復原 = 回到改動前保存的狀態
+    const undone = before;
+    expect(undone).toEqual(state);
+    expect(simulate(data.matches, data.profiles, undone).champion?.id).toBe(sim.champion?.id);
   });
 });
 

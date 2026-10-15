@@ -372,6 +372,26 @@ export function swapKo(state: PredictionState, sim: SimResult, a: string, b: str
 /** 重新抽籤：換種子並清除手動配對 */
 export const redraw = (state: PredictionState): PredictionState => ({ ...state, seed: newSeed(), swiss: {}, ko: null });
 
+/**
+ * 套用新狀態後，反覆移除因上游改變而對不上隊伍的下游預測，直到穩定。
+ * 回傳穩定後的狀態與被移除的 match id（供 UI 顯示「已移除 N 筆」與復原）
+ */
+export function settle(
+  next: PredictionState,
+  actual: Match[],
+  profiles: TeamProfile[],
+): { state: PredictionState; removed: string[] } {
+  let state = next;
+  const removed: string[] = [];
+  for (let i = 0; i < 50; i++) {
+    const { stale } = simulate(actual, profiles, state);
+    if (!stale.length) break;
+    removed.push(...stale);
+    state = prune(state, stale);
+  }
+  return { state, removed };
+}
+
 /** 移除已失效（被實際結果覆蓋或對不上隊伍）的預測 */
 export function prune(state: PredictionState, ids: string[]): PredictionState {
   if (!ids.length) return state;

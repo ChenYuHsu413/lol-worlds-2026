@@ -1,11 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   decodePrediction,
   emptyPrediction,
-  prune,
   setPick,
+  settle,
   simulate,
   swapKo,
   swapSwiss,
@@ -47,7 +47,11 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
   const [openId, setOpenId] = useState<string | null>(null);
   const [swapMode, setSwapMode] = useState(false);
   const [swapSel, setSwapSel] = useState<string | null>(null);
-  const [toast, setToast] = useState<string | null>(null);
+  // undo：可復原的改動前狀態（約 8 秒內）
+  const [toast, setToast] = useState<{ msg: string; undo?: PredictionState } | null>(null);
+  const notify = useCallback((msg: string) => setToast({ msg }), []);
+  const pstateRef = useRef(pstate);
+  pstateRef.current = pstate;
 
   // 分享連結（#p=...）優先，其次 localStorage
   useEffect(() => {
@@ -61,18 +65,30 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
           setMode("predict");
           return;
         }
-        setToast("分享連結無法解析，已載入你自己的預測");
+        notify("分享連結無法解析，已載入你自己的預測");
       }
       setPstate(loadStoredPrediction() ?? emptyPrediction());
     })();
-  }, []);
+  }, [notify]);
 
-  const update = useCallback((next: PredictionState) => {
+  const save = useCallback((next: PredictionState) => {
     setPstate(next);
     storePrediction(next);
     // 編輯後網址上的分享內容已不是目前狀態
     if (location.hash) history.replaceState(null, "", location.pathname + location.search);
   }, []);
+
+  // 使用者的改動：一併移除對不上隊伍的下游預測，並提供復原
+  const update = useCallback(
+    (next: PredictionState) => {
+      if (!data) return save(next);
+      const prev = pstateRef.current;
+      const { state, removed } = settle(next, data.matches, data.profiles);
+      save(state);
+      if (removed.length && prev) setToast({ msg: `已移除 ${removed.length} 筆受影響的後續預測`, undo: prev });
+    },
+    [data, save],
+  );
 
   const sim = useMemo(
     () => (mode === "predict" && data && pstate ? simulate(data.matches, data.profiles, pstate) : null),
@@ -83,14 +99,17 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
     [sim, data],
   );
 
-  // 因使用者改了上游預測而對不上隊伍的預測，自動移除
+  // 實際結果更新後才對不上的預測（使用者的改動已由 update 處理）
   useEffect(() => {
-    if (sim?.stale.length && pstate) update(prune(pstate, sim.stale));
-  }, [sim, pstate, update]);
+    if (!sim?.stale.length || !pstate || !data) return;
+    const { state, removed } = settle(pstate, data.matches, data.profiles);
+    save(state);
+    notify(`實際結果更新，已移除 ${removed.length} 筆受影響的後續預測`);
+  }, [sim, pstate, data, save, notify]);
 
   useEffect(() => {
     if (!toast) return;
-    const id = setTimeout(() => setToast(null), 3000);
+    const id = setTimeout(() => setToast(null), toast.undo ? 8000 : 3000);
     return () => clearTimeout(id);
   }, [toast]);
 
@@ -104,7 +123,7 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
       if (!sim || !pstate || a === b) return;
       const next = scope === "swiss" && round !== undefined ? swapSwiss(pstate, sim, round, a, b) : swapKo(pstate, sim, a, b);
       if (next) update(next);
-      else setToast(scope === "swiss" ? "無法交換：需同輪同戰績，且不得重複交手" : "無法交換：3-0 隊伍需在兩側種子位、對手為 3-2");
+      else notify(scope === "swiss" ? "無法交換：需同輪同戰績，且不得重複交手" : "無法交換：3-0 隊伍需在兩側種子位、對手為 3-2");
       setSwapSel(null);
     },
     swapClick: (scope, teamId, round) => {
@@ -233,7 +252,7 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
               }}
               onUpdate={update}
               onOpen={setOpenId}
-              onToast={setToast}
+              onToast={notify}
             />
           )}
           <nav className="mb-4 flex gap-1 overflow-x-auto border-b border-line" role="tablist">
@@ -279,7 +298,18 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
       )}
       {toast && (
         <div role="status" className="fixed inset-x-0 top-4 z-50 mx-auto w-fit max-w-[90vw] rounded bg-fg px-4 py-2 text-sm text-bg shadow-lg">
-          {toast}
+          {toast.msg}
+          {toast.undo && (
+            <button
+              onClick={() => {
+                save(toast.undo!);
+                setToast(null);
+              }}
+              className="ml-3 font-bold underline underline-offset-2"
+            >
+              復原
+            </button>
+          )}
         </div>
       )}
     </div>
