@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { ROLE_NAMES } from "@/config/leagues";
-import { championImage, fearless, type GameDetail, type GamePlayer, type GameSide, type MatchGames } from "@/lib/games";
+import {
+  championImage,
+  fearlessPool,
+  isDataPending,
+  type GameDetail,
+  type GamePlayer,
+  type GameSide,
+  type MatchGames,
+} from "@/lib/games";
 
 const DRAGON_NAMES: Record<string, string> = {
   ocean: "海洋",
@@ -162,6 +170,8 @@ function GameView({
 }) {
   const goldDiff = g.blue.gold !== null && g.red.gold !== null ? g.blue.gold - g.red.gold : null;
   const noStats = g.blue.players.length === 0 && g.red.players.length === 0;
+  // 完賽 6 小時內缺的欄位顯示「資料整理中」（Leaguepedia 常在賽後才補），之後才隱藏
+  const pending = isDataPending(g, Date.now());
   return (
     <div className="space-y-4 text-sm">
       <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted">
@@ -172,6 +182,7 @@ function GameView({
             {g.winnerSource === "inferred" && "（依終局數據推估）"}
           </span>
         )}
+        {!g.winner && pending && <span>勝方：資料整理中</span>}
         {g.durationSec !== null && <span>時長 {mmss(g.durationSec)}</span>}
         {g.patch && <span>版本 {g.patch.split(".").slice(0, 2).join(".")}</span>}
         {goldDiff !== null && (
@@ -224,7 +235,10 @@ function GameView({
           </ol>
         </section>
       )}
-      {!data.sources.leaguepedia && <p className="text-xs text-muted">Leaguepedia 暫時無法連線，未顯示 Ban 位與選角順序。</p>}
+      {!g.draft && pending && <p className="text-xs text-muted">Ban 位與選角順序資料整理中（Leaguepedia 通常在賽後才補上）。</p>}
+      {!g.draft && !pending && !data.sources.leaguepedia && (
+        <p className="text-xs text-muted">Leaguepedia 暫時無法連線，未顯示 Ban 位與選角順序。</p>
+      )}
     </div>
   );
 }
@@ -307,26 +321,65 @@ function PlayerRow({ p, data, teamId, onPlayer }: { p: GamePlayer; data: MatchGa
 }
 
 function FearlessView({ data }: { data: MatchGames }) {
-  const steps = fearless(data.games).filter((s) => s.beforeGame > 1);
+  const steps = fearlessPool(data.games);
+  const [at, setAt] = useState(steps.length ? steps[steps.length - 1].beforeGame : 0);
+  const step = steps.find((s) => s.beforeGame === at) ?? steps[steps.length - 1];
+  const lastGame = data.games.at(-1)?.number ?? 0;
+  const team = (id: string | null) => data.teams.find((t) => t.id === id);
+
   return (
-    <div className="space-y-4 text-sm">
-      <p className="text-xs text-muted">
-        Fearless 選角：先前局數用過的英雄，之後的局數不得再選。依局數累加列出各隊已使用的英雄（2025 世界賽的系列賽中，沒有任何英雄被兩隊重複使用）。
-      </p>
-      {steps.length === 0 && <p className="text-muted">第 2 局開打後才會有資料</p>}
-      {steps.map((s) => (
-        <section key={s.beforeGame}>
-          <h4 className="mb-1 text-xs font-bold text-accent">第 {s.beforeGame} 局開打前已使用</h4>
-          {data.teams.map((t) => (
-            <div key={t.id} className="mb-1 flex flex-wrap items-center gap-1">
-              <span className="w-12 shrink-0 text-xs font-bold">{t.code}</span>
-              {(s.used[t.id] ?? []).map((id) => (
-                <Champ key={id} id={id} data={data} size={24} dim />
-              ))}
-            </div>
-          ))}
+    <div className="space-y-3 text-sm">
+      <p className="text-xs text-muted">全局 Fearless：系列賽中任一隊用過的英雄，之後的局數兩隊都不能再選。</p>
+      {steps.length <= 2 ? (
+        steps.length === 0 && <p className="text-muted">尚無選角資料</p>
+      ) : (
+        <div className="flex flex-wrap gap-1" role="group" aria-label="檢視時間點">
+          {steps
+            .filter((s) => s.beforeGame > 1)
+            .map((s) => (
+              <button
+                key={s.beforeGame}
+                onClick={() => setAt(s.beforeGame)}
+                aria-pressed={at === s.beforeGame}
+                className={`rounded border px-2 py-0.5 text-xs ${at === s.beforeGame ? "border-accent text-accent" : "border-line text-muted"}`}
+              >
+                {s.beforeGame > lastGame ? "目前" : `第 ${s.beforeGame} 局前`}
+              </button>
+            ))}
+        </div>
+      )}
+      {step && (
+        <section>
+          <h4 className="mb-2 text-xs font-bold text-accent">
+            已鎖定英雄池（{step.locked.length}）
+            <span className="ml-2 font-normal text-muted">
+              {data.teams.map((t) => `${t.code} ${step.locked.filter((l) => l.teamId === t.id).length}`).join("・")}
+            </span>
+          </h4>
+          <ul className="grid grid-cols-[repeat(auto-fill,minmax(44px,1fr))] gap-1.5">
+            {step.locked.map((l) => {
+              const t = team(l.teamId);
+              const name = data.champions.names[l.champion] ?? l.champion;
+              return (
+                <li key={l.champion} className="relative" title={`${name}・${t?.code ?? "?"} 第 ${l.game} 局使用`}>
+                  <Champ id={l.champion} data={data} size={44} />
+                  <span className="absolute left-0 top-0 rounded-br bg-black/75 px-0.5 font-mono text-[10px] leading-tight text-white">
+                    G{l.game}
+                  </span>
+                  {t && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={t.logo}
+                      alt={t.code}
+                      className="absolute bottom-0 right-0 h-4 w-4 rounded-tl bg-slate-800 object-contain p-px"
+                    />
+                  )}
+                </li>
+              );
+            })}
+          </ul>
         </section>
-      ))}
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { ApiEventDetails } from "../lib/api-types";
 import type { DDragonChampionFile, LeaguepediaGameRow, LiveWindow } from "../lib/game-api-types";
-import { assembleMatchGames, fearless, matchPlayer, stripTeamPrefix, type MatchGames } from "../lib/games";
+import { assembleMatchGames, fearlessPool, matchPlayer, stripTeamPrefix, type MatchGames } from "../lib/games";
 import type { Player } from "../lib/types";
 import { buildWorldsData } from "../lib/worlds";
 import { bundle, fixture, tournament } from "./helpers";
@@ -81,24 +81,35 @@ describe("決賽 5 局（live stats × Leaguepedia × Data Dragon）", () => {
   });
 });
 
-describe("Fearless 累加", () => {
-  it("第 n 局前列出雙方已用英雄，依局數累加且不重複", () => {
+describe("Fearless 已鎖定英雄池", () => {
+  it("依局數累加，記錄使用隊伍與局數；最後一步為目前完整池", () => {
     const m = load(FINAL);
-    const steps = fearless(m.games);
-    expect(steps.map((s) => s.beforeGame)).toEqual([1, 2, 3, 4, 5]);
-    expect(Object.keys(steps[0].used)).toHaveLength(0);
-    for (const [i, s] of steps.entries())
-      for (const team of m.teams) expect(s.used[team.id] ?? []).toHaveLength(i * 5);
-    // 2025 實際資料：系列賽中沒有任何英雄重複出場（兩隊皆然）
-    const all = m.games.flatMap((x) => [...x.blue.players, ...x.red.players].map((p) => p.champion));
-    expect(new Set(all).size).toBe(all.length);
+    const msgs: string[] = [];
+    const steps = fearlessPool(m.games, (x) => msgs.push(x));
+    expect(steps.map((s) => s.beforeGame)).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(steps.map((s) => s.locked.length)).toEqual([0, 10, 20, 30, 40, 50]);
+    expect(msgs).toEqual([]);
+    const g1 = m.games[0];
+    expect(steps[1].locked.find((l) => l.champion === "Ambessa")).toEqual({ champion: "Ambessa", teamId: g1.red.teamId, game: 1 });
+    expect(steps[5].locked.filter((l) => l.game === 5)).toHaveLength(10);
   });
 
-  it("Bo1 只有一步；沒有選手資料的局不計入", () => {
+  it("同一系列賽重複選用 → warn（資料比對有誤），不重複加入", () => {
+    const m = load(FINAL);
+    const g2 = structuredClone(m.games[1]);
+    g2.blue.players[0].champion = m.games[0].red.players[0].champion; // 第 2 局藍方又選第 1 局紅方的英雄
+    const msgs: string[] = [];
+    const steps = fearlessPool([m.games[0], g2], (x) => msgs.push(x));
+    expect(msgs).toHaveLength(1);
+    expect(msgs[0]).toContain("Fearless 衝突");
+    expect(steps.at(-1)!.locked).toHaveLength(19);
+  });
+
+  it("Bo1 只有開打前與目前兩步；沒有選手資料的局不計入", () => {
     const m = load(BO1);
-    expect(fearless(m.games)).toHaveLength(1);
+    expect(fearlessPool(m.games).map((s) => s.locked.length)).toEqual([0, 10]);
     const empty = { ...m.games[0], number: 2, blue: { ...m.games[0].blue, players: [] }, red: { ...m.games[0].red, players: [] } };
-    expect(fearless([...m.games, empty])).toHaveLength(1);
+    expect(fearlessPool([...m.games, empty])).toHaveLength(2);
   });
 });
 

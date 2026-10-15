@@ -5,7 +5,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { ApiEventDetails, GetEventDetailsResponse } from "./api-types";
 import type { DDragonChampionFile, LeaguepediaGameRow, LiveWindow } from "./game-api-types";
-import { assembleMatchGames, type MatchGames } from "./games";
+import { assembleMatchGames, cacheSeconds, CACHE, RETRY_WINDOW_MS, type MatchGames } from "./games";
 import { apiGet } from "./lolesports";
 import type { Player } from "./types";
 import { fixturesEnabled, loadWorlds } from "./worlds";
@@ -96,19 +96,17 @@ async function loadLive(matchId: string): Promise<GamesPayload> {
   const starts = Object.values(windows)
     .map((w) => (w.start?.frames[0] ? Date.parse(w.start.frames[0].rfc460Timestamp) : NaN))
     .filter(Number.isFinite);
-  const allDone = event.match.games.every((g) => g.state === "completed" || g.state === "unneeded");
+  // Leaguepedia 賽後才補資料：最後一局開打 24 小時內每 10 分鐘重抓，之後每小時
+  const lpRevalidate = starts.length && now - Math.max(...starts) > RETRY_WINDOW_MS ? CACHE.giveUp : CACHE.retry;
   const [dd, lp, rosterOf] = await Promise.all([
     ddragon(),
-    starts.length ? leaguepedia(Math.min(...starts) - 3600_000, Math.max(...starts) + 3600_000, allDone ? 3600 : 600) : Promise.resolve(null),
+    starts.length ? leaguepedia(Math.min(...starts) - 3600_000, Math.max(...starts) + 3600_000, lpRevalidate) : Promise.resolve(null),
     rosterLookup(null),
   ]);
   if (!dd) return { data: null, error: "無法取得 Data Dragon 英雄資料", cacheSeconds: 60 };
 
   const data = assembleMatchGames({ event, windows, leaguepedia: lp, zh: dd.zh, en: dd.en, rosterOf });
-  const live = event.match.games.some((g) => g.state === "inProgress");
-  // Leaguepedia 常在賽後才補資料：缺資料時 10 分鐘後再試
-  const lpComplete = data.games.every((g) => g.draft !== null);
-  return { data, error: null, cacheSeconds: live ? LIVE_GAME_TTL : allDone && lpComplete ? 31536000 : 600 };
+  return { data, error: null, cacheSeconds: cacheSeconds(data.games, now) };
 }
 
 // ---- 開發用 fixtures（fixtures/games/）----

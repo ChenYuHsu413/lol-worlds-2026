@@ -54,11 +54,12 @@ export interface GameDetail {
   durationSec: number | null;
   patch: string | null;
   draft: DraftStep[] | null; // 20 步的 ban/pick 順序；無 Leaguepedia 資料時為 null
+  endedAt: string | null; // 終局 frame（gameState: finished）的時間
 }
 
 export interface MatchGames {
   matchId: string;
-  teams: { id: string; code: string; name: string; gameWins: number }[];
+  teams: { id: string; code: string; name: string; logo: string; gameWins: number }[];
   games: GameDetail[];
   champions: ChampionDict;
   sources: { leaguepedia: boolean };
@@ -249,6 +250,7 @@ export function normalizeGame(
     durationSec,
     patch: meta?.patchVersion ?? null,
     draft: row ? draftFrom(row, enIndex) : null,
+    endedAt: last?.gameState === "finished" ? last.rfc460Timestamp : null,
   };
 }
 
@@ -266,27 +268,59 @@ export function verifyInferredWinners(games: GameDetail[], gameWins: Record<stri
 }
 
 // ---- Fearless ----
+// 世界賽為全局 Fearless：系列賽中任一隊用過的英雄，後續兩隊都不能再選
 
-export interface FearlessStep {
-  beforeGame: number; // 第 n 局開打前
-  used: Record<string, string[]>; // teamId → 該隊在先前各局用過的英雄（依局數累加）
+export interface LockedChampion {
+  champion: string;
+  teamId: string | null; // 使用的隊伍
+  game: number; // 第幾局使用
 }
 
-/** 依局數累加雙方已使用的英雄；第 n 局之前用過的英雄，之後不得再選 */
-export function fearless(games: GameDetail[]): FearlessStep[] {
-  const used: Record<string, string[]> = {};
+export interface FearlessStep {
+  beforeGame: number; // 第 n 局開打前；最後一步為「目前」（最後一局之後）
+  locked: LockedChampion[]; // 已鎖定的英雄池（依局數累加）
+}
+
+/** 依局數累加已鎖定英雄池；同一系列賽重複選用代表資料比對有誤，會 warn */
+export function fearlessPool(games: GameDetail[], warn: (msg: string) => void = console.warn): FearlessStep[] {
+  const locked: LockedChampion[] = [];
   const steps: FearlessStep[] = [];
   for (const g of [...games].sort((a, b) => a.number - b.number)) {
     if (g.blue.players.length === 0 && g.red.players.length === 0) continue;
-    steps.push({ beforeGame: g.number, used: Object.fromEntries(Object.entries(used).map(([k, v]) => [k, [...v]])) });
-    for (const side of [g.blue, g.red]) {
-      if (!side.teamId) continue;
-      used[side.teamId] ??= [];
-      for (const p of side.players) if (!used[side.teamId].includes(p.champion)) used[side.teamId].push(p.champion);
-    }
+    steps.push({ beforeGame: g.number, locked: [...locked] });
+    for (const side of [g.blue, g.red])
+      for (const p of side.players) {
+        const prev = locked.find((l) => l.champion === p.champion);
+        if (prev) warn(`[games] Fearless 衝突：${p.champion} 在第 ${prev.game} 局已使用，第 ${g.number} 局又出現（資料比對可能有誤）`);
+        else locked.push({ champion: p.champion, teamId: side.teamId, game: g.number });
+      }
   }
+  if (steps.length) steps.push({ beforeGame: steps[steps.length - 1].beforeGame + 1, locked: [...locked] });
   return steps;
 }
+
+// ---- 快取策略 ----
+// 已完賽且勝方與 Ban/Pick 都已取得 → 永久；Leaguepedia 賽後才補資料 → 10 分鐘重抓，超過 24 小時仍不完整則改 1 小時
+
+export const CACHE = { live: 30, pending: 60, retry: 600, giveUp: 3600, forever: 31536000 };
+export const RETRY_WINDOW_MS = 24 * 3600_000;
+
+/** 已完賽的局是否已取得勝方（Leaguepedia）與 Ban/Pick */
+export const isComplete = (g: GameDetail) => g.winnerSource === "leaguepedia" && g.draft !== null;
+
+export function cacheSeconds(games: GameDetail[], now: number): number {
+  if (games.some((g) => g.state === "inProgress")) return CACHE.live;
+  if (games.length === 0 || games.some((g) => g.state !== "completed")) return CACHE.pending;
+  const incomplete = games.filter((g) => !isComplete(g));
+  if (!incomplete.length) return CACHE.forever;
+  const lastEnd = Math.max(...incomplete.map((g) => (g.endedAt ? Date.parse(g.endedAt) : now)));
+  return now - lastEnd < RETRY_WINDOW_MS ? CACHE.retry : CACHE.giveUp;
+}
+
+/** 已完賽 6 小時內缺的欄位顯示「資料整理中」，之後才隱藏 */
+export const PENDING_WINDOW_MS = 6 * 3600_000;
+export const isDataPending = (g: GameDetail, now: number) =>
+  g.state === "completed" && !!g.endedAt && now - Date.parse(g.endedAt) < PENDING_WINDOW_MS;
 
 // ---- 整場系列賽 ----
 
@@ -302,7 +336,13 @@ export interface MatchGamesInput {
 export function assembleMatchGames(input: MatchGamesInput): MatchGames {
   const { event, windows, leaguepedia, zh, en, rosterOf } = input;
   const enIndex = englishNameIndex(en);
-  const teams = event.match.teams.map((t) => ({ id: t.id, code: t.code, name: t.name, gameWins: t.result?.gameWins ?? 0 }));
+  const teams = event.match.teams.map((t) => ({
+    id: t.id,
+    code: t.code,
+    name: t.name,
+    logo: t.image.replace(/^http:\/\//, "https://"),
+    gameWins: t.result?.gameWins ?? 0,
+  }));
   const teamCode = (id: string) => teams.find((t) => t.id === id)?.code ?? null;
   const games = event.match.games
     .filter((g) => g.state !== "unneeded")
