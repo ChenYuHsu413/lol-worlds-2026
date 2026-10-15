@@ -14,6 +14,7 @@ import {
 import { taipeiDateTime, TZ_LABEL } from "@/lib/time";
 import type { Stage, WorldsData, WorldsPayload } from "@/lib/types";
 import { buildStageViews } from "@/lib/views";
+import { GamesPanel } from "./GamesPanel";
 import { KnockoutBracket } from "./KnockoutBracket";
 import { PickSheet } from "./PickSheet";
 import { PredictionBar } from "./PredictionBar";
@@ -39,6 +40,8 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
   const [tab, setTab] = useState<Tab>(initial.data?.currentStage ?? "schedule");
   const [focus, setFocus] = useState<string | null>(null);
   const [jumpTo, setJumpTo] = useState<string | null>(null);
+  const [gamesId, setGamesId] = useState<string | null>(null);
+  const [openTeam, setOpenTeam] = useState<string | null>(null);
   const { data, error } = payload;
 
   // ---- 預測模式 ----
@@ -117,6 +120,7 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
     enabled: mode === "predict",
     sim,
     open: setOpenId,
+    openGames: setGamesId,
     swapMode,
     swapSelected: swapSel,
     swap: (scope, a, b, round) => {
@@ -276,7 +280,9 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
           </nav>
 
           {tab === "schedule" && <ScheduleList matches={view.matches} focus={focus} highlight={jumpTo} />}
-          {tab === "teams" && <TeamsView data={view} focus={focus} onFocus={setFocus} onJump={jump} />}
+          {tab === "teams" && (
+            <TeamsView data={view} focus={focus} onFocus={setFocus} onJump={jump} open={openTeam} onOpen={setOpenTeam} />
+          )}
           {tab === "playin" && <PlayInBracket view={view.playin} focus={focus} />}
           {tab === "swiss" && <SwissBuckets view={view.swiss} focus={focus} />}
           {tab === "knockout" && <KnockoutBracket view={view.knockout} focus={focus} />}
@@ -292,6 +298,20 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
               }}
               onClear={() => update(setPick(pstate, openMatch.id, null))}
               onClose={() => setOpenId(null)}
+            />
+          )}
+          {gamesId && (
+            <GamesPanel
+              matchId={gamesId}
+              fixture={fixture}
+              onClose={() => setGamesId(null)}
+              onPlayer={(teamId) => {
+                // 點選手：切到參賽隊伍頁並展開該隊
+                setGamesId(null);
+                setTab("teams");
+                setOpenTeam(teamId);
+                setTimeout(() => document.getElementById(`team-${teamId}`)?.scrollIntoView({ block: "start" }));
+              }}
             />
           )}
         </PredictContext.Provider>

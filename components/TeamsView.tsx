@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { leagueLabel, ROLE_NAMES } from "@/config/leagues";
 import { taipeiMonthDay, taipeiTime, TZ_LABEL } from "@/lib/time";
 import type { Match, Player, TeamProfile, WorldsData } from "@/lib/types";
@@ -38,13 +37,16 @@ export function TeamsView({
   focus,
   onFocus,
   onJump,
+  open,
+  onOpen: setOpen,
 }: {
   data: WorldsData;
   focus: string | null;
   onFocus: (teamId: string | null) => void;
   onJump: (matchId: string) => void;
+  open: string | null; // 展開中的隊伍（由外層控制，供小局面板跳轉）
+  onOpen: (teamId: string | null) => void;
 }) {
-  const [open, setOpen] = useState<string | null>(null);
   if (data.profiles.length === 0) return <p className="text-muted">尚無參賽隊伍資料</p>;
 
   const groups = new Map<string, TeamProfile[]>();
@@ -102,7 +104,7 @@ function TeamCard({
     .sort((a, b) => a.startTime.localeCompare(b.startTime));
 
   return (
-    <div className={`self-start rounded-lg border bg-panel ${focused ? "border-accent" : "border-line"}`}>
+    <div id={`team-${p.team.id}`} className={`self-start scroll-mt-4 rounded-lg border bg-panel ${focused ? "border-accent" : "border-line"}`}>
       <button onClick={onToggle} aria-expanded={expanded} className="flex w-full items-center gap-3 p-3 text-left">
         <TeamLogo team={p.team} size={40} />
         <div className="min-w-0 flex-1">

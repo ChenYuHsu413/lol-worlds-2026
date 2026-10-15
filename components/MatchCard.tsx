@@ -1,7 +1,7 @@
 import { taipeiMonthDay, taipeiTime } from "@/lib/time";
 import type { Match, Team } from "@/lib/types";
 import { involves } from "./focus";
-import { isPredictable, usePredict } from "./predict";
+import { hasGames, isPredictable, usePredict } from "./predict";
 import { TeamLogo } from "./TeamLogo";
 
 export const CARD_W = 216;
@@ -21,13 +21,16 @@ interface Props {
 export function MatchCard({ match: m, label, provisional, focus, sourceLabels, x, y }: Props) {
   const dimmed = focus !== null && !involves(m, focus);
   const live = m.state === "inProgress";
-  const { enabled, open, sim, swapMode } = usePredict();
+  const { enabled, open, openGames, sim, swapMode } = usePredict();
   const overridden = sim?.overridden.includes(m.id) ?? false;
   const koSwappable = swapMode && m.stage === "knockout" && m.round === 1 && !!m.sim?.teams;
-  const clickable = enabled && !koSwappable && (isPredictable(m) || !!m.sim?.result || overridden);
+  const predictable = enabled && !koSwappable && (isPredictable(m) || !!m.sim?.result || overridden);
+  const gamesable = !enabled && hasGames(m);
+  const clickable = predictable || gamesable;
   return (
     <div
-      onClick={clickable ? () => open(m.id) : undefined}
+      onClick={predictable ? () => open(m.id) : gamesable ? () => openGames(m.id) : undefined}
+      title={gamesable ? "查看小局細節" : undefined}
       className={`absolute flex flex-col overflow-hidden rounded-md bg-panel text-sm transition-opacity ${
         clickable ? "cursor-pointer hover:ring-2 hover:ring-accent/60" : ""
       } ${overridden ? "ring-2 ring-live/70" : ""} ${

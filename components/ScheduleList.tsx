@@ -1,7 +1,7 @@
 import { taipeiDateKey, taipeiDayHeading, taipeiTime, TZ_LABEL } from "@/lib/time";
 import type { Match } from "@/lib/types";
 import { MatchState } from "./MatchState";
-import { isPredictable, usePredict } from "./predict";
+import { hasGames, isPredictable, usePredict } from "./predict";
 import { TeamLogo, TeamName } from "./TeamLogo";
 import { involves } from "./focus";
 
@@ -56,13 +56,16 @@ function ScheduleRow({ match: m, dimmed, highlighted }: { match: Match; dimmed: 
   };
   const a = side("A");
   const b = side("B");
-  const { enabled, open, sim } = usePredict();
+  const { enabled, open, openGames, sim } = usePredict();
   const overridden = sim?.overridden.includes(m.id) ?? false;
-  const clickable = enabled && (isPredictable(m) || !!m.sim?.result || overridden);
+  const predictable = enabled && (isPredictable(m) || !!m.sim?.result || overridden);
+  const gamesable = !enabled && hasGames(m);
+  const clickable = predictable || gamesable;
   return (
     <li
       id={`match-${m.id}`}
-      onClick={clickable ? () => open(m.id) : undefined}
+      onClick={predictable ? () => open(m.id) : gamesable ? () => openGames(m.id) : undefined}
+      title={gamesable ? "查看小局細節" : undefined}
       className={`${highlighted ? "bg-accent/15 ring-2 ring-inset ring-accent" : ""} ${
         clickable ? "cursor-pointer hover:bg-panel-2" : ""
       } grid grid-cols-[3.5rem_1fr] items-center gap-x-3 gap-y-1 px-3 py-2.5 text-sm transition-opacity sm:grid-cols-[3.5rem_7rem_1fr_5rem] ${dimmed ? "opacity-30" : ""}`}

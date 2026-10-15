@@ -43,6 +43,26 @@ Leaguepedia Cargo API 匿名查詢會被限流（實測連續兩次都回 `ratel
 - **猜錯的預測不會刪除**：已完賽場次的預測，會保留並標示「已被實際結果覆蓋」，仍計入命中率，但不再套用到推演裡。
 - **上游改動的連鎖移除**：上游預測或配對改變後，下游對不上隊伍的預測會被移除，並出現提示「已移除 N 筆受影響的後續預測」，約 8 秒內可以按「復原」回到改動前的完整狀態。如果是實際結果更新造成的，只會提示，沒有復原。
 
+## 小局細節
+
+在「實際結果」模式下，點選已完賽或進行中的系列賽（賽程列表、籤表卡片、瑞士輪分桶都可以），就會開啟小局面板。面板以 Tab 切換 Game 1／2／…，Bo3／Bo5 另有 Fearless 頁。資料在展開時才向 `/api/games/[matchId]` 抓取。
+
+| 資料來源 | 取得的內容 |
+|---|---|
+| LoL Esports `getEventDetails` | 每局的 gameId、局數、狀態、藍方／紅方 |
+| [live stats feed](https://feed.lolesports.com/livestats/v1/window/{gameId}) `window` | 選手（`summonerName`、`esportsPlayerId`）、位置、英雄、版本；終局 frame 裡的 KDA、補刀、金錢、擊殺、塔、兵營、巴龍、龍 |
+| Leaguepedia `Special:CargoExport`（ScoreboardGames × PicksAndBansS7） | 每局勝方、遊戲時長、10 個 Ban 位、20 步選角順序 |
+| Riot Data Dragon | 最新版本（`versions.json`）、`zh_TW` 英雄官方譯名、英雄頭像；`en_US` 用來把 Leaguepedia 的英文名稱對應成英雄 id |
+
+- **取得終局數據**：`window` 不帶 `startingTime` 時只回傳開局 frame；`startingTime` 帶在結束時間之後，就會回傳終局 frame（`gameState: finished`）。進行中的局則取 1 分鐘前的 frame。
+- **對應 Leaguepedia 的局**：開局時間相差 45 分鐘內，而且藍方 5 隻英雄完全相同，才算同一局。
+- **勝方**：以 Leaguepedia 為準。Leaguepedia 取不到時，依終局的兵營、塔、金錢推估，再用系列賽比分驗證；推估的總和和比分不符時就不顯示。用 2025 決賽 5 局驗證過，推估結果和實際完全一致。
+- **選手對應**：先用 `esportsPlayerId` 對應「參賽隊伍」頁的選手，對不上再用去掉隊伍代碼前綴的名稱比對（「T1 Faker」→「Faker」）。對不上的選手只顯示名稱，不能點。
+- **Fearless**：依局數累加列出各隊用過的英雄。2025 世界賽的 20 個多局系列賽中，沒有任何英雄被兩隊重複使用。
+- **快取**：已完賽的局，live stats 永久快取（`force-cache`）；進行中的局 30 秒更新一次。Leaguepedia 賽後常會晚一點才補資料，缺資料時 10 分鐘後重抓。
+- **缺資料**：某局缺什麼就只隱藏那個欄位，不會讓整個面板報錯。
+- **開發**：`?fixture=2025` 會改讀 `fixtures/games/`，其中包含 2025 決賽、八強 T1-AL、瑞士輪 VKS-TSW 三場。
+
 ## 本機啟動
 
 需要 Node.js 24（`package.json` 的 `engines.node` 設為 `24.x`）。
@@ -82,6 +102,14 @@ node --env-file=.env.local scripts/explore-api.ts
 
 ```bash
 node scripts/check-live.ts
+```
+
+```bash
+node scripts/check-games.ts
+```
+
+```bash
+node --env-file=.env.local scripts/explore-games.ts
 ```
 
 ```bash
@@ -136,5 +164,9 @@ npx vercel deploy --prod
 - 「最後成功資料」的伺服器端快取只存在同一個 serverless instance 裡；冷啟動時如果剛好失敗，就只能靠瀏覽器 localStorage 的資料。
 - `config/teams-2026.json` 是手動維護的；世界賽期間如果有登錄名單異動，要自己更新。Leaguepedia 沒有標示替補（例如 BLG 登錄了兩名上路 Bin、Flandre），所以目前沒有任何選手被標成替補。
 - 2025 fixture 的選手名單是 `getTeams` 目前的名單，不是 2025 當時的陣容。
+- Leaguepedia 的 `api.php` cargoquery 匿名查詢一直被限流，所以改用 `Special:CargoExport`。如果它也失效，Ban 位和選角順序會隱藏，勝方改為推估。
+- live stats 的 `details` 端點另外有出裝、傷害占比等資料，本站沒有使用（KDA、補刀、金錢在 `window` 的終局 frame 已經有）。
+- 遊戲時長：有 Leaguepedia 時用它的數字；沒有時用 live stats 第一個到最後一個 frame 的時間差，和官方時長會差幾十秒。
+- 2025 fixture 的選手名單是目前的名單，所以 2025 小局中，後來轉隊或離隊的選手（例如 Gumayusi、Flandre）對不上。
 - 預測模式中，瑞士輪第二輪以後的配對和八強籤表都是模擬抽籤，不是官方結果。
 - 網站本身沒有使用 Riot / LoL Esports 的商標圖片；隊伍 logo 直接引用 API 提供的網址。

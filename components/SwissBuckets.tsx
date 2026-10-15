@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { SWISS } from "@/config/format-2026";
 import { taipeiMonthDay, taipeiTime } from "@/lib/time";
 import type { SwissRecord, SwissSlot, SwissView, Team } from "@/lib/types";
-import { isPredictable, usePredict } from "./predict";
+import { hasGames, isPredictable, usePredict } from "./predict";
 import { TeamLogo } from "./TeamLogo";
 
 const COL_W = 176;
@@ -113,11 +113,13 @@ function Bucket({ label, slots, col, active, onHover }: { label: string; slots: 
 
 function SlotRow({ slot: { match: m, provisional, round }, col, active, onHover }: { slot: SwissSlot } & HoverProps) {
   const ids = [m.teamA?.id, m.teamB?.id].filter(Boolean).join(" ");
-  const { enabled, open, sim, swapMode, swapClick, swap, swapSelected } = usePredict();
+  const { enabled, open, openGames, sim, swapMode, swapClick, swap, swapSelected } = usePredict();
   const overridden = sim?.overridden.includes(m.id) ?? false;
   // 只有推演抽出（非官方）的配對可以手動調整
   const swappable = swapMode && !!m.sim?.teams; // 推演填入的隊伍不會有實際結果
-  const clickable = enabled && !swappable && (isPredictable(m) || !!m.sim?.result || overridden);
+  const predictable = enabled && !swappable && (isPredictable(m) || !!m.sim?.result || overridden);
+  const gamesable = !enabled && hasGames(m);
+  const clickable = predictable || gamesable;
   const dimmed = active !== null && !ids.split(" ").includes(active);
   const live = m.state === "inProgress";
   const side = (team: Team | null, score: number, which: "A" | "B") => {
@@ -161,7 +163,7 @@ function SlotRow({ slot: { match: m, provisional, round }, col, active, onHover 
       data-team={ids}
       data-col={col}
       title={m.startTime ? `${taipeiMonthDay(m.startTime)} ${taipeiTime(m.startTime)} (UTC+8)・Bo${m.bestOf}` : undefined}
-      onClick={clickable ? () => open(m.id) : undefined}
+      onClick={predictable ? () => open(m.id) : gamesable ? () => openGames(m.id) : undefined}
       className={`flex items-center gap-1 px-1.5 py-1 transition-opacity ${provisional ? "m-1 rounded border border-dashed border-muted/50" : ""} ${
         m.sim?.teams && !provisional ? "border-l-2 border-accent/50" : ""
       } ${live ? "bg-live/10" : ""} ${dimmed ? "opacity-25" : ""} ${clickable ? "cursor-pointer hover:bg-panel-2" : ""} ${

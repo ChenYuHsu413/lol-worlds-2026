@@ -29,6 +29,8 @@ export interface PredictCtx {
   sim: SimResult | null;
   /** 開啟預測面板 */
   open: (matchId: string) => void;
+  /** 實際結果模式：開啟小局細節 */
+  openGames: (matchId: string) => void;
   /** 換配對/排籤模式下，目前選取的隊伍 */
   swapSelected: string | null;
   /** 依序點兩支隊伍以交換配對 */
@@ -42,6 +44,7 @@ export const PredictContext = createContext<PredictCtx>({
   enabled: false,
   sim: null,
   open: () => {},
+  openGames: () => {},
   swapSelected: null,
   swapClick: () => {},
   swap: () => {},
@@ -49,6 +52,9 @@ export const PredictContext = createContext<PredictCtx>({
 });
 
 export const usePredict = () => useContext(PredictContext);
+
+/** 實際結果模式下可展開小局：已開打的真實比賽 */
+export const hasGames = (m: Match) => (m.state === "completed" || m.state === "inProgress") && !m.sim?.result;
 
 /** 預測模式下可點選勝隊：尚未開打且雙方已知 */
 export const isPredictable = (m: Match) => m.state === "unstarted" && m.teamA !== null && m.teamB !== null;
