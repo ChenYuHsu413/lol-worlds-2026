@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { taipeiDateTime, TZ_LABEL } from "@/lib/time";
 import type { Stage, WorldsPayload } from "@/lib/types";
+import { PlayInBracket } from "./PlayInBracket";
 import { ScheduleList } from "./ScheduleList";
 
 type Tab = Stage | "schedule";
@@ -115,7 +116,8 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
           </nav>
 
           {tab === "schedule" && <ScheduleList matches={data.matches} focus={focus} />}
-          {tab !== "schedule" && (
+          {tab === "playin" && <PlayInBracket view={data.playin} focus={focus} />}
+          {(tab === "swiss" || tab === "knockout") && (
             <ScheduleList matches={data.matches.filter((m) => m.stage === tab)} focus={focus} />
           )}
         </>
