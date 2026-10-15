@@ -1,17 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any -- 處理形狀未定的原始 JSON */
 // 探索 LoL Esports 非官方 API，將實際回應存成 fixtures/*.json
-// 執行：node scripts/explore-api.ts（Node 22.18+ 原生支援 TS type stripping）
+// 執行：node --env-file=.env.local scripts/explore-api.ts（Node 24 原生支援 TS type stripping）
 
 import { mkdir, writeFile } from "node:fs/promises";
 
 const BASE = "https://esports-api.lolesports.com/persisted/gw";
-const API_KEY = process.env.ESPORTS_API_KEY ?? "<ESPORTS_API_KEY>";
+const API_KEY = process.env.ESPORTS_API_KEY;
+if (!API_KEY) throw new Error("未設定 ESPORTS_API_KEY（請用 --env-file=.env.local 執行）");
 const HL = "zh-TW";
 const OUT = new URL("../fixtures/", import.meta.url);
 
 async function get(endpoint: string, params: Record<string, string> = {}): Promise<any> {
   const qs = new URLSearchParams({ hl: HL, ...params });
-  const res = await fetch(`${BASE}/${endpoint}?${qs}`, { headers: { "x-api-key": API_KEY } });
+  const res = await fetch(`${BASE}/${endpoint}?${qs}`, { headers: { "x-api-key": API_KEY! } });
   if (!res.ok) throw new Error(`${endpoint} ${res.status}: ${await res.text()}`);
   return res.json();
 }

@@ -11,17 +11,15 @@ export function TeamLogo({ team, size = 20 }: { team: Team | null; size?: number
       />
     );
   }
+  // 一律墊深色圓角底：白色/淺色 logo 在亮色主題下才看得清楚
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={team.logo}
-      alt=""
-      width={size}
-      height={size}
-      loading="lazy"
-      className="shrink-0 object-contain"
-      style={{ width: size, height: size }}
-    />
+    <span
+      className="inline-flex shrink-0 items-center justify-center rounded-md bg-slate-800"
+      style={{ width: size, height: size, padding: Math.max(1, Math.round(size / 10)) }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={team.logo} alt="" loading="lazy" className="h-full w-full object-contain" />
+    </span>
   );
 }
 

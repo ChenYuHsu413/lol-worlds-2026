@@ -34,10 +34,10 @@ Leaguepedia 目前還不需要用到，所以沒有串接。
 npm install
 ```
 
-建立 `.env.local`，內容可以照 `.env.example`：
+複製 `.env.example` 成 `.env.local`（`next dev` 會自動讀取）：
 
-```
-ESPORTS_API_KEY=<ESPORTS_API_KEY>
+```bash
+cp .env.example .env.local
 ```
 
 ```bash
@@ -60,7 +60,7 @@ npm run build
 ```
 
 ```bash
-node scripts/explore-api.ts
+node --env-file=.env.local scripts/explore-api.ts
 ```
 
 ```bash
@@ -113,5 +113,4 @@ npx vercel deploy --prod
 - 瑞士輪中隊伍還沒定的場次，位置是依 id 規則推測的；Play-In 第 3、4 場在隊伍填入前無法判定。
 - `getStandings` 的瑞士輪 `rankings` 是空的，所以改用 `getSchedule` 的 `team.record` 交叉比對戰績。
 - 「最後成功資料」的伺服器端快取只存在同一個 serverless instance 裡；冷啟動時如果剛好失敗，就只能靠瀏覽器 localStorage 的資料。
-- 少數白色隊伍 logo 在亮色主題下的對比度不足。
 - 網站本身沒有使用 Riot / LoL Esports 的商標圖片；隊伍 logo 直接引用 API 提供的網址。

@@ -5,7 +5,6 @@
       "name": "dev",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
-      "env": { "ESPORTS_API_KEY": "<ESPORTS_API_KEY>" },
       "port": 3000
     }
   ]
