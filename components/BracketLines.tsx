@@ -1,8 +1,17 @@
+import type { Match, Team } from "@/lib/types";
+
 export interface Line {
   from: { x: number; y: number };
   to: { x: number; y: number };
   kind: "winner" | "loser";
   active?: boolean; // 已確定的晉級路線
+}
+
+/** 上游隊伍在目標卡片的哪一列（0 = 上、1 = 下）；API 的隊伍順序不一定照籤表上下，未知時用預設列 */
+export function targetRow(team: Team | null, target: Match, fallback: 0 | 1): 0 | 1 {
+  if (team && target.teamA?.id === team.id) return 0;
+  if (team && target.teamB?.id === team.id) return 1;
+  return fallback;
 }
 
 /** 籤表連線（直角折線） */

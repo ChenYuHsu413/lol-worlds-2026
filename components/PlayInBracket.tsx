@@ -1,5 +1,6 @@
-import type { PlayInSlot, PlayInSlotKey, PlayInView } from "@/lib/types";
-import { BracketLines, type Line } from "./BracketLines";
+import { loserOf, winnerOf } from "@/lib/playin";
+import type { PlayInSlot, PlayInSlotKey, PlayInView, Team } from "@/lib/types";
+import { BracketLines, targetRow, type Line } from "./BracketLines";
 import { CARD_H, CARD_W, MatchCard } from "./MatchCard";
 import { TeamLogo } from "./TeamLogo";
 
@@ -24,9 +25,11 @@ const SOURCES: Partial<Record<PlayInSlotKey, [string, string]>> = {
   grandFinal: ["勝部決賽勝者", "敗部決賽勝者"],
 };
 
-// 卡片左側兩個隊伍列的高度位置、右側出線位置
-const inA = (p: { x: number; y: number }) => ({ x: p.x, y: p.y + 36 });
-const inB = (p: { x: number; y: number }) => ({ x: p.x, y: p.y + 71 });
+// 進線：連到該隊在目標卡片的實際列；出線：卡片右側中央
+const into = (p: { x: number; y: number }, team: Team | null, target: PlayInSlot, fallback: 0 | 1) => ({
+  x: p.x,
+  y: p.y + (targetRow(team, target.match, fallback) === 0 ? 36 : 71),
+});
 const out = (p: { x: number; y: number }) => ({ x: p.x + CARD_W, y: p.y + CARD_H / 2 + 9 });
 
 export function PlayInBracket({ view, focus }: { view: PlayInView; focus: string | null }) {
@@ -59,18 +62,20 @@ export function PlayInBracket({ view, focus }: { view: PlayInView; focus: string
   ];
 
   const done = (s: PlayInSlot) => s.match.state === "completed";
+  const W = (s: PlayInSlot) => winnerOf(s.match);
+  const L = (s: PlayInSlot) => loserOf(s.match);
   const lines: Line[] = [
-    { from: out(POS.lbFinal), to: inB(POS.grandFinal), kind: "winner", active: done(lbFinal) },
+    { from: out(POS.lbFinal), to: into(POS.grandFinal, W(lbFinal), grandFinal, 1), kind: "winner", active: done(lbFinal) },
   ];
   if (resolved) {
     lines.push(
-      { from: out(POS.ub1a), to: inA(POS.midA), kind: "winner", active: done(ub1a) },
-      { from: out(POS.ub1b), to: inB(POS.midA), kind: "winner", active: done(ub1b) },
-      { from: out(POS.ub1a), to: inA(POS.midB), kind: "loser" },
-      { from: out(POS.ub1b), to: inB(POS.midB), kind: "loser" },
-      { from: out(POS.midA), to: inA(POS.lbFinal), kind: "loser" },
-      { from: out(POS.midB), to: inB(POS.lbFinal), kind: "winner", active: done(lbRound1) },
-      { from: out(POS.midA), to: inA(POS.grandFinal), kind: "winner", active: done(ubFinal) },
+      { from: out(POS.ub1a), to: into(POS.midA, W(ub1a), ubFinal, 0), kind: "winner", active: done(ub1a) },
+      { from: out(POS.ub1b), to: into(POS.midA, W(ub1b), ubFinal, 1), kind: "winner", active: done(ub1b) },
+      { from: out(POS.ub1a), to: into(POS.midB, L(ub1a), lbRound1, 0), kind: "loser" },
+      { from: out(POS.ub1b), to: into(POS.midB, L(ub1b), lbRound1, 1), kind: "loser" },
+      { from: out(POS.midA), to: into(POS.lbFinal, L(ubFinal), lbFinal, 0), kind: "loser" },
+      { from: out(POS.midB), to: into(POS.lbFinal, W(lbRound1), lbFinal, 1), kind: "winner", active: done(lbRound1) },
+      { from: out(POS.midA), to: into(POS.grandFinal, W(ubFinal), grandFinal, 0), kind: "winner", active: done(ubFinal) },
     );
   }
 
