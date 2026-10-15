@@ -3,6 +3,7 @@ import { SWISS } from "@/config/format-2026";
 import { taipeiMonthDay, taipeiTime } from "@/lib/time";
 import type { SwissRecord, SwissSlot, SwissView, Team } from "@/lib/types";
 import { hasGames, useOpenGames } from "./games-context";
+import { SwissMobile } from "./SwissMobile";
 import { TeamLogo } from "./TeamLogo";
 
 const COL_W = 176;
@@ -41,6 +42,21 @@ function buildColumns(view: SwissView): Column[] {
 }
 
 export function SwissBuckets({ view, focus }: { view: SwissView; focus: string | null }) {
+  return (
+    <>
+      <div className="hidden md:block">
+        <SwissDesktop view={view} focus={focus} />
+      </div>
+      <div className="md:hidden">
+        <SwissMobile view={view} focus={focus} />
+      </div>
+    </>
+  );
+}
+
+// ---- 桌機（≥ 768px）：分桶欄位圖，hover 顯示路徑 ----
+
+function SwissDesktop({ view, focus }: { view: SwissView; focus: string | null }) {
   const [hover, setHover] = useState<string | null>(null);
   const active = hover ?? focus;
   const cols = buildColumns(view);
