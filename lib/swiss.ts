@@ -1,9 +1,9 @@
 // 瑞士輪：由已完賽場次重建輪次、戰績桶與隊伍戰績
 
-import { SWISS } from "../config/format-2026";
+import { PLAYIN_QUALIFIER_POOL, SWISS, SWISS_R1_POOL_PAIRS } from "../config/format-2026";
 import type { ApiScheduleEvent } from "./api-types";
 import { consoleWarn, type Warn } from "./normalize";
-import type { Match, SwissRecord, SwissSlot, SwissView, Team } from "./types";
+import type { Match, SwissRecord, SwissSlot, SwissView, Team, TeamProfile } from "./types";
 
 type Bucket = { round: number; wins: number; losses: number };
 type SwissConfig = typeof SWISS;
@@ -135,4 +135,26 @@ export function crossCheckRecords(
   }
   if (diffs.length) warn("瑞士輪戰績與 API record 不一致", diffs);
   return diffs;
+}
+
+/**
+ * 檢查官方第一輪配對是否符合抽籤規則：第 1 池對第 4 池、第 2 池對第 3 池，且不同賽區。
+ * 分池來自 config/teams-2026.json；從 Play-In 晉級的隊伍為第 4 池。回傳不符的場次說明
+ */
+export function checkRound1Draw(slots: SwissSlot[], profiles: TeamProfile[], warn: Warn = consoleWarn): string[] {
+  const prof = new Map(profiles.map((p) => [p.team.id, p]));
+  const pool = (t: Team) => {
+    const p = prof.get(t.id);
+    return p?.pool ?? (p?.startStage === "playin" ? PLAYIN_QUALIFIER_POOL : null);
+  };
+  const issues: string[] = [];
+  for (const { match: m } of slots.filter((s) => s.round === 1 && !s.provisional)) {
+    if (!m.teamA || !m.teamB) continue;
+    const [pa, pb] = [pool(m.teamA), pool(m.teamB)];
+    if (pa !== null && pb !== null && !SWISS_R1_POOL_PAIRS.some(([x, y]) => (pa === x && pb === y) || (pa === y && pb === x)))
+      issues.push(`${m.teamA.code}（第 ${pa} 池）vs ${m.teamB.code}（第 ${pb} 池）不符分池規則`);
+    if (m.teamA.league && m.teamA.league === m.teamB.league) issues.push(`${m.teamA.code} vs ${m.teamB.code} 同為 ${m.teamA.league}`);
+  }
+  if (issues.length) warn("瑞士輪第一輪配對與抽籤規則不符", issues);
+  return issues;
 }

@@ -26,7 +26,6 @@ export interface Match {
   state: MatchState;
   startTime: string; // ISO UTC
   blockName: string;
-  sim?: { teams?: boolean; result?: boolean }; // 預測模式：隊伍由推演填入 / 結果為使用者預測
 }
 
 export interface SwissRecord {

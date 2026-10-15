@@ -1,7 +1,7 @@
 import { taipeiDateKey, taipeiDayHeading, taipeiTime, TZ_LABEL } from "@/lib/time";
 import type { Match } from "@/lib/types";
 import { MatchState } from "./MatchState";
-import { hasGames, isPredictable, usePredict } from "./predict";
+import { hasGames, useOpenGames } from "./games-context";
 import { TeamLogo, TeamName } from "./TeamLogo";
 import { involves } from "./focus";
 
@@ -56,16 +56,13 @@ function ScheduleRow({ match: m, dimmed, highlighted }: { match: Match; dimmed: 
   };
   const a = side("A");
   const b = side("B");
-  const { enabled, open, openGames, sim } = usePredict();
-  const overridden = sim?.overridden.includes(m.id) ?? false;
-  const predictable = enabled && (isPredictable(m) || !!m.sim?.result || overridden);
-  const gamesable = !enabled && hasGames(m);
-  const clickable = predictable || gamesable;
+  const openGames = useOpenGames();
+  const clickable = hasGames(m);
   return (
     <li
       id={`match-${m.id}`}
-      onClick={predictable ? () => open(m.id) : gamesable ? () => openGames(m.id) : undefined}
-      title={gamesable ? "查看小局細節" : undefined}
+      onClick={clickable ? () => openGames(m.id) : undefined}
+      title={clickable ? "查看小局細節" : undefined}
       className={`${highlighted ? "bg-accent/15 ring-2 ring-inset ring-accent" : ""} ${
         clickable ? "cursor-pointer hover:bg-panel-2" : ""
       } grid grid-cols-[3.5rem_1fr] items-center gap-x-3 gap-y-1 px-3 py-2.5 text-sm transition-opacity sm:grid-cols-[3.5rem_7rem_1fr_5rem] ${dimmed ? "opacity-30" : ""}`}
@@ -91,13 +88,7 @@ function ScheduleRow({ match: m, dimmed, highlighted }: { match: Match; dimmed: 
         </span>
       </div>
       <div className="col-start-1 row-start-2 sm:col-start-auto sm:row-start-auto sm:text-right">
-        {m.sim?.result ? (
-          <span className="rounded border border-accent/60 px-1 text-[11px] text-accent">預測</span>
-        ) : (
-          <MatchState state={m.state} />
-        )}
-        {overridden && <div className="text-[10px] text-live">已被實際結果覆蓋</div>}
-        {enabled && isPredictable(m) && <div className="text-[10px] text-accent">點選預測</div>}
+        <MatchState state={m.state} />
       </div>
     </li>
   );

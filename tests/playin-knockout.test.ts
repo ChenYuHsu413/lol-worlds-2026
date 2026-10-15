@@ -80,4 +80,16 @@ describe("淘汰賽籤表", () => {
     buildKnockout(ko, swiss.records, warn);
     expect(msgs).toContain("兩支 3-0 隊伍被分在籤表同一側");
   });
+
+  it("3-0 隊伍的八強對手不是 3-2 時 warn", () => {
+    const ms = all();
+    const { view: swiss } = buildSwiss(ms.filter((m) => m.stage === "swiss"));
+    const ko = ms.filter((m) => m.stage === "knockout");
+    const sorted = [...ko].sort((a, b) => (BigInt(a.id) < BigInt(b.id) ? -1 : 1));
+    // 八強 1 是 T1（3-2）對 AL（3-0）；把 T1 換成八強 2 的 G2（3-1）
+    [sorted[0].teamA, sorted[1].teamA] = [sorted[1].teamA, sorted[0].teamA];
+    const { warn, msgs } = collectWarn();
+    buildKnockout(ko, swiss.records, warn);
+    expect(msgs).toContain("3-0 隊伍 AL 的八強對手 G2 戰績 3-1，不是 3-2");
+  });
 });

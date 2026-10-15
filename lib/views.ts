@@ -1,4 +1,4 @@
-// 由比賽清單組出各階段視圖（純函式，伺服器與瀏覽器共用；預測模式在瀏覽器端用它重算）
+// 由比賽清單組出各階段視圖（純函式）
 
 import { SWISS } from "../config/format-2026";
 import { buildKnockout } from "./knockout";

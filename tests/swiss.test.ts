@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { buildSwiss, crossCheckRecords, swissSlotTemplate } from "../lib/swiss";
+import { buildSwiss, checkRound1Draw, crossCheckRecords, swissSlotTemplate } from "../lib/swiss";
+import { buildWorldsData } from "../lib/worlds";
 import type { Match } from "../lib/types";
-import { bundle, collectWarn, matches } from "./helpers";
+import { bundle, collectWarn, matches, tournament } from "./helpers";
 
 const swiss2025 = () => matches(bundle("2025"), "2025").filter((m) => m.stage === "swiss");
 
@@ -85,5 +86,25 @@ describe("進行到一半（截斷到 R3 中途）", () => {
     expect([by("FNC").wins, by("FNC").losses]).toEqual([0, 2]); // 0-2 場尚未打
     expect(view.records.filter((r) => r.status === "eliminated")).toHaveLength(0);
     expect(view.records.filter((r) => r.status === "qualified").map((r) => r.team.code).sort()).toEqual(["AL", "KT"]);
+  });
+});
+
+describe("第一輪抽籤規則檢查（分池、同賽區）", () => {
+  const data = buildWorldsData(bundle("2026"), tournament("2026"), "test", () => {});
+  const team = (code: string) => data.profiles.find((p) => p.team.code === code)!.team;
+  const slot = (a: string, b: string) => {
+    const m = { ...data.swiss.slots[0].match, teamA: team(a), teamB: team(b) };
+    return { match: m, round: 1, wins: 0, losses: 0, provisional: false };
+  };
+
+  it("第 1 池對第 4 池、不同賽區 → 無問題；Play-In 晉級隊伍視為第 4 池", () => {
+    expect(checkRound1Draw([slot("GEN", "CFO"), slot("HLE", "LYON"), slot("G2", "MVK")], data.profiles, () => {})).toEqual([]);
+  });
+
+  it("分池不符或同賽區 → warn", () => {
+    const { warn, msgs } = collectWarn();
+    const issues = checkRound1Draw([slot("GEN", "TSW"), slot("GEN", "DK")], data.profiles, warn);
+    expect(issues).toEqual(["GEN（第 1 池）vs TSW（第 2 池）不符分池規則", "GEN vs DK 同為 LCK"]);
+    expect(msgs).toEqual(["瑞士輪第一輪配對與抽籤規則不符"]);
   });
 });

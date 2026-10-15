@@ -46,17 +46,22 @@ export function buildKnockout(
     }
   }
 
-  // 兩支 3-0 隊伍應分在籤表兩側
+  // 淘汰賽抽籤規則（出處見 config/format-2026.ts 的 KNOCKOUT_DRAW_SOURCES）：
+  // 兩支 3-0 隊伍分在籤表兩側，且各自的八強對手為 3-2 隊伍
+  const recordOf = new Map(swissRecords.map((r) => [r.team.id, r]));
   const threeZero = new Set(swissRecords.filter((r) => r.wins === 3 && r.losses === 0).map((r) => r.team.id));
   const qf = rounds[0] ?? [];
   const half = Math.floor(qf.length / 2);
-  const sideOf = (id: string) =>
-    qf.findIndex((s) => s.match.teamA?.id === id || s.match.teamB?.id === id) < half ? 0 : 1;
-  const placed = [...threeZero].filter((id) =>
-    qf.some((s) => s.match.teamA?.id === id || s.match.teamB?.id === id),
+  const placed = qf.flatMap((s, i) =>
+    [s.match.teamA, s.match.teamB].filter((t) => t && threeZero.has(t.id)).map((t) => ({ team: t!, slot: s, side: i < half ? 0 : 1 })),
   );
-  if (placed.length === 2 && sideOf(placed[0]) === sideOf(placed[1]))
-    warn("兩支 3-0 隊伍被分在籤表同一側");
+  if (placed.length === 2 && placed[0].side === placed[1].side) warn("兩支 3-0 隊伍被分在籤表同一側");
+  for (const { team, slot } of placed) {
+    const opp = slot.match.teamA?.id === team.id ? slot.match.teamB : slot.match.teamA;
+    const rec = opp ? recordOf.get(opp.id) : undefined;
+    if (rec && !(rec.wins === 3 && rec.losses === 2))
+      warn(`3-0 隊伍 ${team.code} 的八強對手 ${opp!.code} 戰績 ${rec.wins}-${rec.losses}，不是 3-2`);
+  }
 
   return { rounds, roundNames: KNOCKOUT_ROUND_NAMES.slice(0, rounds.length) };
 }
