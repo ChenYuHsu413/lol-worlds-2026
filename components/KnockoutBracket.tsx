@@ -2,6 +2,7 @@ import type { KnockoutView } from "@/lib/types";
 import { winnerOf } from "@/lib/playin";
 import { BracketLines, targetRow, type Line } from "./BracketLines";
 import { CARD_H, CARD_W, MatchCard } from "./MatchCard";
+import { MatchCardMobile } from "./MatchCardMobile";
 import { TeamLogo } from "./TeamLogo";
 
 const COL = CARD_W + 56;
@@ -14,6 +15,72 @@ const pos = (round: number, index: number) => {
 };
 
 export function KnockoutBracket({ view, focus }: { view: KnockoutView; focus: string | null }) {
+  return (
+    <>
+      <div className="hidden md:block">
+        <KnockoutDesktop view={view} focus={focus} />
+      </div>
+      <div className="md:hidden">
+        <KnockoutMobile view={view} focus={focus} />
+      </div>
+    </>
+  );
+}
+
+// ---- 手機（< 768px）：依輪次分段，以文字標示勝者去向 ----
+
+// 「八強賽」→「八強」、「四強賽」→「四強」；「決賽」維持原樣
+const shortRound = (name: string) => name.replace(/強賽$/, "強");
+
+function KnockoutMobile({ view, focus }: { view: KnockoutView; focus: string | null }) {
+  if (!view.rounds[0]?.length) return <p className="text-muted">尚無淘汰賽資料</p>;
+  const final = view.rounds.at(-1)?.[0];
+  const champion = winnerOf(final?.match);
+  const last = view.rounds.length - 1;
+  return (
+    <div className="space-y-4">
+      {champion && (
+        <p className="flex items-center gap-2 rounded-lg border border-accent bg-accent/15 px-3 py-2 font-bold text-accent">
+          冠軍 <TeamLogo team={champion} size={22} /> {champion.name}
+        </p>
+      )}
+      {view.rounds.map((round, r) => {
+        const name = shortRound(view.roundNames[r]);
+        const nextName = r < last ? shortRound(view.roundNames[r + 1]) : null;
+        return (
+          <section key={r}>
+            <h3 className="mb-1.5 text-xs font-bold text-accent">{view.roundNames[r]}</h3>
+            <div className="space-y-2">
+              {round.map((slot) => (
+                <MatchCardMobile
+                  key={slot.match.id}
+                  match={slot.match}
+                  label={round.length > 1 ? `${name} ${slot.index + 1}` : name}
+                  sourceLabels={
+                    r === 0
+                      ? null
+                      : [`${shortRound(view.roundNames[r - 1])} ${slot.index * 2 + 1} 勝者`, `${shortRound(view.roundNames[r - 1])} ${slot.index * 2 + 2} 勝者`]
+                  }
+                  next={
+                    nextName
+                      ? `勝者 → ${nextName}${view.rounds[r + 1].length > 1 ? `第 ${Math.floor(slot.index / 2) + 1} 場` : ""}`
+                      : "勝者奪冠"
+                  }
+                  focus={focus}
+                />
+              ))}
+            </div>
+          </section>
+        );
+      })}
+      <p className="text-[11px] text-muted">籤表位置依官方場次順序推得（以 2025 資料驗證）。</p>
+    </div>
+  );
+}
+
+// ---- 桌機（≥ 768px）：SVG 連線籤表 ----
+
+function KnockoutDesktop({ view, focus }: { view: KnockoutView; focus: string | null }) {
   const first = view.rounds[0]?.length ?? 0;
   if (first === 0) return <p className="text-muted">尚無淘汰賽資料</p>;
 
