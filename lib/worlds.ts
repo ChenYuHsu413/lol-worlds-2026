@@ -23,6 +23,8 @@ import {
 import { consoleWarn, mergeMatches, teamSlugs, type RawBundle, type Warn } from "./normalize";
 import { buildPlayIn } from "./playin";
 import { buildSwiss, crossCheckRecords } from "./swiss";
+import { buildProfiles, type TeamsConfig } from "./teams";
+import teamsConfig2026 from "../config/teams-2026.json";
 import type { DataErrorKind, Match, Stage, WorldsData, WorldsPayload } from "./types";
 
 export const REVALIDATE_LIVE = 60;
@@ -61,10 +63,15 @@ export function buildWorldsData(
   const swissIds = new Set(of("swiss").map((m) => m.id));
   crossCheckRecords(swiss.records, bundle.events.filter((e) => swissIds.has(e.match.id)), warn);
 
+  const config = (teamsConfig2026 as TeamsConfig).tournamentSlug === tournament.slug ? (teamsConfig2026 as TeamsConfig) : null;
+  const teamMap = new Map(teams.map((t) => [t.id, t]));
+  const profiles = buildProfiles(bundle.teams, teamMap, of("playin"), config, warn);
+
   return {
     tournamentId: tournament.id,
     source,
-    teams: teams.sort((a, b) => a.code.localeCompare(b.code)),
+    teams: [...teamMap.values()].sort((a, b) => a.code.localeCompare(b.code)),
+    profiles,
     matches,
     swiss,
     playin: buildPlayIn(of("playin"), warn),
@@ -86,8 +93,8 @@ async function loadLive(): Promise<WorldsData> {
     getStandings(tournament.id, revalidate),
     fetchSchedulePages(tournament, liveSchedulePageFetcher(leagueId, revalidate)),
   ]);
-  const slugs = teamSlugs(standings);
-  // getTeams 只用於補地區，失敗不影響主要資料
+  const slugs = [...new Set([...teamSlugs(standings), ...(teamsConfig2026 as TeamsConfig).teams.map((t) => t.slug)])];
+  // getTeams 補地區、選手名單（快取 1 小時），失敗不影響賽程資料
   const teams = slugs.length
     ? await getTeams(slugs).then((r) => r.data.teams).catch((err) => (consoleWarn("getTeams 失敗", err), []))
     : [];

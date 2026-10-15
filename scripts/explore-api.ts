@@ -2,7 +2,7 @@
 // 探索 LoL Esports 非官方 API，將實際回應存成 fixtures/*.json
 // 執行：node --env-file=.env.local scripts/explore-api.ts（Node 24 原生支援 TS type stripping）
 
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 
 const BASE = "https://esports-api.lolesports.com/persisted/gw";
 const API_KEY = process.env.ESPORTS_API_KEY;
@@ -54,9 +54,12 @@ async function main() {
       for (const sec of stage.sections)
         for (const m of sec.matches)
           for (const team of m.teams) if (team.slug && team.slug !== "tbd") slugs.add(team.slug);
-    const teams = await get("getTeams", { id: [...slugs].join(",") });
-    for (const team of teams.data.teams) delete team.players; // 體積大且用不到
-    await save(`getTeams_${year}`, teams);
+    // 2026 的瑞士輪隊伍在 standings 中仍是 TBD，另從 config/teams-2026.json 補上參賽隊伍
+    if (year === "2026") {
+      const config = JSON.parse(await readFile(new URL("../config/teams-2026.json", import.meta.url), "utf8"));
+      for (const team of config.teams) slugs.add(team.slug);
+    }
+    await save(`getTeams_${year}`, await get("getTeams", { id: [...slugs].join(",") }));
   }
 
   // getSchedule 以 league 為單位分頁，從「目前」頁開始；往 newer 翻到底，往 older 翻一頁（涵蓋 2025）

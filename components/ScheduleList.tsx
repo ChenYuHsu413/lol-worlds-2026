@@ -6,7 +6,15 @@ import { involves } from "./focus";
 
 const STAGE_LABEL = { playin: "入圍賽", swiss: "瑞士輪", knockout: "淘汰賽" } as const;
 
-export function ScheduleList({ matches, focus }: { matches: Match[]; focus: string | null }) {
+export function ScheduleList({
+  matches,
+  focus,
+  highlight = null,
+}: {
+  matches: Match[];
+  focus: string | null;
+  highlight?: string | null; // 從隊伍頁跳過來的場次
+}) {
   const sorted = matches.filter((m) => m.startTime).sort((a, b) => a.startTime.localeCompare(b.startTime));
   const days = new Map<string, Match[]>();
   for (const m of sorted) {
@@ -24,7 +32,12 @@ export function ScheduleList({ matches, focus }: { matches: Match[]; focus: stri
           </h3>
           <ul className="divide-y divide-line overflow-hidden rounded-lg border border-line bg-panel">
             {ms.map((m) => (
-              <ScheduleRow key={m.id} match={m} dimmed={focus !== null && !involves(m, focus)} />
+              <ScheduleRow
+                key={m.id}
+                match={m}
+                dimmed={focus !== null && !involves(m, focus)}
+                highlighted={m.id === highlight}
+              />
             ))}
           </ul>
         </section>
@@ -33,7 +46,7 @@ export function ScheduleList({ matches, focus }: { matches: Match[]; focus: stri
   );
 }
 
-function ScheduleRow({ match: m, dimmed }: { match: Match; dimmed: boolean }) {
+function ScheduleRow({ match: m, dimmed, highlighted }: { match: Match; dimmed: boolean; highlighted: boolean }) {
   const done = m.state === "completed";
   const side = (which: "A" | "B") => {
     const team = which === "A" ? m.teamA : m.teamB;
@@ -44,7 +57,8 @@ function ScheduleRow({ match: m, dimmed }: { match: Match; dimmed: boolean }) {
   const b = side("B");
   return (
     <li
-      className={`grid grid-cols-[3.5rem_1fr] items-center gap-x-3 gap-y-1 px-3 py-2.5 text-sm transition-opacity sm:grid-cols-[3.5rem_7rem_1fr_5rem] ${dimmed ? "opacity-30" : ""}`}
+      id={`match-${m.id}`}
+      className={`${highlighted ? "bg-accent/15 ring-2 ring-inset ring-accent" : ""} grid grid-cols-[3.5rem_1fr] items-center gap-x-3 gap-y-1 px-3 py-2.5 text-sm transition-opacity sm:grid-cols-[3.5rem_7rem_1fr_5rem] ${dimmed ? "opacity-30" : ""}`}
     >
       <div className="font-mono tabular-nums text-muted">
         {taipeiTime(m.startTime)}

@@ -13,9 +13,10 @@
 | ↳ `getLeagues` → `getTournamentsForLeague` | 找出 Worlds（leagueId `98767975604431411`）和 `worlds_2026`（tournamentId `115660540725177488`） |
 | ↳ `getStandings` | 各階段的場次、team id、比分、勝負 |
 | ↳ `getSchedule` | 開賽時間、Bo 數、階段名稱（和 standings 以 match id 合併） |
-| ↳ `getTeams` | 隊伍所屬地區（`homeLeague.region`） |
+| ↳ `getTeams` | 隊伍所屬地區、選手名單與照片（`players` 是整個組織的名單，含二軍；快取 1 小時） |
+| `config/teams-2026.json`（手動維護） | 種子序、起始階段、世界賽登錄名單，取自 Leaguepedia 的 [Main Event](https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event) 和 [Play-In](https://lol.fandom.com/wiki/2026_Season_World_Championship/Play-In) 頁面 |
 
-Leaguepedia 目前還不需要用到，所以沒有串接。
+Leaguepedia Cargo API 匿名查詢會被限流（實測連續兩次都回 `ratelimited`），所以改成手動維護設定檔，每筆都附 `source` 網址。選手名單的處理方式：用登錄名單過濾 `getTeams` 的組織名單，照片取自 `getTeams`；登錄名單裡有、API 卻找不到的選手仍會顯示，只是沒有照片。
 
 各端點的實際回應存在 `fixtures/`，由 `scripts/explore-api.ts` 產生；型別定義在 `lib/api-types.ts`，是照實際結構寫的。
 
@@ -61,6 +62,10 @@ npm run build
 
 ```bash
 node --env-file=.env.local scripts/explore-api.ts
+```
+
+```bash
+node scripts/check-live.ts
 ```
 
 ```bash
@@ -113,4 +118,6 @@ npx vercel deploy --prod
 - 瑞士輪中隊伍還沒定的場次，位置是依 id 規則推測的；Play-In 第 3、4 場在隊伍填入前無法判定。
 - `getStandings` 的瑞士輪 `rankings` 是空的，所以改用 `getSchedule` 的 `team.record` 交叉比對戰績。
 - 「最後成功資料」的伺服器端快取只存在同一個 serverless instance 裡；冷啟動時如果剛好失敗，就只能靠瀏覽器 localStorage 的資料。
+- `config/teams-2026.json` 是手動維護的；世界賽期間如果有登錄名單異動，要自己更新。Leaguepedia 沒有標示替補（例如 BLG 登錄了兩名上路 Bin、Flandre），所以目前沒有任何選手被標成替補。
+- 2025 fixture 的選手名單是 `getTeams` 目前的名單，不是 2025 當時的陣容。
 - 網站本身沒有使用 Riot / LoL Esports 的商標圖片；隊伍 logo 直接引用 API 提供的網址。

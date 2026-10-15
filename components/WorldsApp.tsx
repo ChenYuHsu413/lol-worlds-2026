@@ -7,13 +7,15 @@ import { KnockoutBracket } from "./KnockoutBracket";
 import { PlayInBracket } from "./PlayInBracket";
 import { ScheduleList } from "./ScheduleList";
 import { SwissBuckets } from "./SwissBuckets";
+import { TeamsView } from "./TeamsView";
 
-type Tab = Stage | "schedule";
+type Tab = Stage | "schedule" | "teams";
 const TABS: { key: Tab; label: string }[] = [
   { key: "playin", label: "Play-In" },
   { key: "swiss", label: "瑞士輪" },
   { key: "knockout", label: "淘汰賽" },
   { key: "schedule", label: "全部賽程" },
+  { key: "teams", label: "參賽隊伍" },
 ];
 
 const CACHE_KEY = "worlds:last";
@@ -22,7 +24,20 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
   const [payload, setPayload] = useState(initial);
   const [tab, setTab] = useState<Tab>(initial.data?.currentStage ?? "schedule");
   const [focus, setFocus] = useState<string | null>(null);
+  const [jumpTo, setJumpTo] = useState<string | null>(null);
   const { data, error } = payload;
+
+  // 從隊伍頁點場次：切到賽程列表並捲到該場
+  const jump = (matchId: string) => {
+    setTab("schedule");
+    setJumpTo(matchId);
+  };
+  useEffect(() => {
+    if (tab !== "schedule" || !jumpTo) return;
+    // 等切換 Tab 後的版面完成再捲動
+    const id = setTimeout(() => document.getElementById(`match-${jumpTo}`)?.scrollIntoView({ block: "center" }));
+    return () => clearTimeout(id);
+  }, [tab, jumpTo]);
 
   // 伺服器端也沒有資料時，退回瀏覽器上次成功的資料
   useEffect(() => {
@@ -106,7 +121,10 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
                 key={t.key}
                 role="tab"
                 aria-selected={tab === t.key}
-                onClick={() => setTab(t.key)}
+                onClick={() => {
+                  setTab(t.key);
+                  setJumpTo(null);
+                }}
                 className={`shrink-0 border-b-2 px-4 py-2 text-sm font-semibold transition-colors ${
                   tab === t.key ? "border-accent text-accent" : "border-transparent text-muted hover:text-fg"
                 }`}
@@ -117,7 +135,8 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
             ))}
           </nav>
 
-          {tab === "schedule" && <ScheduleList matches={data.matches} focus={focus} />}
+          {tab === "schedule" && <ScheduleList matches={data.matches} focus={focus} highlight={jumpTo} />}
+          {tab === "teams" && <TeamsView data={data} focus={focus} onFocus={setFocus} onJump={jump} />}
           {tab === "playin" && <PlayInBracket view={data.playin} focus={focus} />}
           {tab === "swiss" && <SwissBuckets view={data.swiss} focus={focus} />}
           {tab === "knockout" && <KnockoutBracket view={data.knockout} focus={focus} />}

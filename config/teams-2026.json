@@ -1,0 +1,561 @@
+{
+  "$comment": "手動維護：seed、startStage、roster 來自 Leaguepedia（Cargo API 匿名查詢被限流），抓取日 2026-10-15。slug 為 LoL Esports API 的 team slug。roster 不含教練；Leaguepedia 未標示替補，故未設定 substitute。",
+  "tournamentSlug": "worlds_2026",
+  "teams": [
+    {
+      "slug": "geng",
+      "league": "LCK",
+      "seed": 1,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "Kiin",
+          "role": "top"
+        },
+        {
+          "name": "Canyon",
+          "role": "jungle"
+        },
+        {
+          "name": "Chovy",
+          "role": "mid"
+        },
+        {
+          "name": "Ruler",
+          "role": "bottom"
+        },
+        {
+          "name": "Duro",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "hanwha-life-esports",
+      "league": "LCK",
+      "seed": 2,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "Zeus",
+          "role": "top"
+        },
+        {
+          "name": "Kanavi",
+          "role": "jungle"
+        },
+        {
+          "name": "Zeka",
+          "role": "mid"
+        },
+        {
+          "name": "Gumayusi",
+          "role": "bottom"
+        },
+        {
+          "name": "Delight",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "t1",
+      "league": "LCK",
+      "seed": 3,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "Doran",
+          "role": "top"
+        },
+        {
+          "name": "Oner",
+          "role": "jungle"
+        },
+        {
+          "name": "Faker",
+          "role": "mid"
+        },
+        {
+          "name": "Peyz",
+          "role": "bottom"
+        },
+        {
+          "name": "Keria",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "dwg-kia",
+      "league": "LCK",
+      "seed": 4,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "Siwoo",
+          "role": "top"
+        },
+        {
+          "name": "Lucid",
+          "role": "jungle"
+        },
+        {
+          "name": "ShowMaker",
+          "role": "mid"
+        },
+        {
+          "name": "Smash",
+          "role": "bottom"
+        },
+        {
+          "name": "Career",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "anyones-legend",
+      "league": "LPL",
+      "seed": 1,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "Breathe",
+          "role": "top"
+        },
+        {
+          "name": "Tarzan",
+          "role": "jungle"
+        },
+        {
+          "name": "Shanks",
+          "role": "mid"
+        },
+        {
+          "name": "Hope",
+          "role": "bottom"
+        },
+        {
+          "name": "Kael",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "bilibili-gaming",
+      "league": "LPL",
+      "seed": 2,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "Bin",
+          "role": "top"
+        },
+        {
+          "name": "Xun",
+          "role": "jungle"
+        },
+        {
+          "name": "Knight",
+          "role": "mid"
+        },
+        {
+          "name": "Viper",
+          "role": "bottom"
+        },
+        {
+          "name": "ON",
+          "role": "support"
+        },
+        {
+          "name": "Flandre",
+          "role": "top"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "top-esports",
+      "league": "LPL",
+      "seed": 3,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "369",
+          "role": "top"
+        },
+        {
+          "name": "Tian",
+          "role": "jungle"
+        },
+        {
+          "name": "Creme",
+          "role": "mid"
+        },
+        {
+          "name": "JackeyLove",
+          "role": "bottom"
+        },
+        {
+          "name": "Zhuo",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "invictus-gaming",
+      "league": "LPL",
+      "seed": 4,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "TheShy",
+          "role": "top"
+        },
+        {
+          "name": "Wei",
+          "role": "jungle"
+        },
+        {
+          "name": "Rookie",
+          "role": "mid"
+        },
+        {
+          "name": "JiaQi",
+          "role": "bottom"
+        },
+        {
+          "name": "Meiko",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "team-liquid",
+      "league": "LCS",
+      "seed": 1,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "Morgan",
+          "role": "top"
+        },
+        {
+          "name": "Josedeodo",
+          "role": "jungle"
+        },
+        {
+          "name": "Quid",
+          "role": "mid"
+        },
+        {
+          "name": "Yeon",
+          "role": "bottom"
+        },
+        {
+          "name": "CoreJJ",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "lyon-gaming",
+      "league": "LCS",
+      "seed": 2,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "Dhokla",
+          "role": "top"
+        },
+        {
+          "name": "Inspired",
+          "role": "jungle"
+        },
+        {
+          "name": "Saint",
+          "role": "mid"
+        },
+        {
+          "name": "Berserker",
+          "role": "bottom"
+        },
+        {
+          "name": "Isles",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "cloud9",
+      "league": "LCS",
+      "seed": 3,
+      "startStage": "playin",
+      "roster": [
+        {
+          "name": "Thanatos",
+          "role": "top"
+        },
+        {
+          "name": "Blaber",
+          "role": "jungle"
+        },
+        {
+          "name": "Loki",
+          "role": "mid"
+        },
+        {
+          "name": "Tactical",
+          "role": "bottom"
+        },
+        {
+          "name": "Vulcan",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Play-In"
+    },
+    {
+      "slug": "g2-esports",
+      "league": "LEC",
+      "seed": 1,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "BrokenBlade",
+          "role": "top"
+        },
+        {
+          "name": "SkewMond",
+          "role": "jungle"
+        },
+        {
+          "name": "Caps",
+          "role": "mid"
+        },
+        {
+          "name": "Hans Sama",
+          "role": "bottom"
+        },
+        {
+          "name": "Labrov",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "mad-lions",
+      "league": "LEC",
+      "seed": 2,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "Myrwn",
+          "role": "top"
+        },
+        {
+          "name": "Elyoya",
+          "role": "jungle"
+        },
+        {
+          "name": "Jojopyun",
+          "role": "mid"
+        },
+        {
+          "name": "Supa",
+          "role": "bottom"
+        },
+        {
+          "name": "Alvaro",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "karmine-corp",
+      "league": "LEC",
+      "seed": 3,
+      "startStage": "playin",
+      "roster": [
+        {
+          "name": "Canna",
+          "role": "top"
+        },
+        {
+          "name": "Yike",
+          "role": "jungle"
+        },
+        {
+          "name": "kyeahoo",
+          "role": "mid"
+        },
+        {
+          "name": "Caliste",
+          "role": "bottom"
+        },
+        {
+          "name": "Busio",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Play-In"
+    },
+    {
+      "slug": "team-secret-whales",
+      "league": "LCP",
+      "seed": 1,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "Pun",
+          "role": "top"
+        },
+        {
+          "name": "Hizto",
+          "role": "jungle"
+        },
+        {
+          "name": "Dire",
+          "role": "mid"
+        },
+        {
+          "name": "Eddie",
+          "role": "bottom"
+        },
+        {
+          "name": "Bie",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "ctbc-flying-oyster",
+      "league": "LCP",
+      "seed": 2,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "Rest",
+          "role": "top"
+        },
+        {
+          "name": "Shad0w",
+          "role": "jungle"
+        },
+        {
+          "name": "POUT",
+          "role": "mid"
+        },
+        {
+          "name": "Doggo",
+          "role": "bottom"
+        },
+        {
+          "name": "Kino",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "saigon-buffalo-esports",
+      "league": "LCP",
+      "seed": 3,
+      "startStage": "playin",
+      "roster": [
+        {
+          "name": "Kratos",
+          "role": "top"
+        },
+        {
+          "name": "Gury",
+          "role": "jungle"
+        },
+        {
+          "name": "Chika",
+          "role": "mid"
+        },
+        {
+          "name": "Harky",
+          "role": "bottom"
+        },
+        {
+          "name": "SiuLoong",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Play-In"
+    },
+    {
+      "slug": "los",
+      "league": "CBLOL",
+      "seed": 1,
+      "startStage": "swiss",
+      "roster": [
+        {
+          "name": "Zest",
+          "role": "top"
+        },
+        {
+          "name": "Curse",
+          "role": "jungle"
+        },
+        {
+          "name": "Feisty",
+          "role": "mid"
+        },
+        {
+          "name": "Duduhh",
+          "role": "bottom"
+        },
+        {
+          "name": "Ackerman",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Main_Event"
+    },
+    {
+      "slug": "furia",
+      "league": "CBLOL",
+      "seed": 2,
+      "startStage": "playin",
+      "roster": [
+        {
+          "name": "Guigo",
+          "role": "top"
+        },
+        {
+          "name": "Tatu",
+          "role": "jungle"
+        },
+        {
+          "name": "Tutsz",
+          "role": "mid"
+        },
+        {
+          "name": "Ayu",
+          "role": "bottom"
+        },
+        {
+          "name": "JoJo",
+          "role": "support"
+        }
+      ],
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship/Play-In"
+    }
+  ]
+}

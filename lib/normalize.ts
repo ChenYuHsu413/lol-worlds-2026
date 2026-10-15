@@ -34,7 +34,7 @@ export function mergeMatches(
   warn: Warn = consoleWarn,
 ): MergeResult {
   const eventById = new Map(bundle.events.map((e) => [e.match.id, e]));
-  const regionById = new Map(bundle.teams.map((t) => [t.id, t.homeLeague?.region ?? null]));
+  const apiById = new Map(bundle.teams.map((t) => [t.id, t]));
   const teams = new Map<string, Team>();
 
   const toTeam = (t: ApiStandingsTeam): Team | null => {
@@ -43,7 +43,8 @@ export function mergeMatches(
     if (!team) {
       // API 給 http:// 圖片網址，改用 https 避免 mixed content
       const logo = t.image.replace(/^http:\/\//, "https://");
-      team = { id: t.id, code: t.code, name: t.name, logo, region: regionById.get(t.id) ?? null };
+      const home = apiById.get(t.id)?.homeLeague;
+      team = { id: t.id, code: t.code, name: t.name, logo, region: home?.region ?? null, league: home?.name ?? null, seed: null };
       teams.set(t.id, team);
     }
     return team;

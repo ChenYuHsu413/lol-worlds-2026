@@ -129,6 +129,15 @@ export interface ApiEventDetails {
 export type GetEventDetailsResponse = Envelope<{ event: ApiEventDetails }>;
 
 // ---- getTeams（id 參數可用逗號串多個 slug）----
+// players 是整個組織的現役名單（含二軍），不是賽事登錄名單；沒有替補標記
+export interface ApiPlayer {
+  id: string;
+  summonerName: string;
+  firstName: string;
+  lastName: string;
+  image: string | null;
+  role: string; // top / jungle / mid / bottom / support（實測）
+}
 export interface ApiTeam {
   id: string;
   slug: string;
@@ -139,5 +148,6 @@ export interface ApiTeam {
   backgroundImage: string | null;
   status: string;
   homeLeague: { name: string; region: string } | null;
+  players?: ApiPlayer[];
 }
 export type GetTeamsResponse = Envelope<{ teams: ApiTeam[] }>;

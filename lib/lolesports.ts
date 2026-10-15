@@ -68,7 +68,8 @@ export function getStandings(tournamentId: string, revalidate: number) {
 }
 
 export function getTeams(slugs: string[]) {
-  return apiGet<GetTeamsResponse>("getTeams", { id: slugs.join(",") }, 86400);
+  // 選手名單在賽事期間可能異動（替補登錄），快取 1 小時
+  return apiGet<GetTeamsResponse>("getTeams", { id: slugs.join(",") }, 3600);
 }
 
 // ---- getSchedule 分頁 ----

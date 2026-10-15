@@ -9,6 +9,8 @@ export interface Team {
   name: string;
   logo: string;
   region: string | null;
+  league: string | null; // 賽區縮寫，如 "LCK"
+  seed: number | null; // 賽區內種子序
 }
 
 export interface Match {
@@ -73,6 +75,22 @@ export interface KnockoutView {
   roundNames: string[];
 }
 
+export type Role = "top" | "jungle" | "mid" | "bottom" | "support";
+
+export interface Player {
+  id: string;
+  name: string; // 選手 ID
+  role: Role | null;
+  photo: string | null;
+  substitute: boolean;
+}
+
+export interface TeamProfile {
+  team: Team;
+  startStage: "playin" | "swiss" | null;
+  players: Player[];
+}
+
 export type DataErrorKind = "auth" | "network" | "upstream";
 
 export interface WorldsData {
@@ -83,6 +101,7 @@ export interface WorldsData {
   swiss: SwissView;
   playin: PlayInView;
   knockout: KnockoutView;
+  profiles: TeamProfile[];
   currentStage: Stage;
   fetchedAt: string; // ISO，資料最後成功更新時間
   revalidateSeconds: number;
