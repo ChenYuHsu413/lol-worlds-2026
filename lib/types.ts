@@ -26,6 +26,7 @@ export interface Match {
   state: MatchState;
   startTime: string; // ISO UTC
   blockName: string;
+  sim?: { teams?: boolean; result?: boolean }; // 預測模式：隊伍由推演填入 / 結果為使用者預測
 }
 
 export interface SwissRecord {
@@ -88,6 +89,7 @@ export interface Player {
 export interface TeamProfile {
   team: Team;
   startStage: "playin" | "swiss" | null;
+  pool: number | null; // 瑞士輪第一輪抽籤分池
   players: Player[];
 }
 

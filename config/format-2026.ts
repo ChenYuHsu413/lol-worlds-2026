@@ -26,3 +26,35 @@ export const PLAYIN_SLOT_ORDER = ["ub1a", "ub1b", "day2a", "day2b", "lbFinal", "
 // （八強 id 排序 [T1-AL, G2-TES, HLE-GEN, CFO-KT] → 四強 [TES-T1, KT-GEN]）。
 export const KNOCKOUT_ROUND_SIZES = [4, 2, 1];
 export const KNOCKOUT_ROUND_NAMES = ["八強賽", "四強賽", "決賽"];
+
+// ---- 預測模式（lib/simulate.ts）用的規則 ----
+
+// Bo 數：實際場次一律以 API 的 strategy.count 為準；只有資料缺 Bo 數時才用這裡的規則
+export const BEST_OF = {
+  playin: 5,
+  knockout: 5,
+  // 瑞士輪：晉級戰/淘汰戰（任一方已 2 勝或 2 敗）Bo3，其餘 Bo1
+  swiss: (wins: number, losses: number) =>
+    wins === SWISS.winsToQualify - 1 || losses === SWISS.lossesToEliminate - 1 ? 3 : 1,
+};
+
+// 瑞士輪第一輪抽籤：第 1 池對第 4 池、第 2 池對第 3 池，同賽區不得交手（Leaguepedia 賽制說明）。
+// 各隊分池見 config/teams-2026.json；Play-In 晉級隊伍為第 4 池
+export const SWISS_R1_POOL_PAIRS: [number, number][] = [
+  [1, 4],
+  [2, 3],
+];
+export const PLAYIN_QUALIFIER_POOL = 4;
+
+// 淘汰賽抽籤（媒體報導，未取得官方規則書原文）：兩支 3-0 隊伍各對一支 3-2 隊伍，且分在籤表兩側；
+// 其餘四隊隨機抽籤。對應到 KNOCKOUT 第一輪 id 排序的位置：
+//   [八強1 A, 八強1 B, 八強2 A, 八強2 B | 八強3 A, 八強3 B, 八強4 A, 八強4 B]
+//   3-0 隊伍 → 位置 0、4；其對手（3-2）→ 位置 1、5；其餘 → 2、3、6、7
+export const KNOCKOUT_DRAW = {
+  topSeedSlots: [0, 4],
+  topSeedOpponentSlots: [1, 5],
+  sources: [
+    "https://insider-gaming.com/when-will-all-the-lol-worlds-2026-draws-take-place/",
+    "https://www.invenglobal.com/articles/26835/2026-lol-world-championship-kicks-off-october-16",
+  ],
+};

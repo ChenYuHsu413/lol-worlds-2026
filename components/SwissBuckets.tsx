@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { SWISS } from "@/config/format-2026";
 import { taipeiMonthDay, taipeiTime } from "@/lib/time";
 import type { SwissRecord, SwissSlot, SwissView, Team } from "@/lib/types";
+import { isPredictable, usePredict } from "./predict";
 import { TeamLogo } from "./TeamLogo";
 
 const COL_W = 176;
@@ -110,19 +111,40 @@ function Bucket({ label, slots, col, active, onHover }: { label: string; slots: 
   );
 }
 
-function SlotRow({ slot: { match: m, provisional }, col, active, onHover }: { slot: SwissSlot } & HoverProps) {
+function SlotRow({ slot: { match: m, provisional, round }, col, active, onHover }: { slot: SwissSlot } & HoverProps) {
   const ids = [m.teamA?.id, m.teamB?.id].filter(Boolean).join(" ");
+  const { enabled, open, sim, swapMode, swapClick, swap, swapSelected } = usePredict();
+  const overridden = sim?.overridden.includes(m.id) ?? false;
+  // 只有推演抽出（非官方）的配對可以手動調整
+  const swappable = swapMode && !!m.sim?.teams; // 推演填入的隊伍不會有實際結果
+  const clickable = enabled && !swappable && (isPredictable(m) || !!m.sim?.result || overridden);
   const dimmed = active !== null && !ids.split(" ").includes(active);
   const live = m.state === "inProgress";
   const side = (team: Team | null, score: number, which: "A" | "B") => {
     const won = m.state === "completed" && m.winner === which;
     const lost = m.state === "completed" && m.winner !== null && m.winner !== which;
+    const canSwap = swappable && team !== null;
     return (
       <span
         className={`flex min-w-0 flex-1 items-center gap-1 ${which === "B" ? "flex-row-reverse" : ""} ${
           team?.id === active ? "text-accent" : ""
+        } ${canSwap ? "cursor-pointer rounded hover:bg-accent/10" : ""} ${
+          canSwap && swapSelected === team.id ? "bg-accent/25 ring-1 ring-accent" : ""
         }`}
         onMouseEnter={() => team && onHover(team.id)}
+        onClick={canSwap ? () => swapClick("swiss", team.id, round) : undefined}
+        draggable={canSwap}
+        onDragStart={canSwap ? (e) => e.dataTransfer.setData("text/plain", team.id) : undefined}
+        onDragOver={canSwap ? (e) => e.preventDefault() : undefined}
+        onDrop={
+          canSwap
+            ? (e) => {
+                e.preventDefault();
+                const from = e.dataTransfer.getData("text/plain");
+                if (from) swap("swiss", from, team.id, round);
+              }
+            : undefined
+        }
       >
         <TeamLogo team={team} size={16} />
         <span className={`truncate text-xs ${won ? "font-bold text-win" : lost ? "text-muted" : team ? "font-semibold" : "text-muted"}`}>
@@ -139,13 +161,16 @@ function SlotRow({ slot: { match: m, provisional }, col, active, onHover }: { sl
       data-team={ids}
       data-col={col}
       title={m.startTime ? `${taipeiMonthDay(m.startTime)} ${taipeiTime(m.startTime)} (UTC+8)・Bo${m.bestOf}` : undefined}
+      onClick={clickable ? () => open(m.id) : undefined}
       className={`flex items-center gap-1 px-1.5 py-1 transition-opacity ${provisional ? "m-1 rounded border border-dashed border-muted/50" : ""} ${
-        live ? "bg-live/10" : ""
-      } ${dimmed ? "opacity-25" : ""}`}
+        m.sim?.teams && !provisional ? "border-l-2 border-accent/50" : ""
+      } ${live ? "bg-live/10" : ""} ${dimmed ? "opacity-25" : ""} ${clickable ? "cursor-pointer hover:bg-panel-2" : ""} ${
+        overridden ? "ring-1 ring-inset ring-live" : ""
+      }`}
     >
       {side(m.teamA, m.scoreA, "A")}
       <span className={`shrink-0 text-[10px] ${live ? "live-blink font-bold text-live" : "text-muted"}`}>
-        {live ? "LIVE" : provisional ? taipeiMonthDay(m.startTime) : "vs"}
+        {live ? "LIVE" : m.sim?.result ? "預測" : provisional ? taipeiMonthDay(m.startTime) : "vs"}
       </span>
       {side(m.teamB, m.scoreB, "B")}
     </li>

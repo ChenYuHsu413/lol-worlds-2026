@@ -15,6 +15,7 @@ export interface TeamConfigEntry {
   league?: string;
   seed?: number;
   startStage?: "playin" | "swiss";
+  pool?: number;
   roster?: RosterEntry[];
   source?: string;
 }
@@ -94,6 +95,7 @@ export function buildProfiles(
     return {
       team,
       startStage: cfg?.startStage ?? (playinMatches.length ? (inPlayin.has(api.id) ? "playin" : "swiss") : null),
+      pool: cfg?.pool ?? null,
       players: toPlayers(api.players ?? [], cfg?.roster),
     };
   });

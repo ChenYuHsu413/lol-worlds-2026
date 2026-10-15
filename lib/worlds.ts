@@ -2,7 +2,7 @@
 
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { SWISS, TOURNAMENT_SLUG, WORLDS_LEAGUE_SLUG } from "../config/format-2026";
+import { TOURNAMENT_SLUG, WORLDS_LEAGUE_SLUG } from "../config/format-2026";
 import type {
   ApiTournament,
   GetScheduleResponse,
@@ -10,7 +10,6 @@ import type {
   GetTeamsResponse,
   GetTournamentsResponse,
 } from "./api-types";
-import { buildKnockout } from "./knockout";
 import {
   ApiError,
   fetchSchedulePages,
@@ -21,11 +20,11 @@ import {
   tournamentRange,
 } from "./lolesports";
 import { consoleWarn, mergeMatches, teamSlugs, type RawBundle, type Warn } from "./normalize";
-import { buildPlayIn } from "./playin";
-import { buildSwiss, crossCheckRecords } from "./swiss";
+import { crossCheckRecords } from "./swiss";
 import { buildProfiles, type TeamsConfig } from "./teams";
 import teamsConfig2026 from "../config/teams-2026.json";
 import type { DataErrorKind, Match, Stage, WorldsData, WorldsPayload } from "./types";
+import { buildStageViews, currentStage } from "./views";
 
 export const REVALIDATE_LIVE = 60;
 export const REVALIDATE_IDLE = 600;
@@ -40,15 +39,6 @@ export function isLiveWindow(matches: Match[], now = Date.now()): boolean {
   });
 }
 
-function currentStage(matches: Match[]): Stage {
-  const live = matches.find((m) => m.state === "inProgress");
-  if (live) return live.stage;
-  const next = matches
-    .filter((m) => m.state === "unstarted" && m.startTime)
-    .sort((a, b) => a.startTime.localeCompare(b.startTime))[0];
-  return next?.stage ?? "knockout";
-}
-
 export function buildWorldsData(
   bundle: RawBundle,
   tournament: ApiTournament,
@@ -59,7 +49,7 @@ export function buildWorldsData(
   const { matches, teams } = mergeMatches(bundle, range, warn);
   const of = (s: Stage) => matches.filter((m) => m.stage === s);
 
-  const swiss = buildSwiss(of("swiss"), warn, SWISS).view;
+  const { swiss, playin, knockout } = buildStageViews(matches, warn);
   const swissIds = new Set(of("swiss").map((m) => m.id));
   crossCheckRecords(swiss.records, bundle.events.filter((e) => swissIds.has(e.match.id)), warn);
 
@@ -74,8 +64,8 @@ export function buildWorldsData(
     profiles,
     matches,
     swiss,
-    playin: buildPlayIn(of("playin"), warn),
-    knockout: buildKnockout(of("knockout"), swiss.records, warn),
+    playin,
+    knockout,
     currentStage: currentStage(matches),
     fetchedAt: new Date().toISOString(),
     revalidateSeconds: isLiveWindow(matches) ? REVALIDATE_LIVE : REVALIDATE_IDLE,

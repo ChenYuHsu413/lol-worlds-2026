@@ -1,9 +1,23 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  decodePrediction,
+  emptyPrediction,
+  prune,
+  setPick,
+  simulate,
+  swapKo,
+  swapSwiss,
+  type PredictionState,
+} from "@/lib/simulate";
 import { taipeiDateTime, TZ_LABEL } from "@/lib/time";
-import type { Stage, WorldsPayload } from "@/lib/types";
+import type { Stage, WorldsData, WorldsPayload } from "@/lib/types";
+import { buildStageViews } from "@/lib/views";
 import { KnockoutBracket } from "./KnockoutBracket";
+import { PickSheet } from "./PickSheet";
+import { PredictionBar } from "./PredictionBar";
+import { loadStoredPrediction, PredictContext, storePrediction, type PredictCtx } from "./predict";
 import { PlayInBracket } from "./PlayInBracket";
 import { ScheduleList } from "./ScheduleList";
 import { SwissBuckets } from "./SwissBuckets";
@@ -26,6 +40,80 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
   const [focus, setFocus] = useState<string | null>(null);
   const [jumpTo, setJumpTo] = useState<string | null>(null);
   const { data, error } = payload;
+
+  // ---- 預測模式 ----
+  const [mode, setMode] = useState<"actual" | "predict">("actual");
+  const [pstate, setPstate] = useState<PredictionState | null>(null);
+  const [openId, setOpenId] = useState<string | null>(null);
+  const [swapMode, setSwapMode] = useState(false);
+  const [swapSel, setSwapSel] = useState<string | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
+
+  // 分享連結（#p=...）優先，其次 localStorage
+  useEffect(() => {
+    (async () => {
+      const m = location.hash.match(/^#p=([A-Za-z0-9_-]+)$/);
+      if (m) {
+        const shared = await decodePrediction(m[1]);
+        if (shared) {
+          setPstate(shared);
+          storePrediction(shared);
+          setMode("predict");
+          return;
+        }
+        setToast("分享連結無法解析，已載入你自己的預測");
+      }
+      setPstate(loadStoredPrediction() ?? emptyPrediction());
+    })();
+  }, []);
+
+  const update = useCallback((next: PredictionState) => {
+    setPstate(next);
+    storePrediction(next);
+    // 編輯後網址上的分享內容已不是目前狀態
+    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  }, []);
+
+  const sim = useMemo(
+    () => (mode === "predict" && data && pstate ? simulate(data.matches, data.profiles, pstate) : null),
+    [mode, data, pstate],
+  );
+  const view: WorldsData | null = useMemo(
+    () => (sim && data ? { ...data, matches: sim.matches, ...buildStageViews(sim.matches, () => {}) } : data),
+    [sim, data],
+  );
+
+  // 因使用者改了上游預測而對不上隊伍的預測，自動移除
+  useEffect(() => {
+    if (sim?.stale.length && pstate) update(prune(pstate, sim.stale));
+  }, [sim, pstate, update]);
+
+  useEffect(() => {
+    if (!toast) return;
+    const id = setTimeout(() => setToast(null), 3000);
+    return () => clearTimeout(id);
+  }, [toast]);
+
+  const predictCtx: PredictCtx = {
+    enabled: mode === "predict",
+    sim,
+    open: setOpenId,
+    swapMode,
+    swapSelected: swapSel,
+    swap: (scope, a, b, round) => {
+      if (!sim || !pstate || a === b) return;
+      const next = scope === "swiss" && round !== undefined ? swapSwiss(pstate, sim, round, a, b) : swapKo(pstate, sim, a, b);
+      if (next) update(next);
+      else setToast(scope === "swiss" ? "無法交換：需同輪同戰績，且不得重複交手" : "無法交換：3-0 隊伍需在兩側種子位、對手為 3-2");
+      setSwapSel(null);
+    },
+    swapClick: (scope, teamId, round) => {
+      if (!swapSel) return setSwapSel(teamId);
+      if (swapSel === teamId) return setSwapSel(null);
+      predictCtx.swap(scope, swapSel, teamId, round);
+    },
+  };
+  const openMatch = openId ? sim?.matches.find((m) => m.id === openId) : undefined;
 
   // 從隊伍頁點場次：切到賽程列表並捲到該場
   const jump = (matchId: string) => {
@@ -73,7 +161,7 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
   }, [refresh, interval]);
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 pb-16">
+    <div className={`mx-auto w-full max-w-6xl px-4 ${openMatch ? "pb-72" : "pb-16"}`}>
       <header className="flex flex-wrap items-center gap-x-4 gap-y-2 py-4">
         <h1 className="text-xl font-black tracking-wide">
           <span className="text-accent">WORLDS</span> 2026
@@ -82,7 +170,25 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
           {data ? `最後更新 ${taipeiDateTime(data.fetchedAt)} ${TZ_LABEL}` : "尚無資料"}
           {data && data.source !== "live" && <span className="ml-2 rounded bg-accent-2/20 px-1.5 text-accent-2">{data.source}</span>}
         </div>
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex flex-wrap items-center gap-2">
+          {data && (
+            <div className="flex overflow-hidden rounded border border-line text-sm" role="group" aria-label="顯示模式">
+              {(["actual", "predict"] as const).map((k) => (
+                <button
+                  key={k}
+                  onClick={() => {
+                    setMode(k);
+                    setOpenId(null);
+                    setSwapMode(false);
+                  }}
+                  aria-pressed={mode === k}
+                  className={`px-2 py-1 ${mode === k ? "bg-accent font-bold text-bg" : "bg-panel text-muted"}`}
+                >
+                  {k === "actual" ? "實際結果" : "我的預測"}
+                </button>
+              ))}
+            </div>
+          )}
           {data && (
             <select
               value={focus ?? ""}
@@ -113,8 +219,23 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
         </div>
       )}
 
-      {data && (
-        <>
+      {view && (
+        <PredictContext.Provider value={predictCtx}>
+          {sim && pstate && (
+            <PredictionBar
+              sim={sim}
+              state={pstate}
+              matches={sim.matches}
+              swapMode={swapMode}
+              onSwapMode={(on) => {
+                setSwapMode(on);
+                setSwapSel(null);
+              }}
+              onUpdate={update}
+              onOpen={setOpenId}
+              onToast={setToast}
+            />
+          )}
           <nav className="mb-4 flex gap-1 overflow-x-auto border-b border-line" role="tablist">
             {TABS.map((t) => (
               <button
@@ -130,17 +251,36 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
                 }`}
               >
                 {t.label}
-                {data.currentStage === t.key && <span className="ml-1.5 inline-block h-1.5 w-1.5 rounded-full bg-live align-middle" />}
+                {view.currentStage === t.key && <span className="ml-1.5 inline-block h-1.5 w-1.5 rounded-full bg-live align-middle" />}
               </button>
             ))}
           </nav>
 
-          {tab === "schedule" && <ScheduleList matches={data.matches} focus={focus} highlight={jumpTo} />}
-          {tab === "teams" && <TeamsView data={data} focus={focus} onFocus={setFocus} onJump={jump} />}
-          {tab === "playin" && <PlayInBracket view={data.playin} focus={focus} />}
-          {tab === "swiss" && <SwissBuckets view={data.swiss} focus={focus} />}
-          {tab === "knockout" && <KnockoutBracket view={data.knockout} focus={focus} />}
-        </>
+          {tab === "schedule" && <ScheduleList matches={view.matches} focus={focus} highlight={jumpTo} />}
+          {tab === "teams" && <TeamsView data={view} focus={focus} onFocus={setFocus} onJump={jump} />}
+          {tab === "playin" && <PlayInBracket view={view.playin} focus={focus} />}
+          {tab === "swiss" && <SwissBuckets view={view.swiss} focus={focus} />}
+          {tab === "knockout" && <KnockoutBracket view={view.knockout} focus={focus} />}
+
+          {openMatch && pstate && (
+            <PickSheet
+              match={openMatch}
+              pick={pstate.picks[openMatch.id]}
+              overridden={sim?.overridden.includes(openMatch.id) ?? false}
+              onPick={(p) => {
+                update(setPick(pstate, openMatch.id, p));
+                if ((openMatch.bestOf || 1) === 1) setOpenId(null);
+              }}
+              onClear={() => update(setPick(pstate, openMatch.id, null))}
+              onClose={() => setOpenId(null)}
+            />
+          )}
+        </PredictContext.Provider>
+      )}
+      {toast && (
+        <div role="status" className="fixed inset-x-0 top-4 z-50 mx-auto w-fit max-w-[90vw] rounded bg-fg px-4 py-2 text-sm text-bg shadow-lg">
+          {toast}
+        </div>
       )}
     </div>
   );
