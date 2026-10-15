@@ -99,7 +99,7 @@ export function GamesPanel({
 
         {data && (
           <>
-            <nav className="flex gap-1 overflow-x-auto border-b border-line px-2" role="tablist">
+            <nav className="flex flex-wrap gap-1 border-b border-line px-2 md:flex-nowrap md:overflow-x-auto" role="tablist">
               {data.games.map((g) => (
                 <button
                   key={g.id}
@@ -110,7 +110,9 @@ export function GamesPanel({
                     tab === g.number ? "border-accent text-accent" : "border-transparent text-muted"
                   }`}
                 >
-                  Game {g.number}
+                  {/* 手機用短標籤，避免局數 Tab 橫向溢出 */}
+                  <span className="md:hidden">G{g.number}</span>
+                  <span className="hidden md:inline">Game {g.number}</span>
                   {g.state === "inProgress" && <span className="live-blink ml-1 text-live">●</span>}
                 </button>
               ))}
