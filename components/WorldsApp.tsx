@@ -171,7 +171,7 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
                 }`}
               >
                 {t.short}
-                {data.currentStage === t.key && <span className="absolute right-1 top-2 h-1.5 w-1.5 rounded-full bg-live" />}
+                {data.currentStage === t.key && <span className="absolute right-0.5 top-1.5 h-1.5 w-1.5 rounded-full bg-live" />}
               </button>
             ))}
           </nav>
