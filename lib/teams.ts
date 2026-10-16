@@ -43,7 +43,7 @@ export function teamFromApi(t: ApiTeam): Team {
 function toPlayers(api: ApiPlayer[], roster: RosterEntry[] | undefined): Player[] {
   const fromApi = (p: ApiPlayer, substitute = false): Player => ({
     id: p.id,
-    name: p.summonerName,
+    name: p.summonerName.trim(), // 上游名稱偶有結尾空白，例如 "Loki "
     role: asRole(p.role),
     photo: https(p.image),
     substitute,
@@ -51,7 +51,7 @@ function toPlayers(api: ApiPlayer[], roster: RosterEntry[] | undefined): Player[
   // 沒有登錄名單時，退回 getTeams 的整個組織名單
   const players = roster?.length
     ? roster.map((r) => {
-        const p = api.find((x) => x.summonerName.toLowerCase() === r.name.toLowerCase());
+        const p = api.find((x) => x.summonerName.trim().toLowerCase() === r.name.trim().toLowerCase());
         return p
           ? { ...fromApi(p, !!r.substitute), role: asRole(p.role) ?? r.role }
           : { id: `roster:${r.name}`, name: r.name, role: r.role, photo: null, substitute: !!r.substitute };

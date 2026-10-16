@@ -84,16 +84,21 @@ describe("缺資料不報錯", () => {
         { slug: "b" }, // 無種子序、無名單
         { slug: "c", roster: [] },
         { slug: "missing" },
+        { slug: "d", roster: [{ name: "Loki", role: "mid" }] },
       ],
     };
     const teams = [
       api({ id: "a", slug: "a", players: [{ id: "p", summonerName: "Other", firstName: "", lastName: "", image: null, role: "mid" }] }),
       api({ id: "b", slug: "b", players: [{ id: "q", summonerName: "NoPic", firstName: "", lastName: "", image: null, role: "coach" }] }),
       api({ id: "c", slug: "c" }), // 沒有 players 欄位
+      api({ id: "d", slug: "d", players: [{ id: "q2", summonerName: "Loki ", firstName: "", lastName: "", image: "http://p/l.png", role: "mid" }] }), // 名稱帶結尾空白
     ];
     const { warn, msgs } = collectWarn();
     const list = buildProfiles(teams, new Map(), [], cfg, warn);
-    expect(list).toHaveLength(3);
+    expect(list).toHaveLength(4);
+    expect(list.find((p) => p.team.id === "d")!.players).toEqual([
+      { id: "q2", name: "Loki", role: "mid", photo: "https://p/l.png", substitute: false },
+    ]);
     const a = list.find((p) => p.team.id === "a")!;
     expect(a.players).toEqual([{ id: "roster:Ghost", name: "Ghost", role: "mid", photo: null, substitute: false }]);
     const b = list.find((p) => p.team.id === "b")!;

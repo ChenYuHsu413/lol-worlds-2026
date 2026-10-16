@@ -92,7 +92,8 @@ export const championImage = (version: string, id: string) =>
 // ---- 選手對應 ----
 
 /** 去掉 live stats 名稱的隊伍代碼前綴：「T1 Faker」→「Faker」 */
-export function stripTeamPrefix(raw: string, teamCode: string | null): string {
+export function stripTeamPrefix(rawName: string, teamCode: string | null): string {
+  const raw = rawName.trim(); // 上游名稱偶有結尾空白，例如 "C9 Loki "
   if (teamCode && raw.toLowerCase().startsWith(teamCode.toLowerCase() + " ")) return raw.slice(teamCode.length + 1);
   // 代碼不一致時（例如 API 代碼與轉播名稱不同），去掉第一個空白前的字樣
   const i = raw.indexOf(" ");
@@ -109,7 +110,7 @@ export function matchPlayer(
   const name = stripTeamPrefix(raw, teamCode);
   const byId = roster.find((p) => p.id === esportsPlayerId);
   if (byId) return { name: byId.name, player: byId };
-  const byName = roster.find((p) => p.name.toLowerCase() === name.toLowerCase());
+  const byName = roster.find((p) => p.name.trim().toLowerCase() === name.toLowerCase());
   return { name, player: byName ?? null };
 }
 

@@ -149,10 +149,12 @@ describe("選手名稱對應", () => {
     expect(stripTeamPrefix("T1 Faker", "T1")).toBe("Faker");
     expect(stripTeamPrefix("G2 Hans Sama", "G2")).toBe("Hans Sama");
     expect(stripTeamPrefix("MKOI Supa", "MKF")).toBe("Supa"); // 代碼不一致時去掉第一段
+    expect(stripTeamPrefix("C9 Loki ", "C9")).toBe("Loki"); // 2026-10-16 正式資料：名稱帶結尾空白
   });
   it("先比 esportsPlayerId，再比名稱（不分大小寫），對不上回傳 null", () => {
     expect(matchPlayer("T1 Whoever", "p1", "T1", roster).player?.name).toBe("Faker");
     expect(matchPlayer("G2 hans sama", "x", "G2", roster).player?.id).toBe("p2");
     expect(matchPlayer("T1 Nobody", "x", "T1", roster).player).toBeNull();
+    expect(matchPlayer("T1 Faker ", "x", "T1", roster).player?.id).toBe("p1"); // 結尾空白
   });
 });
