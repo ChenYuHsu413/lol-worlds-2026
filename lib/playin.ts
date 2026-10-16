@@ -1,6 +1,7 @@
 // Play-In 雙敗籤表：API 沒有勝部/敗部標示，依 startTime 順序對應位置，第 3/4 場依隊伍判定
 
 import { PLAYIN_SLOT_ORDER } from "../config/format-2026";
+import { loserOf, seatsBySource, seatsInApiOrder, winnerOf, type SeatSource } from "./bracket";
 import { consoleWarn, type Warn } from "./normalize";
 import { taipeiMonthDay } from "./time";
 import type { Match, PlayInSlot, PlayInSlotKey, PlayInView, Team } from "./types";
@@ -14,10 +15,33 @@ export const PLAYIN_LABELS: Record<PlayInSlotKey, string> = {
   grandFinal: "總決賽",
 };
 
-export const winnerOf = (m: Match | undefined): Team | null =>
-  !m || m.state !== "completed" ? null : m.winner === "A" ? m.teamA : m.winner === "B" ? m.teamB : null;
-export const loserOf = (m: Match | undefined): Team | null =>
-  !m || m.state !== "completed" ? null : m.winner === "A" ? m.teamB : m.winner === "B" ? m.teamA : null;
+export { loserOf, winnerOf };
+
+// 雙敗籤表的來源表：每一格由哪一場的勝者/敗者進入（上格、下格）。格位、連線、去向文字都由這張表產生
+type SourceDef = { from: PlayInSlotKey; take: "winner" | "loser" };
+export const PLAYIN_SOURCES: Partial<Record<PlayInSlotKey, [SourceDef, SourceDef]>> = {
+  ubFinal: [{ from: "ub1a", take: "winner" }, { from: "ub1b", take: "winner" }],
+  lbRound1: [{ from: "ub1a", take: "loser" }, { from: "ub1b", take: "loser" }],
+  lbFinal: [{ from: "ubFinal", take: "loser" }, { from: "lbRound1", take: "winner" }],
+  grandFinal: [{ from: "ubFinal", take: "winner" }, { from: "lbFinal", take: "winner" }],
+};
+export const sourceLabel = (s: SourceDef) => {
+  const name = PLAYIN_LABELS[s.from];
+  // 「勝部首輪 A 勝者」：名稱以英數字結尾時補空格
+  return `${name}${/[A-Za-z0-9]$/.test(name) ? " " : ""}${s.take === "winner" ? "勝者" : "敗者"}`;
+};
+
+/** 由來源表反推某場的勝敗去向；沒有下一場的勝者晉級瑞士輪、敗者淘汰 */
+export function playinNext(key: PlayInSlotKey): string {
+  const target = (take: "winner" | "loser") =>
+    (Object.entries(PLAYIN_SOURCES) as [PlayInSlotKey, [SourceDef, SourceDef]][]).find(([, srcs]) =>
+      srcs.some((s) => s.from === key && s.take === take),
+    )?.[0];
+  const w = target("winner");
+  const l = target("loser");
+  return `${w ? `勝者 → ${PLAYIN_LABELS[w]}` : "勝者晉級瑞士輪"}・${l ? `敗者 → ${PLAYIN_LABELS[l]}` : "敗者淘汰"}`;
+}
+export const PLAYIN_PROVISIONAL_NEXT = "勝部決賽或敗部首輪，待勝部首輪結束後判定";
 
 const teamsOf = (m: Match) => [m.teamA, m.teamB].filter((t): t is Team => t !== null);
 const byTime = (a: Match, b: Match) =>
@@ -28,7 +52,14 @@ export function buildPlayIn(playinMatches: Match[], warn: Warn = consoleWarn): P
   if (sorted.length !== PLAYIN_SLOT_ORDER.length) {
     warn(`Play-In 場數 ${sorted.length} 與預期 ${PLAYIN_SLOT_ORDER.length} 不符，改以場次順序顯示`);
     return {
-      slots: sorted.map((m, i) => ({ key: null, label: `場次 ${i + 1}`, match: m, provisional: true })),
+      slots: sorted.map((m, i) => ({
+        key: null,
+        label: `場次 ${i + 1}`,
+        match: m,
+        provisional: true,
+        seats: seatsInApiOrder(m),
+        next: "",
+      })),
       qualified: null,
       eliminated: [],
     };
@@ -59,12 +90,30 @@ export function buildPlayIn(playinMatches: Match[], warn: Warn = consoleWarn): P
   if (keyB && !keyA) keyA = keyB === "ubFinal" ? "lbRound1" : "ubFinal";
 
   const md = taipeiMonthDay(d2a.startTime);
-  const slot = (key: PlayInSlotKey | null, match: Match, fallback: string): PlayInSlot => ({
-    key,
-    label: key ? PLAYIN_LABELS[key] : fallback,
-    match,
-    provisional: key === null,
-  });
+  const byKey = new Map<PlayInSlotKey, Match>([
+    ["ub1a", ub1a],
+    ["ub1b", ub1b],
+    ["lbFinal", lbFinal],
+    ["grandFinal", grandFinal],
+  ]);
+  if (keyA) byKey.set(keyA, d2a);
+  if (keyB) byKey.set(keyB, d2b);
+  const get = (k: PlayInSlotKey) => byKey.get(k);
+
+  const slot = (key: PlayInSlotKey | null, match: Match, fallback: string): PlayInSlot => {
+    const defs = key ? PLAYIN_SOURCES[key] : undefined;
+    const sources = defs?.map((d): SeatSource => ({ match: get(d.from), take: d.take, label: sourceLabel(d) })) as
+      | [SeatSource, SeatSource]
+      | undefined;
+    return {
+      key,
+      label: key ? PLAYIN_LABELS[key] : fallback,
+      match,
+      provisional: key === null,
+      seats: sources ? seatsBySource(match, sources) : seatsInApiOrder(match),
+      next: key ? playinNext(key) : PLAYIN_PROVISIONAL_NEXT,
+    };
+  };
   const slots: PlayInSlot[] = [
     slot("ub1a", ub1a, ""),
     slot("ub1b", ub1b, ""),
@@ -74,7 +123,6 @@ export function buildPlayIn(playinMatches: Match[], warn: Warn = consoleWarn): P
     slot("grandFinal", grandFinal, ""),
   ];
 
-  const get = (k: PlayInSlotKey) => slots.find((s) => s.key === k)?.match;
   const ubFinal = get("ubFinal");
   const lbRound1 = get("lbRound1");
 

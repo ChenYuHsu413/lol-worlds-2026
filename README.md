@@ -23,7 +23,7 @@ Leaguepedia Cargo API 匿名查詢會被限流（實測連續兩次都回 `ratel
 ### 賽制如何推算（API 沒有提供的部分）
 
 - **瑞士輪**：把已完賽的場次依 startTime 排序，逐場累計每隊的賽前戰績，算出每場的輪次和戰績桶。隊伍還是 TBD 的場次，就依「同一輪內 match id 排序 = 戰績桶由高到低」先擺上位置，標成 provisional（畫面上是虛線框）。這條規則已用 2025 全部 33 場驗證過。
-- **Play-In**：6 場依時間排成勝部首輪 ×2 → 第 3、4 場 → 敗部決賽 → 總決賽。第 3、4 場要等隊伍填入後，才依「是勝部首輪的勝者還是敗者」判定哪場是勝部決賽、哪場是敗部首輪；判定之前顯示成「10/17 場次 A/B」。
+- **Play-In**：6 場依時間排成勝部首輪 ×2 → 第 3、4 場 → 敗部決賽 → 總決賽。籤表的每一格由「來源」決定（例如勝部決賽上格 = 勝部首輪 A 勝者，見 `lib/playin.ts` 的 `PLAYIN_SOURCES`），不依 API teams 的順序；比分依 team id 對應。淘汰賽也用同一套規則（`lib/bracket.ts`）。第 3、4 場要等隊伍填入後，才依「是勝部首輪的勝者還是敗者」判定哪場是勝部決賽、哪場是敗部首輪；判定之前顯示成「10/17 場次 A/B」。
 - **淘汰賽**：依 match id 排序後切成各輪，四強第 i 場由八強第 2i-1、2i 場的勝者對戰（以 2025 資料驗證，規則寫在 `config/format-2026.ts`）。
 - 合併資料、輪次推算、籤表推進只要有不一致，都會在伺服器端 `console.warn`。
 - **抽籤規則檢查**：官方第一輪配對如果違反「第 1 池對第 4 池、第 2 池對第 3 池、同賽區不交手」，或八強籤表違反「兩支 3-0 分在兩側、對手為 3-2」，就會 `console.warn`。淘汰賽這兩條規則只有媒體報導當出處，見 `config/format-2026.ts`。
@@ -88,6 +88,7 @@ npm run dev
 - `?fixture=2025`：2025 完整資料（瑞士輪、淘汰賽都已打完）
 - `?fixture=synthetic-playin-none`、`-r1`、`-lbfinal`、`-done`：Play-In 合成情境
 - `?fixture=synthetic-swiss-r1`：Play-In 打完，加上一組符合規則的瑞士輪第一輪對戰
+- `?fixture=live-<名稱>`：`node --env-file=.env.local scripts/save-live.ts <名稱>` 存下的正式資料快照，存在 `fixtures/live/`
 
 其他指令：
 
@@ -169,6 +170,7 @@ npx vercel deploy --prod
 - 2025 fixture 的選手名單是 `getTeams` 目前的名單，不是 2025 當時的陣容。
 - Leaguepedia 的 `api.php` cargoquery 匿名查詢一直被限流，所以改用 `Special:CargoExport`。如果它也失效，Ban 位和選角順序會隱藏，勝方改為推估。
 - live stats 的 `details` 端點另外有出裝、傷害占比等資料，本站沒有使用（KDA、補刀、金錢在 `window` 的終局 frame 已經有）。
+- live stats 的隊伍擊殺數偶爾比選手擊殺加總多 1（例如 2026-10-16 MVK vs FUR G2：隊伍 21、選手加總 20、對手死亡加總 21），這是上游資料本身的差異；推測是沒有記到任何選手名下的擊殺（例如被小兵或防禦塔擊殺），網站照原樣顯示。
 - 遊戲時長：有 Leaguepedia 時用它的數字；沒有時用 live stats 第一個到最後一個 frame 的時間差，和官方時長會差幾十秒。
 - 2025 fixture 的選手名單是目前的名單，所以 2025 小局中，後來轉隊或離隊的選手（例如 Gumayusi、Flandre）對不上。
 - 網站本身沒有使用 Riot / LoL Esports 的商標圖片；隊伍 logo 直接引用 API 提供的網址。

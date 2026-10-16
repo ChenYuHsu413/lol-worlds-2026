@@ -1,5 +1,5 @@
 import { taipeiMonthDay, taipeiTime } from "@/lib/time";
-import type { Match, Team } from "@/lib/types";
+import type { Match, Seat } from "@/lib/types";
 import { involves } from "./focus";
 import { hasGames, useOpenGames } from "./games-context";
 import { TeamLogo } from "./TeamLogo";
@@ -12,13 +12,13 @@ interface Props {
   label: string;
   provisional?: boolean;
   focus: string | null;
-  sourceLabels?: [string, string] | null; // 隊伍未定時顯示來源，如「八強賽 1 勝者」
+  seats: [Seat, Seat]; // 上格、下格（由來源決定，不依 API teams 順序）
   x: number;
   y: number;
 }
 
 /** 籤表中的一場比賽，以絕對定位放在籤表容器內 */
-export function MatchCard({ match: m, label, provisional, focus, sourceLabels, x, y }: Props) {
+export function MatchCard({ match: m, label, provisional, focus, seats, x, y }: Props) {
   const dimmed = focus !== null && !involves(m, focus);
   const live = m.state === "inProgress";
   const openGames = useOpenGames();
@@ -46,30 +46,15 @@ export function MatchCard({ match: m, label, provisional, focus, sourceLabels, x
           )}
         </span>
       </div>
-      <TeamRow team={m.teamA} score={m.scoreA} m={m} side="A" focus={focus} source={sourceLabels?.[0]} />
-      <TeamRow team={m.teamB} score={m.scoreB} m={m} side="B" focus={focus} source={sourceLabels?.[1]} />
+      <TeamRow seat={seats[0]} focus={focus} />
+      <TeamRow seat={seats[1]} focus={focus} />
     </div>
   );
 }
 
-function TeamRow({
-  team,
-  score,
-  m,
-  side,
-  focus,
-  source,
-}: {
-  team: Team | null;
-  score: number;
-  m: Match;
-  side: "A" | "B";
-  focus: string | null;
-  source?: string;
-}) {
-  const done = m.state === "completed";
-  const won = done && m.winner === side;
-  const lost = done && m.winner !== null && m.winner !== side;
+function TeamRow({ seat: { team, score, result, placeholder }, focus }: { seat: Seat; focus: string | null }) {
+  const won = result === "win";
+  const lost = result === "loss";
   const focused = team !== null && team.id === focus;
   return (
     <div
@@ -82,10 +67,10 @@ function TeamRow({
         className={`min-w-0 flex-1 truncate ${team ? (lost ? "text-muted" : "font-semibold") : "text-xs text-muted"}`}
         title={team?.name}
       >
-        {team?.code ?? source ?? "TBD"}
+        {team?.code ?? placeholder ?? "TBD"}
       </span>
       <span className={`font-mono font-bold tabular-nums ${won ? "text-win" : lost ? "text-muted" : ""}`}>
-        {m.state === "unstarted" ? "" : score}
+        {score ?? ""}
       </span>
     </div>
   );

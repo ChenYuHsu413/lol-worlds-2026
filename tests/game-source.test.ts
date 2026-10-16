@@ -23,6 +23,9 @@ function fakeFetch(input: string | URL) {
   if (url.host === "esports-api.lolesports.com") return g(`eventDetails_${url.searchParams.get("id")}.json`);
   if (url.host === "feed.lolesports.com") {
     const id = url.pathname.split("/").pop();
+    // 與真實 feed 相同：未來的 startingTime 回 400（disallowed window）
+    const at = url.searchParams.get("startingTime");
+    if (at && Date.parse(at) > Date.now()) return new Response('{"errorCode":"BAD_QUERY_PARAMETER"}', { status: 400 });
     return g(`window_${id}_${url.searchParams.has("startingTime") ? "end" : "start"}.json`);
   }
   if (url.host === "lol.fandom.com") {
@@ -70,6 +73,17 @@ describe("Leaguepedia 賽後才補資料的快取策略", () => {
     vi.setSystemTime(new Date("2025-11-11T00:00:00Z"));
     leaguepedia = "empty";
     expect((await loadMatchGames(FINAL, null)).cacheSeconds).toBe(CACHE.giveUp);
+  });
+});
+
+describe("剛完賽的局（開局未滿 4 小時）", () => {
+  it("不送出未來的 startingTime，仍取得終局數據", async () => {
+    const { loadMatchGames } = await import("../lib/game-source");
+    // 決賽第 1 局 07:32 開打；11:30 時「開局 + 4 小時」仍在未來
+    vi.setSystemTime(new Date("2025-11-09T11:30:00Z"));
+    leaguepedia = "full";
+    const { data } = await loadMatchGames(FINAL, null);
+    expect(data!.games.every((g) => g.blue.kills !== null && g.blue.players.every((p) => p.kills !== null))).toBe(true);
   });
 });
 

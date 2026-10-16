@@ -85,7 +85,8 @@ async function loadLive(matchId: string): Promise<GamesPayload> {
         const start = await getJson<LiveWindow>(`${LIVE}/window/${g.id}`, done ? { cache: "force-cache" } : { next: { revalidate: LIVE_GAME_TTL } });
         const t0 = start?.frames[0] ? Date.parse(start.frames[0].rfc460Timestamp) : null;
         // 完賽：時間設在結束之後即回傳終局 frame；進行中：取 1 分鐘前（feed 有延遲）
-        const at = t0 === null ? null : done ? tenSec(t0 + 4 * 3600_000) : tenSec(now - 60_000);
+        // feed 不接受未來的 startingTime（400 disallowed window），剛完賽的局改取 1 分鐘前
+        const at = t0 === null ? null : done ? tenSec(Math.min(t0 + 4 * 3600_000, now - 60_000)) : tenSec(now - 60_000);
         const end = at
           ? await getJson<LiveWindow>(`${LIVE}/window/${g.id}?startingTime=${at}`, done ? { cache: "force-cache" } : { next: { revalidate: LIVE_GAME_TTL } })
           : null;

@@ -38,3 +38,8 @@ export function collectWarn() {
 export function matches(b: RawBundle, year: string, warn = collectWarn().warn): Match[] {
   return mergeMatches(b, tournamentRange(tournament(year)), warn).matches;
 }
+
+/** fixtures/live 下的正式資料快照（格式同 synthetic） */
+export function liveBundle(name: string): RawBundle {
+  return fixture("live", `${name}.json`);
+}

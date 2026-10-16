@@ -1,6 +1,6 @@
 import type { KnockoutView } from "@/lib/types";
 import { winnerOf } from "@/lib/playin";
-import { BracketLines, targetRow, type Line } from "./BracketLines";
+import { BracketLines, type Line } from "./BracketLines";
 import { CARD_H, CARD_W, MatchCard } from "./MatchCard";
 import { MatchCardMobile } from "./MatchCardMobile";
 import { TeamLogo } from "./TeamLogo";
@@ -36,7 +36,6 @@ function KnockoutMobile({ view, focus }: { view: KnockoutView; focus: string | n
   if (!view.rounds[0]?.length) return <p className="text-muted">尚無淘汰賽資料</p>;
   const final = view.rounds.at(-1)?.[0];
   const champion = winnerOf(final?.match);
-  const last = view.rounds.length - 1;
   return (
     <div className="space-y-4">
       {champion && (
@@ -46,7 +45,6 @@ function KnockoutMobile({ view, focus }: { view: KnockoutView; focus: string | n
       )}
       {view.rounds.map((round, r) => {
         const name = shortRound(view.roundNames[r]);
-        const nextName = r < last ? shortRound(view.roundNames[r + 1]) : null;
         return (
           <section key={r}>
             <h3 className="mb-1.5 text-xs font-bold text-accent">{view.roundNames[r]}</h3>
@@ -56,16 +54,8 @@ function KnockoutMobile({ view, focus }: { view: KnockoutView; focus: string | n
                   key={slot.match.id}
                   match={slot.match}
                   label={round.length > 1 ? `${name} ${slot.index + 1}` : name}
-                  sourceLabels={
-                    r === 0
-                      ? null
-                      : [`${shortRound(view.roundNames[r - 1])} ${slot.index * 2 + 1} 勝者`, `${shortRound(view.roundNames[r - 1])} ${slot.index * 2 + 2} 勝者`]
-                  }
-                  next={
-                    nextName
-                      ? `勝者 → ${nextName}${view.rounds[r + 1].length > 1 ? `第 ${Math.floor(slot.index / 2) + 1} 場` : ""}`
-                      : "勝者奪冠"
-                  }
+                  seats={slot.seats}
+                  next={slot.next}
                   focus={focus}
                 />
               ))}
@@ -98,10 +88,10 @@ function KnockoutDesktop({ view, focus }: { view: KnockoutView; focus: string | 
         const feeder = view.rounds[r - 1][slot.index * 2 + k];
         if (!feeder) return;
         const from = pos(r - 1, feeder.index);
-        const row = targetRow(winnerOf(feeder.match), slot.match, k as 0 | 1);
+        // 上格接第 2i 場勝者、下格接第 2i+1 場勝者（格位由 lib/knockout.ts 依來源決定）
         lines.push({
           from: { x: from.x + CARD_W, y: from.y + CARD_H / 2 + 9 },
-          to: { x: to.x, y: to.y + (row === 0 ? 36 : 71) },
+          to: { x: to.x, y: to.y + (k === 0 ? 36 : 71) },
           kind: "winner",
           active: feeder.match.state === "completed",
         });
@@ -131,7 +121,7 @@ function KnockoutDesktop({ view, focus }: { view: KnockoutView; focus: string | 
                   match={slot.match}
                   label={`${view.roundNames[r]}${round.length > 1 ? ` ${slot.index + 1}` : ""}`}
                   focus={focus}
-                  sourceLabels={slot.sourceLabels}
+                  seats={slot.seats}
                   x={p.x}
                   y={p.y}
                 />

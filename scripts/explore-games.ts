@@ -39,7 +39,9 @@ for (const matchId of matchIds) {
     await save(`window_${g.id}_start.json`, start);
     // startingTime 超過結束時間時，回傳終局 frame（gameState: finished）
     const t0 = Date.parse(start.frames[0].rfc460Timestamp);
-    await save(`window_${g.id}_end.json`, await json(`https://feed.lolesports.com/livestats/v1/window/${g.id}?startingTime=${tenSec(t0 + 4 * 3600_000)}`));
+    // feed 不接受未來的時間：取「開局 + 4 小時」與「現在 − 1 分鐘」較早者
+    const at = tenSec(Math.min(t0 + 4 * 3600_000, Date.now() - 60_000));
+    await save(`window_${g.id}_end.json`, await json(`https://feed.lolesports.com/livestats/v1/window/${g.id}?startingTime=${at}`));
     // details/{gameId} 另有出裝、傷害占比等；本站只用 KDA/金錢/補刀，window 終局 frame 已包含，故不使用
   }
 }

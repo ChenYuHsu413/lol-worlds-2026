@@ -1,17 +1,8 @@
-import type { Match, Team } from "@/lib/types";
-
 export interface Line {
   from: { x: number; y: number };
   to: { x: number; y: number };
   kind: "winner" | "loser";
   active?: boolean; // 已確定的晉級路線
-}
-
-/** 上游隊伍在目標卡片的哪一列（0 = 上、1 = 下）；API 的隊伍順序不一定照籤表上下，未知時用預設列 */
-export function targetRow(team: Team | null, target: Match, fallback: 0 | 1): 0 | 1 {
-  if (team && target.teamA?.id === team.id) return 0;
-  if (team && target.teamB?.id === team.id) return 1;
-  return fallback;
 }
 
 /** 籤表連線（直角折線） */
@@ -26,10 +17,11 @@ export function BracketLines({ lines, width, height }: { lines: Line[]; width: n
             key={i}
             d={d}
             fill="none"
-            stroke={l.kind === "winner" ? (l.active ? "var(--accent)" : "var(--line)") : "var(--muted)"}
+            // 勝者實線、敗者虛線；來源已完賽（路線確定）時以強調色高亮
+            stroke={l.active ? "var(--accent)" : l.kind === "winner" ? "var(--line)" : "var(--muted)"}
             strokeWidth={l.active ? 2 : 1.5}
             strokeDasharray={l.kind === "loser" ? "4 4" : undefined}
-            opacity={l.kind === "loser" ? 0.6 : 1}
+            opacity={l.kind === "loser" && !l.active ? 0.6 : 1}
           />
         );
       })}

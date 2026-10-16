@@ -115,8 +115,10 @@ export async function loadFixture(name: string): Promise<WorldsData> {
     return t;
   };
 
-  if (name.startsWith("synthetic-")) {
-    const fx = await readJson<SyntheticFixture>("synthetic", `${name.slice("synthetic-".length)}.json`);
+  // synthetic-xxx：合成情境；live-xxx：scripts/save-live.ts 存下的正式資料快照
+  for (const dir of ["synthetic", "live"]) {
+    if (!name.startsWith(`${dir}-`)) continue;
+    const fx = await readJson<SyntheticFixture>(dir, `${name.slice(dir.length + 1)}.json`);
     return buildWorldsData(fx, findT(fx.tournamentSlug), name);
   }
   if (!/^\d{4}$/.test(name)) throw new Error(`未知的 fixture：${name}`);

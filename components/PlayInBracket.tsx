@@ -1,6 +1,6 @@
-import { loserOf, winnerOf } from "@/lib/playin";
-import type { PlayInSlot, PlayInSlotKey, PlayInView, Team } from "@/lib/types";
-import { BracketLines, targetRow, type Line } from "./BracketLines";
+import { PLAYIN_SOURCES } from "@/lib/playin";
+import type { PlayInSlot, PlayInSlotKey, PlayInView } from "@/lib/types";
+import { BracketLines, type Line } from "./BracketLines";
 import { CARD_H, CARD_W, MatchCard } from "./MatchCard";
 import { MatchCardMobile } from "./MatchCardMobile";
 import { TeamLogo } from "./TeamLogo";
@@ -19,18 +19,8 @@ const WIDTH = COL * 3 + CARD_W;
 const HEIGHT = TOP + 240 + CARD_H + 8;
 const HEADERS = ["勝部首輪", "勝部決賽 / 敗部首輪", "敗部決賽", "總決賽"];
 
-const SOURCES: Partial<Record<PlayInSlotKey, [string, string]>> = {
-  ubFinal: ["勝部首輪 A 勝者", "勝部首輪 B 勝者"],
-  lbRound1: ["勝部首輪 A 敗者", "勝部首輪 B 敗者"],
-  lbFinal: ["勝部決賽敗者", "敗部首輪勝者"],
-  grandFinal: ["勝部決賽勝者", "敗部決賽勝者"],
-};
-
-// 進線：連到該隊在目標卡片的實際列；出線：卡片右側中央
-const into = (p: { x: number; y: number }, team: Team | null, target: PlayInSlot, fallback: 0 | 1) => ({
-  x: p.x,
-  y: p.y + (targetRow(team, target.match, fallback) === 0 ? 36 : 71),
-});
+// 進線：接到目標卡片的上格或下格（格位由來源決定）；出線：卡片右側中央
+const into = (p: { x: number; y: number }, seat: number) => ({ x: p.x, y: p.y + (seat === 0 ? 36 : 71) });
 const out = (p: { x: number; y: number }) => ({ x: p.x + CARD_W, y: p.y + CARD_H / 2 + 9 });
 
 export function PlayInBracket({ view, focus }: { view: PlayInView; focus: string | null }) {
@@ -48,16 +38,6 @@ export function PlayInBracket({ view, focus }: { view: PlayInView; focus: string
 
 // ---- 手機（< 768px）：依階段由上往下的列表，以文字標示勝敗去向 ----
 
-const NEXT: Record<PlayInSlotKey, string> = {
-  ub1a: "勝者 → 勝部決賽・敗者 → 敗部首輪",
-  ub1b: "勝者 → 勝部決賽・敗者 → 敗部首輪",
-  ubFinal: "勝者 → 總決賽・敗者 → 敗部決賽",
-  lbRound1: "勝者 → 敗部決賽・敗者淘汰",
-  lbFinal: "勝者 → 總決賽・敗者淘汰",
-  grandFinal: "勝者晉級瑞士輪・敗者淘汰",
-};
-const PROVISIONAL_NEXT = "勝部決賽或敗部首輪，待勝部首輪結束後判定";
-
 function PlayInMobile({ view, focus }: { view: PlayInView; focus: string | null }) {
   const card = (s: PlayInSlot) => (
     <MatchCardMobile
@@ -65,8 +45,8 @@ function PlayInMobile({ view, focus }: { view: PlayInView; focus: string | null 
       match={s.match}
       label={s.label}
       provisional={s.provisional}
-      next={s.key ? NEXT[s.key] : PROVISIONAL_NEXT}
-      sourceLabels={s.key ? SOURCES[s.key] : null}
+      next={s.next || null}
+      seats={s.seats}
       focus={focus}
     />
   );
@@ -122,7 +102,7 @@ function PlayInDesktop({ view, focus }: { view: PlayInView; focus: string | null
       <div className="flex flex-wrap gap-4">
         {view.slots.map((s) => (
           <div key={s.match.id} className="relative" style={{ width: CARD_W, height: CARD_H }}>
-            <MatchCard match={s.match} label={s.label} provisional focus={focus} x={0} y={0} />
+            <MatchCard match={s.match} label={s.label} provisional focus={focus} seats={s.seats} x={0} y={0} />
           </div>
         ))}
       </div>
@@ -143,23 +123,27 @@ function PlayInDesktop({ view, focus }: { view: PlayInView; focus: string | null
     { slot: grandFinal, pos: POS.grandFinal },
   ];
 
-  const done = (s: PlayInSlot) => s.match.state === "completed";
-  const W = (s: PlayInSlot) => winnerOf(s.match);
-  const L = (s: PlayInSlot) => loserOf(s.match);
-  const lines: Line[] = [
-    { from: out(POS.lbFinal), to: into(POS.grandFinal, W(lbFinal), grandFinal, 1), kind: "winner", active: done(lbFinal) },
-  ];
-  if (resolved) {
-    lines.push(
-      { from: out(POS.ub1a), to: into(POS.midA, W(ub1a), ubFinal, 0), kind: "winner", active: done(ub1a) },
-      { from: out(POS.ub1b), to: into(POS.midA, W(ub1b), ubFinal, 1), kind: "winner", active: done(ub1b) },
-      { from: out(POS.ub1a), to: into(POS.midB, L(ub1a), lbRound1, 0), kind: "loser" },
-      { from: out(POS.ub1b), to: into(POS.midB, L(ub1b), lbRound1, 1), kind: "loser" },
-      { from: out(POS.midA), to: into(POS.lbFinal, L(ubFinal), lbFinal, 0), kind: "loser" },
-      { from: out(POS.midB), to: into(POS.lbFinal, W(lbRound1), lbFinal, 1), kind: "winner", active: done(lbRound1) },
-      { from: out(POS.midA), to: into(POS.grandFinal, W(ubFinal), grandFinal, 0), kind: "winner", active: done(ubFinal) },
+  // 連線依來源表（lib/playin.ts 的 PLAYIN_SOURCES）：從來源場次接到它對應的格；勝者實線、敗者虛線，來源完賽時高亮
+  const posOf: Record<PlayInSlotKey, { x: number; y: number }> = {
+    ub1a: POS.ub1a,
+    ub1b: POS.ub1b,
+    ubFinal: POS.midA,
+    lbRound1: POS.midB,
+    lbFinal: POS.lbFinal,
+    grandFinal: POS.grandFinal,
+  };
+  const slotOf = (k: PlayInSlotKey) => placed.find((p) => p.slot.key === k)?.slot;
+  const undetermined = (k: PlayInSlotKey) => !resolved && (k === "ubFinal" || k === "lbRound1");
+  const lines: Line[] = (Object.entries(PLAYIN_SOURCES) as [PlayInSlotKey, NonNullable<(typeof PLAYIN_SOURCES)[PlayInSlotKey]>][])
+    .filter(([target, srcs]) => !undetermined(target) && srcs.every((s) => !undetermined(s.from)))
+    .flatMap(([target, srcs]) =>
+      srcs.map((s, seat) => ({
+        from: out(posOf[s.from]),
+        to: into(posOf[target], seat),
+        kind: s.take,
+        active: slotOf(s.from)?.match.state === "completed",
+      })),
     );
-  }
 
   return (
     <div className="space-y-4">
@@ -178,7 +162,7 @@ function PlayInDesktop({ view, focus }: { view: PlayInView; focus: string | null
               label={slot.label}
               provisional={slot.provisional}
               focus={focus}
-              sourceLabels={slot.key ? SOURCES[slot.key] : null}
+              seats={slot.seats}
               x={pos.x}
               y={pos.y}
             />

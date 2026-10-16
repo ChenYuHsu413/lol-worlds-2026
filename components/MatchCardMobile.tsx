@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { taipeiMonthDay, taipeiTime } from "@/lib/time";
-import type { Match, Team } from "@/lib/types";
+import { seatsInApiOrder } from "@/lib/bracket";
+import type { Match, Seat, Team } from "@/lib/types";
 import { involves } from "./focus";
 import { hasGames, useOpenGames } from "./games-context";
 import { TeamLogo } from "./TeamLogo";
@@ -10,7 +11,7 @@ interface Props {
   label: string; // 場次名稱，例如「勝部首輪 A」「R3・2-0 晉級戰」「八強 1」
   next?: string | null; // 第三行：晉級去向
   provisional?: boolean; // 位置推測（虛線框）
-  sourceLabels?: [string, string] | null; // 隊伍未定時顯示來源，例如「八強 1 勝者」
+  seats?: [Seat, Seat]; // 籤表格位（由來源決定）；未給時依 API 原始順序（賽程、瑞士輪）
   focus: string | null; // 隊伍篩選
   selected?: string | null; // 瑞士輪點選的隊伍（路徑高亮）
   onTeamClick?: (teamId: string) => void;
@@ -18,24 +19,16 @@ interface Props {
 }
 
 /** 手機版（< 768px）共用對戰卡：Play-In、瑞士輪、淘汰賽、賽程共用 */
-export function MatchCardMobile({ match: m, label, next, provisional, sourceLabels, focus, selected, onTeamClick, timeOnly }: Props) {
+export function MatchCardMobile({ match: m, label, next, provisional, seats, focus, selected, onTeamClick, timeOnly }: Props) {
   const openGames = useOpenGames();
   const clickable = hasGames(m);
-  const done = m.state === "completed";
   const live = m.state === "inProgress";
   const dimmed = (focus !== null && !involves(m, focus)) || (!!selected && !involves(m, selected));
   const picked = !!selected && involves(m, selected);
   const when = m.startTime ? (timeOnly ? taipeiTime(m.startTime) : `${taipeiMonthDay(m.startTime)} ${taipeiTime(m.startTime)}`) : "";
 
-  const side = (which: "A" | "B") => {
-    const team = which === "A" ? m.teamA : m.teamB;
-    return {
-      team,
-      won: done && m.winner === which,
-      lost: done && m.winner !== null && m.winner !== which,
-      source: sourceLabels?.[which === "A" ? 0 : 1],
-    };
-  };
+  // 隊伍上下（左右）位置固定：籤表依格位來源、其餘依 API 原始順序；不依比分或勝負重排
+  const [left, right] = seats ?? seatsInApiOrder(m);
 
   return (
     <div
@@ -50,7 +43,7 @@ export function MatchCardMobile({ match: m, label, next, provisional, sourceLabe
         <span className="shrink-0 font-mono">
           {live ? (
             <span className="live-blink rounded bg-live px-1 font-bold text-white">● LIVE</span>
-          ) : done ? (
+          ) : m.state === "completed" ? (
             `已結束・Bo${m.bestOf}`
           ) : (
             `${when}${when ? "・" : ""}Bo${m.bestOf}`
@@ -59,11 +52,11 @@ export function MatchCardMobile({ match: m, label, next, provisional, sourceLabe
       </div>
 
       <div className="mt-1.5 grid grid-cols-[1fr_auto_1fr] items-center gap-2">
-        <TeamCell {...side("A")} align="right" selected={selected} onTeamClick={onTeamClick} />
+        <TeamCell seat={left} align="right" selected={selected} onTeamClick={onTeamClick} />
         <span className="w-14 text-center font-mono text-lg font-bold tabular-nums">
-          {m.state === "unstarted" ? <span className="text-sm text-muted">vs</span> : `${m.scoreA} : ${m.scoreB}`}
+          {m.state === "unstarted" ? <span className="text-sm text-muted">vs</span> : `${left.score ?? 0} : ${right.score ?? 0}`}
         </span>
-        <TeamCell {...side("B")} align="left" selected={selected} onTeamClick={onTeamClick} />
+        <TeamCell seat={right} align="left" selected={selected} onTeamClick={onTeamClick} />
       </div>
 
       {next && <div className="mt-1.5 text-center text-[11px] text-muted">{next}</div>}
@@ -72,22 +65,18 @@ export function MatchCardMobile({ match: m, label, next, provisional, sourceLabe
 }
 
 function TeamCell({
-  team,
-  won,
-  lost,
-  source,
+  seat: { team, result, placeholder },
   align,
   selected,
   onTeamClick,
 }: {
-  team: Team | null;
-  won: boolean;
-  lost: boolean;
-  source?: string;
+  seat: Seat;
   align: "left" | "right";
   selected?: string | null;
   onTeamClick?: (teamId: string) => void;
 }) {
+  const won = result === "win";
+  const lost = result === "loss";
   const isSel = !!team && team.id === selected;
   return (
     <span
@@ -107,7 +96,7 @@ function TeamCell({
       {team ? (
         <FitName team={team} className={`${won ? "font-bold text-win" : "font-semibold"} ${isSel ? "text-accent" : ""}`} />
       ) : (
-        <span className="min-w-0 truncate text-xs text-muted">{source ?? "TBD"}</span>
+        <span className="min-w-0 truncate text-xs text-muted">{placeholder ?? "TBD"}</span>
       )}
     </span>
   );

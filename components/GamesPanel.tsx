@@ -52,8 +52,9 @@ export function GamesPanel({
         if (!alive) return;
         live.current = !!json.data?.games.some((g: GameDetail) => g.state === "inProgress");
         setState({ data: json.data, error: json.error, loading: false });
-        // 預設顯示最新一局
-        if (json.data?.games.length) setTab((t) => (t === 1 ? json.data.games.at(-1).number : t));
+        // 預設顯示最新一局已開打的局
+        const started = (json.data?.games ?? []).filter((g: GameDetail) => g.state !== "unstarted");
+        if (started.length) setTab((t) => (t === 1 ? started.at(-1).number : t));
       } catch {
         if (alive) setState({ data: null, error: "無法連線到伺服器", loading: false });
       }
@@ -105,8 +106,11 @@ export function GamesPanel({
                   key={g.id}
                   role="tab"
                   aria-selected={tab === g.number}
+                  // 尚未開打的局：淡化且不可點
+                  disabled={g.state === "unstarted"}
+                  title={g.state === "unstarted" ? "尚未開始" : undefined}
                   onClick={() => setTab(g.number)}
-                  className={`shrink-0 border-b-2 px-3 py-2 text-sm font-semibold ${
+                  className={`shrink-0 border-b-2 px-3 py-2 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-35 ${
                     tab === g.number ? "border-accent text-accent" : "border-transparent text-muted"
                   }`}
                 >
@@ -131,7 +135,10 @@ export function GamesPanel({
             </nav>
             <div className="flex-1 overflow-y-auto p-4">
               {data.games.length === 0 && <p className="text-sm text-muted">尚未開打</p>}
-              {game && <GameView game={game} data={data} teamCode={(id) => team(id)?.code ?? "?"} onPlayer={onPlayer} />}
+              {game?.state === "unstarted" && <p className="text-sm text-muted">尚未開始</p>}
+              {game && game.state !== "unstarted" && (
+                <GameView game={game} data={data} teamCode={(id) => team(id)?.code ?? "?"} onPlayer={onPlayer} />
+              )}
               {tab === "fearless" && <FearlessView data={data} />}
             </div>
           </>

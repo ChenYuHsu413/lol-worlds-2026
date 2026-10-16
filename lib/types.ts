@@ -61,11 +61,21 @@ export interface SwissView {
 
 export type PlayInSlotKey = "ub1a" | "ub1b" | "ubFinal" | "lbRound1" | "lbFinal" | "grandFinal";
 
+/** 籤表的一格：隊伍由來源決定（不看 API teams 順序），比分依 team id 對應 */
+export interface Seat {
+  team: Team | null;
+  score: number | null; // 未開打為 null
+  result: "win" | "loss" | null;
+  placeholder: string | null; // 隊伍未定時顯示，例如「勝部首輪 A 勝者」
+}
+
 export interface PlayInSlot {
   key: PlayInSlotKey | null; // null = 第 3/4 場尚無法判定
   label: string; // 顯示名稱，如「勝部決賽」或「10/17 場次 A」
   match: Match;
   provisional: boolean;
+  seats: [Seat, Seat]; // 上格、下格
+  next: string; // 勝敗去向，例如「勝者 → 總決賽・敗者 → 敗部決賽」
 }
 
 export interface PlayInView {
@@ -79,6 +89,8 @@ export interface KnockoutSlot {
   index: number;
   match: Match;
   sourceLabels: [string, string] | null; // TBD 時顯示「八強 1 勝者」之類
+  seats: [Seat, Seat]; // 上格 = 上一輪第 2i 場勝者、下格 = 第 2i+1 場勝者
+  next: string; // 例如「勝者 → 四強第 1 場」
 }
 
 export interface KnockoutView {

@@ -2,7 +2,7 @@
 
 import { KNOCKOUT_ROUND_NAMES, KNOCKOUT_ROUND_SIZES } from "../config/format-2026";
 import { consoleWarn, type Warn } from "./normalize";
-import { winnerOf } from "./playin";
+import { seatsBySource, seatsInApiOrder, winnerOf } from "./bracket";
 import type { KnockoutSlot, KnockoutView, Match, SwissRecord } from "./types";
 
 const byId = (a: Match, b: Match) => (BigInt(a.id) < BigInt(b.id) ? -1 : BigInt(a.id) > BigInt(b.id) ? 1 : 0);
@@ -23,11 +23,26 @@ export function buildKnockout(
       sorted.slice(offset, offset + size).map((match, index) => {
         match.round = r + 1;
         const prev = KNOCKOUT_ROUND_NAMES[r - 1];
+        const labels: [string, string] | null = r === 0 ? null : [`${prev} ${index * 2 + 1} 勝者`, `${prev} ${index * 2 + 2} 勝者`];
+        // 上格 = 上一輪第 2i 場勝者、下格 = 第 2i+1 場勝者（與 Play-In 共用 seatsBySource）
+        const feeders = r === 0 ? null : [rounds[r - 1][index * 2]?.match, rounds[r - 1][index * 2 + 1]?.match];
+        const nextName = KNOCKOUT_ROUND_NAMES[r + 1];
+        const nextCount = KNOCKOUT_ROUND_SIZES[r + 1] ?? 0;
         return {
           round: r,
           index,
           match,
-          sourceLabels: r === 0 ? null : [`${prev} ${index * 2 + 1} 勝者`, `${prev} ${index * 2 + 2} 勝者`],
+          sourceLabels: labels,
+          seats:
+            feeders && labels
+              ? seatsBySource(match, [
+                  { match: feeders[0], take: "winner", label: labels[0] },
+                  { match: feeders[1], take: "winner", label: labels[1] },
+                ])
+              : seatsInApiOrder(match),
+          next: nextName
+            ? `勝者 → ${nextName.replace(/強賽$/, "強")}${nextCount > 1 ? `第 ${Math.floor(index / 2) + 1} 場` : ""}`
+            : "勝者奪冠",
         };
       }),
     );
