@@ -15,6 +15,7 @@ vi.mock("../lib/worlds", async (orig) => {
 });
 
 let leaguepedia: "empty" | "full" = "empty";
+let feedDelayMs = 0; // 模擬 feed 延遲：比「現在 − 延遲」新的 startingTime 一律回 400
 const lpCalls: string[] = [];
 
 function fakeFetch(input: string | URL) {
@@ -25,7 +26,7 @@ function fakeFetch(input: string | URL) {
     const id = url.pathname.split("/").pop();
     // 與真實 feed 相同：未來的 startingTime 回 400（disallowed window）
     const at = url.searchParams.get("startingTime");
-    if (at && Date.parse(at) > Date.now()) return new Response('{"errorCode":"BAD_QUERY_PARAMETER"}', { status: 400 });
+    if (at && Date.parse(at) > Date.now() - feedDelayMs) return new Response('{"errorCode":"BAD_QUERY_PARAMETER"}', { status: 400 });
     return g(`window_${id}_${url.searchParams.has("startingTime") ? "end" : "start"}.json`);
   }
   if (url.host === "lol.fandom.com") {
@@ -43,6 +44,7 @@ beforeEach(() => {
   vi.stubEnv("ESPORTS_API_KEY", "test-key");
   vi.useFakeTimers({ toFake: ["Date"] });
   lpCalls.length = 0;
+  feedDelayMs = 0;
 });
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -84,6 +86,42 @@ describe("剛完賽的局（開局未滿 4 小時）", () => {
     leaguepedia = "full";
     const { data } = await loadMatchGames(FINAL, null);
     expect(data!.games.every((g) => g.blue.kills !== null && g.blue.players.every((p) => p.kills !== null))).toBe(true);
+  });
+});
+
+describe("終局 frame 退回重試（feed 延遲超過 1 分鐘）", () => {
+  it("−1、−2 分鐘回 400 時退回 −5 分鐘，仍取得數據", async () => {
+    const { loadMatchGames } = await import("../lib/game-source");
+    vi.setSystemTime(new Date("2025-11-09T11:30:00Z"));
+    leaguepedia = "full";
+    feedDelayMs = 3 * 60_000;
+    const { data } = await loadMatchGames(FINAL, null);
+    expect(data!.games.every((g) => g.blue.kills !== null)).toBe(true);
+  });
+
+  it("−1、−2、−5 分鐘都失敗：視為暫無數據，不報錯", async () => {
+    const { loadMatchGames } = await import("../lib/game-source");
+    vi.setSystemTime(new Date("2025-11-09T11:30:00Z"));
+    leaguepedia = "full";
+    feedDelayMs = 10 * 60_000;
+    const { data, error } = await loadMatchGames(FINAL, null);
+    expect(error).toBeNull();
+    // 開局超過 4 小時的前幾局走固定時間；最近開打、需退回的局沒有終局數據
+    const recent = data!.games.filter((g) => g.blue.kills === null);
+    expect(recent.length).toBeGreaterThan(0);
+    expect(recent.every((g) => g.blue.players.length === 5)).toBe(true); // 開局 frame 仍提供選手與英雄
+  });
+
+  it("endWindowTimes：開局超過 4 小時用固定時間，否則依序 −1、−2、−5 分鐘", async () => {
+    const { endWindowTimes } = await import("../lib/game-source");
+    const now = Date.parse("2025-11-09T12:00:00Z");
+    expect(endWindowTimes(Date.parse("2025-11-09T07:32:00Z"), true, now)).toEqual(["2025-11-09T11:32:00Z"]);
+    expect(endWindowTimes(Date.parse("2025-11-09T10:00:00Z"), true, now)).toEqual([
+      "2025-11-09T11:59:00Z",
+      "2025-11-09T11:58:00Z",
+      "2025-11-09T11:55:00Z",
+    ]);
+    expect(endWindowTimes(null, false, now)).toHaveLength(3);
   });
 });
 

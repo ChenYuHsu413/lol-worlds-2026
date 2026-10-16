@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { ApiEventDetails } from "../lib/api-types";
 import type { DDragonChampionFile, LeaguepediaGameRow, LiveWindow } from "../lib/game-api-types";
-import { assembleMatchGames, fearlessPool, matchPlayer, stripTeamPrefix, type MatchGames } from "../lib/games";
+import { assembleMatchGames, fearlessPool, isAwaitingLive, matchPlayer, stripTeamPrefix, type MatchGames } from "../lib/games";
 import type { Player } from "../lib/types";
 import { buildWorldsData } from "../lib/worlds";
 import { bundle, fixture, tournament } from "./helpers";
@@ -130,6 +130,16 @@ describe("缺資料", () => {
     const m = assembleMatchGames({ event: live, windows: { [game.id]: { start, end: mid } }, leaguepedia: null, zh, en, rosterOf });
     expect(m.games[0].winner).toBeNull();
     expect(m.games[0].durationSec).toBeGreaterThanOrEqual(600);
+  });
+
+  it("進行中但 live stats 尚無選手（剛開打）：判定為等待即時資料", () => {
+    const event = g<{ data: { event: ApiEventDetails } }>(`eventDetails_${BO1}.json`).data.event;
+    const live = { ...event, match: { ...event.match, games: [{ ...event.match.games[0], state: "inProgress" }] } };
+    const m = assembleMatchGames({ event: live, windows: {}, leaguepedia: null, zh, en, rosterOf });
+    expect(m.games[0].blue.players).toEqual([]);
+    expect(isAwaitingLive(m.games[0])).toBe(true);
+    // 已完賽的局沒有選手時不是「等待中」，而是沒有局內數據
+    expect(isAwaitingLive(load(BO1, { end: false }).games[0])).toBe(false);
   });
 
   it("完全沒有 live stats：選手為空、欄位皆 null", () => {

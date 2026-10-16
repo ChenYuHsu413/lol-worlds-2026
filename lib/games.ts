@@ -268,6 +268,10 @@ export function verifyInferredWinners(games: GameDetail[], gameWins: Record<stri
     : games.map((g) => (g.winnerSource === "inferred" ? { ...g, winner: null, winnerSource: null } : g));
 }
 
+/** 進行中的局，live stats 尚未出現選手資料（剛開打時常見）→ 面板顯示「等待即時資料…」 */
+export const isAwaitingLive = (g: GameDetail) =>
+  g.state === "inProgress" && g.blue.players.length === 0 && g.red.players.length === 0;
+
 // ---- Fearless ----
 // 世界賽為全局 Fearless：系列賽中任一隊用過的英雄，後續兩隊都不能再選
 

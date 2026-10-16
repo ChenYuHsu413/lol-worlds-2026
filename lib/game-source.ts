@@ -60,6 +60,25 @@ async function leaguepedia(from: number, to: number, revalidate: number): Promis
   return Array.isArray(rows) ? rows : null;
 }
 
+// 終局（或最新）frame 的 startingTime 候選：
+// - 已完賽且開局已超過 4 小時：開局 + 4 小時（之後一律回傳終局 frame，可永久快取）
+// - 其餘：feed 不接受未來的時間（400 disallowed window），且延遲可能超過 1 分鐘 → 依序試 −1、−2、−5 分鐘
+export const END_FALLBACK_MS = [60_000, 120_000, 300_000];
+
+export function endWindowTimes(t0: number | null, done: boolean, now: number): string[] {
+  if (done && t0 !== null && t0 + 4 * 3600_000 <= now - END_FALLBACK_MS[0]) return [tenSec(t0 + 4 * 3600_000)];
+  return END_FALLBACK_MS.map((d) => tenSec(now - d));
+}
+
+async function endWindow(gameId: string, t0: number | null, done: boolean, now: number): Promise<LiveWindow | null> {
+  const fixed = done && t0 !== null && t0 + 4 * 3600_000 <= now - END_FALLBACK_MS[0];
+  for (const at of endWindowTimes(t0, done, now)) {
+    const w = await getJson<LiveWindow>(`${LIVE}/window/${gameId}?startingTime=${at}`, fixed ? { cache: "force-cache" } : { next: { revalidate: LIVE_GAME_TTL } });
+    if (w?.frames?.length) return w;
+  }
+  return null; // 都失敗：視為暫無資料，面板只隱藏缺的欄位
+}
+
 async function rosterLookup(fixture: string | null): Promise<(teamId: string) => Player[]> {
   const { data } = await loadWorlds(fixture);
   return (teamId) => data?.profiles.find((p) => p.team.id === teamId)?.players ?? [];
@@ -84,12 +103,7 @@ async function loadLive(matchId: string): Promise<GamesPayload> {
         const done = g.state === "completed";
         const start = await getJson<LiveWindow>(`${LIVE}/window/${g.id}`, done ? { cache: "force-cache" } : { next: { revalidate: LIVE_GAME_TTL } });
         const t0 = start?.frames[0] ? Date.parse(start.frames[0].rfc460Timestamp) : null;
-        // 完賽：時間設在結束之後即回傳終局 frame；進行中：取 1 分鐘前（feed 有延遲）
-        // feed 不接受未來的 startingTime（400 disallowed window），剛完賽的局改取 1 分鐘前
-        const at = t0 === null ? null : done ? tenSec(Math.min(t0 + 4 * 3600_000, now - 60_000)) : tenSec(now - 60_000);
-        const end = at
-          ? await getJson<LiveWindow>(`${LIVE}/window/${g.id}?startingTime=${at}`, done ? { cache: "force-cache" } : { next: { revalidate: LIVE_GAME_TTL } })
-          : null;
+        const end = await endWindow(g.id, t0, done, now);
         windows[g.id] = { start, end };
       }),
   );

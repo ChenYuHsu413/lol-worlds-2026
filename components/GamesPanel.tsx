@@ -3,6 +3,7 @@ import { ROLE_NAMES } from "@/config/leagues";
 import {
   championImage,
   fearlessPool,
+  isAwaitingLive,
   isDataPending,
   type GameDetail,
   type GamePlayer,
@@ -201,7 +202,10 @@ function GameView({
         )}
       </div>
 
-      {noStats ? (
+      {isAwaitingLive(g) ? (
+        // 剛開打時 feed 尚無選手資料；面板每 30 秒自動更新，資料出現後補上
+        <p className="text-muted">等待即時資料…</p>
+      ) : noStats ? (
         <p className="text-muted">此局沒有局內數據</p>
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
