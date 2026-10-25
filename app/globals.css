@@ -55,8 +55,16 @@ html.light {
 
 html,
 body {
-  /* 用 clip 而非 hidden：hidden 會讓 body 變成捲動容器，頁籤列與日期標題的 sticky 失效 */
-  overflow-x: clip;
+  /* 不支援 clip 的瀏覽器（iOS Safari 16 以前）維持 hidden：不會橫向捲動，但 sticky 會失效 */
+  overflow-x: hidden;
+}
+
+@supports (overflow-x: clip) {
+  html,
+  body {
+    /* 用 clip 而非 hidden：hidden 會讓 body 變成捲動容器，頁籤列與日期標題的 sticky 失效 */
+    overflow-x: clip;
+  }
 }
 
 body {
