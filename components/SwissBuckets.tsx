@@ -1,45 +1,15 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { SWISS } from "@/config/format-2026";
+import { pendingSeats, resultCapacity, swissGrid, teamEdges, type GridNode } from "@/lib/swiss-grid";
 import { taipeiMonthDay, taipeiTime } from "@/lib/time";
-import type { SwissRecord, SwissSlot, SwissView, Team } from "@/lib/types";
+import type { SwissSlot, SwissView, Team } from "@/lib/types";
 import { hasGames, useOpenGames } from "./games-context";
 import { SwissMobile } from "./SwissMobile";
 import { TeamLogo } from "./TeamLogo";
 
-const COL_W = 176;
-const GAP = 28;
-
-interface Column {
-  round: number | null; // null = 最終結果欄
-  qualified: { label: string; teams: SwissRecord[] } | null;
-  buckets: { label: string; slots: SwissSlot[] }[];
-  eliminated: { label: string; teams: SwissRecord[] } | null;
-}
-
-function buildColumns(view: SwissView): Column[] {
-  const maxRound = Math.max(0, ...view.slots.map((s) => s.round));
-  const cols: Column[] = [];
-  for (let c = 1; c <= maxRound + 1; c++) {
-    // 第 c 欄開頭顯示「打完第 c-1 輪」剛晉級/淘汰的隊伍
-    const ql = c - 1 - SWISS.winsToQualify;
-    const ew = c - 1 - SWISS.lossesToEliminate;
-    const block = (w: number, l: number, label: string) => ({
-      label: `${w}-${l} ${label}`,
-      teams: view.records.filter((r) => r.wins === w && r.losses === l),
-    });
-    const slots = view.slots.filter((s) => s.round === c);
-    const groups = new Map<string, SwissSlot[]>();
-    for (const s of [...slots].sort((a, b) => b.wins - a.wins || a.losses - b.losses))
-      groups.set(`${s.wins}-${s.losses}`, [...(groups.get(`${s.wins}-${s.losses}`) ?? []), s]);
-    cols.push({
-      round: c <= maxRound ? c : null,
-      qualified: ql >= 0 && ql < SWISS.lossesToEliminate ? block(SWISS.winsToQualify, ql, "晉級") : null,
-      buckets: [...groups.entries()].map(([label, s]) => ({ label, slots: s })),
-      eliminated: ew >= 0 && ew < SWISS.winsToQualify ? block(ew, SWISS.lossesToEliminate, "淘汰") : null,
-    });
-  }
-  return cols;
-}
+const COL_MIN = 150;
+const GAP_X = 28;
+const GRID = swissGrid();
 
 export function SwissBuckets({ view, focus }: { view: SwissView; focus: string | null }) {
   return (
@@ -54,52 +24,85 @@ export function SwissBuckets({ view, focus }: { view: SwissView; focus: string |
   );
 }
 
-// ---- 桌機（≥ 768px）：分桶欄位圖，hover 顯示路徑 ----
+// ---- 桌機（≥ 768px）：戰績網格（橫軸輪次、縱軸勝敗差），桶與桶之間畫勝/敗流向線 ----
 
 function SwissDesktop({ view, focus }: { view: SwissView; focus: string | null }) {
   const [hover, setHover] = useState<string | null>(null);
-  const active = hover ?? focus;
-  const cols = buildColumns(view);
-  const width = cols.length * COL_W + (cols.length - 1) * GAP;
+  const [pinned, setPinned] = useState<string | null>(null); // 點選後固定，再點一次取消
+  const active = hover ?? pinned ?? focus;
+  const onPick = (id: string) => setPinned((cur) => (cur === id ? null : id));
 
   const box = useRef<HTMLDivElement>(null);
-  const [path, setPath] = useState<{ points: string; size: { w: number; h: number } } | null>(null);
+  const [lines, setLines] = useState<{ key: string; win: boolean; d: string }[]>([]);
+  const [size, setSize] = useState({ w: 0, h: 0 });
 
-  // 依 DOM 位置畫出隊伍一路走過的路徑
+  // 依 DOM 位置畫連線：從桶的右緣（勝線偏上、敗線偏下）到下一欄節點的左緣，只經過欄與欄之間的空隙
   useLayoutEffect(() => {
     const el = box.current;
-    if (!el || !active) return setPath(null);
-    const base = el.getBoundingClientRect();
-    const nodes = [...el.querySelectorAll<HTMLElement>(`[data-team~="${active}"]`)].sort(
-      (a, b) => Number(a.dataset.col) - Number(b.dataset.col),
-    );
-    const pts = nodes.map((n) => {
-      const r = n.getBoundingClientRect();
-      return `${r.left - base.left + r.width / 2},${r.top - base.top + r.height / 2}`;
-    });
-    setPath(pts.length > 1 ? { points: pts.join(" "), size: { w: base.width, h: base.height } } : null);
-  }, [active, view]);
+    if (!el) return;
+    const draw = () => {
+      const base = el.getBoundingClientRect();
+      const rect = (k: string) => el.querySelector(`[data-node="${k}"]`)?.getBoundingClientRect();
+      setLines(
+        GRID.edges.flatMap((e) => {
+          const a = rect(e.from);
+          const b = rect(e.to);
+          if (!a || !b) return [];
+          const x1 = a.right - base.left;
+          const y1 = a.top - base.top + a.height * (e.win ? 0.35 : 0.65);
+          const x2 = b.left - base.left;
+          const y2 = b.top - base.top + b.height / 2;
+          const dx = (x2 - x1) / 2;
+          return [{ key: `${e.from}>${e.to}`, win: e.win, d: `M${x1},${y1} C${x1 + dx},${y1} ${x2 - dx},${y2} ${x2},${y2}` }];
+        }),
+      );
+      setSize({ w: el.scrollWidth, h: el.scrollHeight });
+    };
+    draw();
+    const ro = new ResizeObserver(draw);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [view]);
 
   if (view.slots.length === 0) return <p className="text-muted">尚無瑞士輪資料</p>;
+
+  const path = active ? teamEdges(view, active) : null;
+  const ordered = path ? [...lines].sort((a, b) => Number(path.has(a.key)) - Number(path.has(b.key))) : lines;
+  const hp: HoverProps = { active, onHover: setHover, onPick };
 
   return (
     <div className="space-y-3">
       <Legend />
       <div className="-mx-4 overflow-x-auto px-4 pb-2">
-        <div ref={box} className="relative flex items-start" style={{ width, gap: GAP }} onMouseLeave={() => setHover(null)}>
-          {path && (
-            <svg className="pointer-events-none absolute inset-0 z-10" width={path.size.w} height={path.size.h} aria-hidden>
-              <polyline points={path.points} fill="none" stroke="var(--accent)" strokeWidth={2.5} strokeOpacity={0.75} strokeLinejoin="round" />
-            </svg>
-          )}
-          {cols.map((col, ci) => (
-            <div key={ci} className="flex shrink-0 flex-col gap-3" style={{ width: COL_W }}>
-              <div className="text-xs font-bold text-accent">{col.round ? `第 ${col.round} 輪` : "最終結果"}</div>
-              {col.qualified && <ResultBlock {...col.qualified} kind="qualified" col={ci} active={active} onHover={setHover} />}
-              {col.buckets.map((b) => (
-                <Bucket key={b.label} label={b.label} slots={b.slots} col={ci} active={active} onHover={setHover} />
-              ))}
-              {col.eliminated && <ResultBlock {...col.eliminated} kind="eliminated" col={ci} active={active} onHover={setHover} />}
+        <div
+          ref={box}
+          className="relative grid items-center gap-y-2.5"
+          style={{ gridTemplateColumns: `repeat(${GRID.cols}, minmax(${COL_MIN}px, 1fr))`, columnGap: GAP_X }}
+          onMouseLeave={() => setHover(null)}
+        >
+          <svg className="pointer-events-none absolute left-0 top-0" width={size.w} height={size.h} aria-hidden>
+            {ordered.map((l) => {
+              const on = path?.has(l.key);
+              return (
+                <path
+                  key={l.key}
+                  d={l.d}
+                  fill="none"
+                  stroke={on ? "var(--accent)" : l.win ? "var(--win)" : "var(--muted)"}
+                  strokeOpacity={on ? 0.95 : path ? 0.12 : 0.35}
+                  strokeWidth={on ? 2.5 : 1.25}
+                />
+              );
+            })}
+          </svg>
+          {Array.from({ length: GRID.cols }, (_, c) => (
+            <div key={c} className="text-xs font-bold text-accent" style={{ gridColumn: c + 1, gridRow: 1 }}>
+              {c < GRID.cols - 1 ? `第 ${c + 1} 輪` : "最終結果"}
+            </div>
+          ))}
+          {GRID.nodes.map((n) => (
+            <div key={n.key} data-node={n.key} className="relative" style={{ gridColumn: n.col + 1, gridRow: n.row + 2 }}>
+              {n.kind === "bucket" ? <Bucket node={n} view={view} {...hp} /> : <ResultBlock node={n} view={view} {...hp} />}
             </div>
           ))}
         </div>
@@ -108,40 +111,68 @@ function SwissDesktop({ view, focus }: { view: SwissView; focus: string | null }
   );
 }
 
-type HoverProps = { col: number; active: string | null; onHover: (id: string | null) => void };
+type HoverProps = { active: string | null; onHover: (id: string | null) => void; onPick: (id: string) => void };
 
-function Bucket({ label, slots, col, active, onHover }: { label: string; slots: SwissSlot[] } & HoverProps) {
+const bucketType = (w: number, l: number) => {
+  const q = w === SWISS.winsToQualify - 1;
+  const e = l === SWISS.lossesToEliminate - 1;
+  return q && e ? "晉級/淘汰戰" : q ? "晉級戰" : e ? "淘汰戰" : "";
+};
+
+function Bucket({ node, view, ...hp }: { node: GridNode; view: SwissView } & HoverProps) {
+  const slots = view.slots.filter((s) => s.wins === node.wins && s.losses === node.losses);
+  const paired = slots.filter((s) => s.match.teamA && s.match.teamB);
+  const pending = pendingSeats(view, node.wins, node.losses);
+  const from = slots
+    .filter((s) => !s.match.teamA || !s.match.teamB)
+    .map((s) => s.match.startTime)
+    .filter(Boolean)
+    .sort()[0];
   const bos = [...new Set(slots.map((s) => s.match.bestOf))];
   return (
     <div className="overflow-hidden rounded-md border border-line bg-panel">
-      <div className="flex justify-between bg-panel-2 px-2 py-0.5 text-xs">
-        <span className="font-mono font-bold">{label}</span>
-        <span className="text-muted">{bos.map((b) => `Bo${b}`).join("/")}</span>
+      <div className="flex justify-between gap-1 bg-panel-2 px-2 py-0.5 text-xs">
+        <span className="font-mono font-bold">{node.key}</span>
+        <span className="truncate text-muted">{[bucketType(node.wins, node.losses), bos.map((b) => `Bo${b}`).join("/")].filter(Boolean).join("・")}</span>
       </div>
-      <ul className="divide-y divide-line/60">
-        {slots.map((s) => (
-          <SlotRow key={s.match.id} slot={s} col={col} active={active} onHover={onHover} />
-        ))}
-      </ul>
+      {paired.length > 0 && (
+        <ul className="divide-y divide-line/60">
+          {paired.map((s) => (
+            <SlotRow key={s.match.id} slot={s} {...hp} />
+          ))}
+        </ul>
+      )}
+      {pending.teams.length + pending.open > 0 && (
+        <div className="m-1 rounded border border-dashed border-muted/50 px-1.5 py-1">
+          <div className="text-[10px] text-muted">
+            待抽籤{from && `・${taipeiMonthDay(from)} 起`}
+          </div>
+          <TeamChips teams={pending.teams} open={pending.open} {...hp} />
+        </div>
+      )}
     </div>
   );
 }
 
-function SlotRow({ slot: { match: m, provisional }, col, active, onHover }: { slot: SwissSlot } & HoverProps) {
-  const ids = [m.teamA?.id, m.teamB?.id].filter(Boolean).join(" ");
+function SlotRow({ slot: { match: m }, active, onHover, onPick }: { slot: SwissSlot } & HoverProps) {
   const openGames = useOpenGames();
   const clickable = hasGames(m);
-  const dimmed = active !== null && !ids.split(" ").includes(active);
+  const dimmed = active !== null && m.teamA?.id !== active && m.teamB?.id !== active;
   const live = m.state === "inProgress";
   const side = (team: Team | null, score: number, which: "A" | "B") => {
     const won = m.state === "completed" && m.winner === which;
     const lost = m.state === "completed" && m.winner !== null && m.winner !== which;
     return (
       <span
-        className={`flex min-w-0 flex-1 items-center gap-1 ${which === "B" ? "flex-row-reverse" : ""} ${
+        className={`flex min-w-0 flex-1 cursor-pointer items-center gap-1 ${which === "B" ? "flex-row-reverse" : ""} ${
           team?.id === active ? "text-accent" : ""
         }`}
         onMouseEnter={() => team && onHover(team.id)}
+        onClick={(e) => {
+          if (!team) return;
+          e.stopPropagation();
+          onPick(team.id);
+        }}
       >
         <TeamLogo team={team} size={16} />
         <span className={`truncate text-xs ${won ? "font-bold text-win" : lost ? "text-muted" : team ? "font-semibold" : "text-muted"}`}>
@@ -155,53 +186,56 @@ function SlotRow({ slot: { match: m, provisional }, col, active, onHover }: { sl
   };
   return (
     <li
-      data-team={ids}
-      data-col={col}
       title={m.startTime ? `${taipeiMonthDay(m.startTime)} ${taipeiTime(m.startTime)} (UTC+8)・Bo${m.bestOf}` : undefined}
       onClick={clickable ? () => openGames(m.id) : undefined}
-      className={`flex items-center gap-1 px-1.5 py-1 transition-opacity ${provisional ? "m-1 rounded border border-dashed border-muted/50" : ""} ${live ? "bg-live/10" : ""} ${dimmed ? "opacity-25" : ""} ${clickable ? "cursor-pointer hover:bg-panel-2" : ""}`}
+      className={`flex items-center gap-1 px-1.5 py-1 transition-opacity ${live ? "bg-live/10" : ""} ${dimmed ? "opacity-25" : ""} ${clickable ? "cursor-pointer hover:bg-panel-2" : ""}`}
     >
       {side(m.teamA, m.scoreA, "A")}
       <span className={`shrink-0 text-[10px] ${live ? "live-blink font-bold text-live" : "text-muted"}`}>
-        {live ? "LIVE" : provisional ? taipeiMonthDay(m.startTime) : "vs"}
+        {live ? "LIVE" : m.state === "unstarted" ? taipeiMonthDay(m.startTime) : "vs"}
       </span>
       {side(m.teamB, m.scoreB, "B")}
     </li>
   );
 }
 
-function ResultBlock({
-  label,
-  teams,
-  kind,
-  col,
-  active,
-  onHover,
-}: { label: string; teams: SwissRecord[]; kind: "qualified" | "eliminated" } & HoverProps) {
-  const q = kind === "qualified";
+function ResultBlock({ node, view, ...hp }: { node: GridNode; view: SwissView } & HoverProps) {
+  const q = node.kind === "qualified";
+  const teams = view.records.filter((r) => r.wins === node.wins && r.losses === node.losses).map((r) => r.team);
+  const cap = resultCapacity(node.wins, node.losses);
   return (
     <div className={`rounded-md border px-2 py-1.5 ${q ? "border-win/60 bg-win-bg" : "border-loss/50 bg-loss-bg"}`}>
-      <div className={`mb-1 font-mono text-xs font-bold ${q ? "text-win" : "text-loss"}`}>{label}</div>
-      {teams.length === 0 ? (
-        <div className="text-xs text-muted">—</div>
-      ) : (
-        <div className="flex flex-wrap gap-1.5">
-          {teams.map((r) => (
-            <span
-              key={r.team.id}
-              data-team={r.team.id}
-              data-col={col}
-              onMouseEnter={() => onHover(r.team.id)}
-              className={`flex items-center gap-1 text-xs font-semibold transition-opacity ${
-                active && active !== r.team.id ? "opacity-30" : ""
-              } ${active === r.team.id ? "text-accent" : ""}`}
-            >
-              <TeamLogo team={r.team} size={16} />
-              {r.team.code}
-            </span>
-          ))}
-        </div>
-      )}
+      <div className={`flex justify-between font-mono text-xs font-bold ${q ? "text-win" : "text-loss"}`}>
+        <span>
+          {node.key} {q ? "晉級" : "淘汰"}
+        </span>
+        <span className="font-sans font-normal text-muted">{cap} 名額</span>
+      </div>
+      <TeamChips teams={teams} open={Math.max(0, cap - teams.length)} {...hp} />
+    </div>
+  );
+}
+
+/** 隊伍 logo + 簡稱；尚未產生的名額顯示空位圈 */
+function TeamChips({ teams, open, active, onHover, onPick }: { teams: Team[]; open: number } & HoverProps) {
+  return (
+    <div className="mt-1 flex flex-wrap gap-x-2 gap-y-1">
+      {teams.map((t) => (
+        <button
+          key={t.id}
+          onMouseEnter={() => onHover(t.id)}
+          onClick={() => onPick(t.id)}
+          className={`flex items-center gap-1 text-xs font-semibold transition-opacity ${active && active !== t.id ? "opacity-30" : ""} ${
+            active === t.id ? "text-accent" : ""
+          }`}
+        >
+          <TeamLogo team={t} size={16} />
+          {t.code}
+        </button>
+      ))}
+      {Array.from({ length: open }, (_, i) => (
+        <TeamLogo key={i} team={null} size={16} />
+      ))}
     </div>
   );
 }
@@ -209,9 +243,21 @@ function ResultBlock({
 function Legend() {
   return (
     <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted">
-      <span>滑過隊伍可顯示其晉級路徑</span>
+      <span>滑過或點選隊伍可顯示其晉級路徑（點選後固定，再點一次取消）</span>
       <span className="flex items-center gap-1">
-        <span className="inline-block h-3 w-5 rounded border border-dashed border-muted/60" /> 隊伍未定（位置依賽程推測）
+        <svg width="20" height="8" aria-hidden>
+          <path d="M0,6 L20,2" stroke="var(--win)" strokeOpacity={0.6} strokeWidth={1.5} />
+        </svg>
+        勝者往右上
+      </span>
+      <span className="flex items-center gap-1">
+        <svg width="20" height="8" aria-hidden>
+          <path d="M0,2 L20,6" stroke="var(--muted)" strokeOpacity={0.6} strokeWidth={1.5} />
+        </svg>
+        敗者往右下
+      </span>
+      <span className="flex items-center gap-1">
+        <span className="inline-block h-3 w-5 rounded border border-dashed border-muted/60" /> 待抽籤
       </span>
       <span className="flex items-center gap-1">
         <span className="inline-block h-3 w-5 rounded border border-win/60 bg-win-bg" /> 晉級
