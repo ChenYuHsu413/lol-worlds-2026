@@ -1,5 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ROLE_NAMES } from "@/config/leagues";
+import { reconcileGames } from "@/lib/result";
+import type { Match } from "@/lib/types";
+import { SeriesScore } from "./result-context";
 import {
   championImage,
   fearlessPool,
@@ -27,11 +30,13 @@ const kGold = (g: number) => `${(g / 1000).toFixed(1)}k`;
 /** 系列賽小局細節（展開時才抓取） */
 export function GamesPanel({
   matchId,
+  match,
   fixture,
   onClose,
   onPlayer,
 }: {
   matchId: string;
+  match: Match | undefined; // 合併後的系列賽結果（與卡片相同）
   fixture: string | null;
   onClose: () => void;
   onPlayer: (teamId: string) => void;
@@ -75,7 +80,9 @@ export function GamesPanel({
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  const { data } = state;
+  // 小局勝方與上游正式比分衝突時以上游為準（reconcileGames 會 warn）
+  const raw = state.data;
+  const data = useMemo(() => (raw && match ? { ...raw, games: reconcileGames(match, raw.games) } : raw), [raw, match]);
   const team = (id: string | null) => data?.teams.find((t) => t.id === id);
   const game = typeof tab === "number" ? data?.games.find((g) => g.number === tab) : undefined;
 
@@ -89,7 +96,15 @@ export function GamesPanel({
       >
         <div className="flex items-center gap-3 border-b border-line px-4 py-3">
           <span className="font-bold">
-            {data ? `${data.teams[0]?.code} ${data.teams[0]?.gameWins} : ${data.teams[1]?.gameWins} ${data.teams[1]?.code}` : "小局細節"}
+            {match?.teamA && match.teamB ? (
+              <>
+                {match.teamA.code} <SeriesScore match={match} /> {match.teamB.code}
+              </>
+            ) : data ? (
+              `${data.teams[0]?.code} ${data.teams[0]?.gameWins} : ${data.teams[1]?.gameWins} ${data.teams[1]?.code}`
+            ) : (
+              "小局細節"
+            )}
           </span>
           <button onClick={onClose} className="ml-auto px-2 text-lg" aria-label="關閉">
             ✕

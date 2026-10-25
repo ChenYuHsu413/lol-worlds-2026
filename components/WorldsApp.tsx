@@ -1,12 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { provisionalFromGames, type Score } from "@/lib/result";
 import { taipeiDateTime, taipeiMonthDay, taipeiTime, TZ_LABEL } from "@/lib/time";
 import type { Stage, WorldsData, WorldsPayload } from "@/lib/types";
 import { GamesContext } from "./games-context";
 import { GamesPanel } from "./GamesPanel";
 import { KnockoutBracket } from "./KnockoutBracket";
 import { PlayInBracket } from "./PlayInBracket";
+import { ProvisionalContext } from "./result-context";
 import { ScheduleList } from "./ScheduleList";
 import { SwissBuckets } from "./SwissBuckets";
 import { SwissPools } from "./SwissPools";
@@ -85,6 +87,30 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
     return () => clearInterval(id);
   }, [refresh, interval]);
 
+  // 結果更新中的場次：每次資料更新時抓小局資料，小局已判定勝方就顯示暫定比分；上游正式比分出來後自動不再使用
+  const [provisional, setProvisional] = useState<Record<string, Score>>({});
+  useEffect(() => {
+    const pending = data?.matches.filter((m) => m.resultPending) ?? [];
+    if (!pending.length) return;
+    let alive = true;
+    Promise.all(
+      pending.map(async (m) => {
+        try {
+          const res = await fetch(`/api/games/${m.id}${fixture ? `?fixture=${encodeURIComponent(fixture)}` : ""}`);
+          const json = await res.json();
+          return [m.id, json.data ? provisionalFromGames(m, json.data) : null] as const;
+        } catch {
+          return [m.id, null] as const;
+        }
+      }),
+    ).then((entries) => {
+      if (alive) setProvisional(Object.fromEntries(entries.filter((e): e is readonly [string, Score] => e[1] !== null)));
+    });
+    return () => {
+      alive = false;
+    };
+  }, [data, fixture]);
+
   return (
     <div className="mx-auto w-full max-w-6xl px-4 pb-16">
       {/* 桌機（≥ 768px）頁首 */}
@@ -133,7 +159,7 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
       )}
 
       {data && (
-        <GamesContext.Provider value={setGamesId}>
+        <GamesContext.Provider value={setGamesId}><ProvisionalContext.Provider value={provisional}>
           {/* 桌機頁籤固定在頂部（賽程頁捲到今天時，日期標題接在頁籤下方） */}
           <nav
             className="sticky top-0 z-30 -mx-4 mb-4 hidden gap-1 overflow-x-auto border-b border-line bg-bg/95 px-4 backdrop-blur md:flex"
@@ -199,6 +225,7 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
           {gamesId && (
             <GamesPanel
               matchId={gamesId}
+              match={data.matches.find((m) => m.id === gamesId)}
               fixture={fixture}
               onClose={() => setGamesId(null)}
               onPlayer={(teamId) => {
@@ -210,7 +237,7 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
               }}
             />
           )}
-        </GamesContext.Provider>
+        </ProvisionalContext.Provider></GamesContext.Provider>
       )}
     </div>
   );

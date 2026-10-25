@@ -4,6 +4,7 @@ import { pendingSeats, resultCapacity, swissGrid, teamEdges, type GridNode } fro
 import { taipeiMonthDay, taipeiTime } from "@/lib/time";
 import type { SwissSlot, SwissView, Team } from "@/lib/types";
 import { hasGames, useOpenGames } from "./games-context";
+import { useSeriesResult } from "./result-context";
 import { SwissMobile } from "./SwissMobile";
 import { SwissTable, type SwissMode } from "./SwissTable";
 import { TeamLogo } from "./TeamLogo";
@@ -170,7 +171,9 @@ function SlotRow({ slot: { match: m }, active, onHover, onPick }: { slot: SwissS
   const clickable = hasGames(m);
   const dimmed = active !== null && m.teamA?.id !== active && m.teamB?.id !== active;
   const live = m.state === "inProgress";
-  const side = (team: Team | null, score: number, which: "A" | "B") => {
+  const r = useSeriesResult(m);
+  const side = (team: Team | null, which: "A" | "B") => {
+    const score = r.kind === "pending" ? null : which === "A" ? r.scoreA : r.scoreB;
     const won = m.state === "completed" && m.winner === which;
     const lost = m.state === "completed" && m.winner !== null && m.winner !== which;
     return (
@@ -189,7 +192,7 @@ function SlotRow({ slot: { match: m }, active, onHover, onPick }: { slot: SwissS
         <span className={`truncate text-xs ${won ? "font-bold text-win" : lost ? "text-muted" : team ? "font-semibold" : "text-muted"}`}>
           {team?.code ?? "TBD"}
         </span>
-        {m.state !== "unstarted" && (
+        {m.state !== "unstarted" && score !== null && (
           <span className={`font-mono text-xs tabular-nums ${won ? "font-bold text-win" : "text-muted"}`}>{score}</span>
         )}
       </span>
@@ -201,11 +204,19 @@ function SlotRow({ slot: { match: m }, active, onHover, onPick }: { slot: SwissS
       onClick={clickable ? () => openGames(m.id) : undefined}
       className={`flex items-center gap-1 px-1.5 py-1 transition-opacity ${live ? "bg-live/10" : ""} ${dimmed ? "opacity-25" : ""} ${clickable ? "cursor-pointer hover:bg-panel-2" : ""}`}
     >
-      {side(m.teamA, m.scoreA, "A")}
-      <span className={`shrink-0 text-[10px] ${live ? "live-blink font-bold text-live" : "text-muted"}`}>
-        {live ? "LIVE" : m.state === "unstarted" ? taipeiMonthDay(m.startTime) : "vs"}
+      {side(m.teamA, "A")}
+      <span className={`shrink-0 text-[10px] ${live ? "live-blink font-bold text-live" : r.kind === "official" ? "text-muted" : "text-accent-2"}`}>
+        {live
+          ? "LIVE"
+          : r.kind === "pending"
+            ? "更新中"
+            : r.kind === "provisional"
+              ? "暫定"
+              : m.state === "unstarted"
+                ? taipeiMonthDay(m.startTime)
+                : "vs"}
       </span>
-      {side(m.teamB, m.scoreB, "B")}
+      {side(m.teamB, "B")}
     </li>
   );
 }

@@ -31,7 +31,8 @@ export const REVALIDATE_IDLE = 600;
 
 export function isLiveWindow(matches: Match[], now = Date.now()): boolean {
   return matches.some((m) => {
-    if (m.state === "inProgress") return true;
+    // 結果更新中也維持短快取，正式比分出來後盡快更新
+    if (m.state === "inProgress" || m.resultPending) return true;
     if (m.state === "completed" || !m.startTime) return false;
     const start = Date.parse(m.startTime);
     // 開賽前 15 分鐘起，到預估最長賽程（每局 75 分鐘）結束

@@ -26,6 +26,8 @@ export interface Match {
   state: MatchState;
   startTime: string; // ISO UTC
   blockName: string;
+  // 已完賽但比分還沒達到勝場數（上游端點更新時間不一）：顯示「結果更新中」，winner 為 null，瑞士輪戰績不計入
+  resultPending?: true;
 }
 
 export interface SwissRecord {

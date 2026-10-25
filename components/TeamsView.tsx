@@ -2,6 +2,7 @@ import { leagueLabel, ROLE_NAMES } from "@/config/leagues";
 import { taipeiMonthDay, taipeiTime, TZ_LABEL } from "@/lib/time";
 import type { Match, Player, TeamProfile, WorldsData } from "@/lib/types";
 import { involves } from "./focus";
+import { SeriesScore } from "./result-context";
 import { seedLabel, TeamLogo } from "./TeamLogo";
 
 type Status = { label: string; tone: "alive" | "qualified" | "eliminated" | "champion"; record: string | null };
@@ -10,12 +11,13 @@ type Status = { label: string; tone: "alive" | "qualified" | "eliminated" | "cha
 function statusOf(p: TeamProfile, data: WorldsData): Status {
   const id = p.team.id;
   const swiss = data.swiss.records.find((r) => r.team.id === id);
-  const ko = data.knockout.rounds.flat().map((s) => s.match).filter((m) => involves(m, id) && m.state === "completed");
+  // winner 為 null（結果更新中）的場次不判定勝負
+  const ko = data.knockout.rounds.flat().map((s) => s.match).filter((m) => involves(m, id) && m.state === "completed" && m.winner);
   const lostKo = ko.find((m) => (m.winner === "A" ? m.teamB : m.teamA)?.id === id);
   const final = data.knockout.rounds.at(-1)?.[0]?.match;
   const record = swiss ? `瑞士輪 ${swiss.wins}-${swiss.losses}` : null;
 
-  if (final?.state === "completed" && (final.winner === "A" ? final.teamA : final.teamB)?.id === id)
+  if (final?.state === "completed" && final.winner && (final.winner === "A" ? final.teamA : final.teamB)?.id === id)
     return { label: "冠軍", tone: "champion", record };
   if (lostKo) return { label: `${lostKo.blockName}淘汰`, tone: "eliminated", record };
   if (swiss?.status === "eliminated") return { label: "淘汰", tone: "eliminated", record };
@@ -192,8 +194,6 @@ function PlayerRow({ player: pl }: { player: Player }) {
 function MatchLink({ match: m, teamId, onJump }: { match: Match; teamId: string; onJump: (id: string) => void }) {
   const isA = m.teamA?.id === teamId;
   const opp = isA ? m.teamB : m.teamA;
-  const mine = isA ? m.scoreA : m.scoreB;
-  const theirs = isA ? m.scoreB : m.scoreA;
   const won = m.state === "completed" && (m.winner === "A") === isA;
   return (
     <li>
@@ -209,7 +209,7 @@ function MatchLink({ match: m, teamId, onJump }: { match: Match; teamId: string;
           vs <TeamLogo team={opp} size={14} /> <span className="truncate">{opp?.code ?? "TBD"}</span>
         </span>
         <span className={`font-mono ${m.state === "completed" ? (won ? "text-win" : "text-muted") : m.state === "inProgress" ? "text-live" : "text-muted"}`}>
-          {m.state === "unstarted" ? "未開始" : `${mine}-${theirs}`}
+          {m.state === "unstarted" ? "未開始" : <SeriesScore match={m} leftIsA={isA} sep="-" />}
         </span>
       </button>
     </li>

@@ -9,6 +9,7 @@ export interface TableCell {
   opponent: Team | null;
   result: "win" | "loss" | null; // 進行中為 null
   live: boolean;
+  pending: boolean; // 已完賽但結果更新中（不計勝敗）
   score: [number, number] | null; // [己方, 對手]；只有 Bo3 以上顯示
 }
 
@@ -42,7 +43,8 @@ export function swissTable(view: SwissView, cfg: typeof SWISS = SWISS): TableRow
           opponent: isA ? m.teamB : m.teamA,
           result: winner ? ((winner === "A") === isA ? "win" : "loss") : null,
           live: m.state === "inProgress",
-          score: m.bestOf > 1 ? (isA ? [m.scoreA, m.scoreB] : [m.scoreB, m.scoreA]) : null,
+          pending: !!m.resultPending,
+          score: m.bestOf > 1 && !m.resultPending ? (isA ? [m.scoreA, m.scoreB] : [m.scoreB, m.scoreA]) : null,
         };
       }),
     }));

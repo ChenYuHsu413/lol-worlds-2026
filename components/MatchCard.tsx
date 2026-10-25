@@ -2,6 +2,7 @@ import { taipeiMonthDay, taipeiTime } from "@/lib/time";
 import type { Match, Seat } from "@/lib/types";
 import { involves } from "./focus";
 import { hasGames, useOpenGames } from "./games-context";
+import { useSeriesResult } from "./result-context";
 import { TeamLogo } from "./TeamLogo";
 
 export const CARD_W = 216;
@@ -23,6 +24,10 @@ export function MatchCard({ match: m, label, provisional, focus, seats, x, y }: 
   const live = m.state === "inProgress";
   const openGames = useOpenGames();
   const clickable = hasGames(m);
+  const r = useSeriesResult(m);
+  // 結果更新中不顯示比分（避免 0:0）；暫定比分依 team id 對應
+  const scoreOf = (seat: Seat) =>
+    r.kind === "official" ? seat.score : r.kind === "pending" ? null : seat.team?.id === m.teamA?.id ? r.scoreA : r.scoreB;
   return (
     <div
       onClick={clickable ? () => openGames(m.id) : undefined}
@@ -39,6 +44,8 @@ export function MatchCard({ match: m, label, provisional, focus, seats, x, y }: 
         <span className="shrink-0 font-mono">
           {live ? (
             <span className="live-blink font-bold text-live">● LIVE</span>
+          ) : r.kind !== "official" ? (
+            <span className="text-accent-2">{r.kind === "pending" ? "結果更新中" : "暫定比分"}</span>
           ) : m.startTime ? (
             `${taipeiMonthDay(m.startTime)} ${taipeiTime(m.startTime)}・Bo${m.bestOf}`
           ) : (
@@ -46,8 +53,8 @@ export function MatchCard({ match: m, label, provisional, focus, seats, x, y }: 
           )}
         </span>
       </div>
-      <TeamRow seat={seats[0]} focus={focus} />
-      <TeamRow seat={seats[1]} focus={focus} />
+      <TeamRow seat={{ ...seats[0], score: scoreOf(seats[0]) }} focus={focus} />
+      <TeamRow seat={{ ...seats[1], score: scoreOf(seats[1]) }} focus={focus} />
     </div>
   );
 }

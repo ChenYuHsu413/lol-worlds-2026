@@ -139,7 +139,8 @@ function PathSummary({ team, slots, teamId, onClear }: { team: Team | null; slot
         {mine.map((s) => {
           const opp = s.match.teamA?.id === teamId ? s.match.teamB : s.match.teamA;
           const isA = s.match.teamA?.id === teamId;
-          const res = s.match.state !== "completed" ? "待賽" : (s.match.winner === "A") === isA ? "勝" : "敗";
+          const res =
+            s.match.state !== "completed" ? "待賽" : !s.match.winner ? "更新中" : (s.match.winner === "A") === isA ? "勝" : "敗";
           return (
             <span key={s.match.id} className="whitespace-nowrap">
               R{s.round} {res} {opp?.code ?? "TBD"}

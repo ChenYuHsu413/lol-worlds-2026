@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { swissTable, TIEBREAK_NOTE, type TableCell } from "@/lib/swiss-table";
 import type { SwissView } from "@/lib/types";
 import { hasGames, useOpenGames } from "./games-context";
+import { useSeriesResult } from "./result-context";
 import { TeamLogo } from "./TeamLogo";
 
 export type SwissMode = "bracket" | "table";
@@ -109,7 +110,15 @@ export function SwissTable({ view, focus, onFocus }: { view: SwissView; focus: s
 
 function Cell({ cell: c }: { cell: TableCell }) {
   const openGames = useOpenGames();
-  const tone = c.live ? "bg-live/10 text-live" : c.result === "win" ? "bg-win-bg text-win" : "bg-loss-bg text-muted";
+  const r = useSeriesResult(c.match);
+  const tone = c.live
+    ? "bg-live/10 text-live"
+    : c.pending
+      ? "bg-panel-2 text-accent-2"
+      : c.result === "win"
+        ? "bg-win-bg text-win"
+        : "bg-loss-bg text-muted";
+  const mine = c.match.teamA?.id === c.opponent?.id ? "B" : "A";
   return (
     <button
       onClick={hasGames(c.match) ? () => openGames(c.match.id) : undefined}
@@ -117,7 +126,21 @@ function Cell({ cell: c }: { cell: TableCell }) {
       className={`flex items-center gap-1.5 rounded px-1.5 py-1 text-xs font-bold ${tone}`}
     >
       <TeamLogo team={c.opponent} size={18} />
-      {c.live ? <span className="live-blink">LIVE</span> : c.result === "win" ? "勝" : "敗"}
+      {c.live ? (
+        <span className="live-blink">LIVE</span>
+      ) : c.pending ? (
+        r.kind === "provisional" ? (
+          <span className="font-normal">
+            暫定 {mine === "A" ? `${r.scoreA}-${r.scoreB}` : `${r.scoreB}-${r.scoreA}`}
+          </span>
+        ) : (
+          <span className="font-normal">更新中</span>
+        )
+      ) : c.result === "win" ? (
+        "勝"
+      ) : (
+        "敗"
+      )}
       {c.score && <span className="font-mono font-normal tabular-nums">{c.score.join("-")}</span>}
     </button>
   );

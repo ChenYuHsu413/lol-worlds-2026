@@ -4,6 +4,7 @@ import { taipeiDateKey, taipeiDayHeading, taipeiTime, TZ_LABEL } from "@/lib/tim
 import type { Match } from "@/lib/types";
 import { MatchCardMobile } from "./MatchCardMobile";
 import { MatchState } from "./MatchState";
+import { SeriesScore } from "./result-context";
 import { hasGames, useOpenGames } from "./games-context";
 import { TeamLogo, TeamName } from "./TeamLogo";
 import { involves } from "./focus";
@@ -201,8 +202,8 @@ function ScheduleRow({ match: m, dimmed, highlighted }: { match: Match; dimmed: 
           <TeamName team={a.team} />
           <TeamLogo team={a.team} />
         </span>
-        <span className="w-14 shrink-0 text-center font-mono text-base font-bold tabular-nums">
-          {m.state === "unstarted" ? <span className="text-muted">vs</span> : `${m.scoreA} : ${m.scoreB}`}
+        <span className="min-w-14 shrink-0 text-center font-mono text-base font-bold tabular-nums">
+          {m.state === "unstarted" ? <span className="text-muted">vs</span> : <SeriesScore match={m} />}
         </span>
         <span className={`flex min-w-0 flex-1 items-center gap-1.5 ${b.lost ? "opacity-50" : ""}`}>
           <TeamLogo team={b.team} />

@@ -4,6 +4,7 @@ import { seatsInApiOrder } from "@/lib/bracket";
 import type { Match, Seat, Team } from "@/lib/types";
 import { involves } from "./focus";
 import { hasGames, useOpenGames } from "./games-context";
+import { SeriesScore } from "./result-context";
 import { TeamLogo } from "./TeamLogo";
 
 interface Props {
@@ -53,8 +54,12 @@ export function MatchCardMobile({ match: m, label, next, provisional, seats, foc
 
       <div className="mt-1.5 grid grid-cols-[1fr_auto_1fr] items-center gap-2">
         <TeamCell seat={left} align="right" selected={selected} onTeamClick={onTeamClick} />
-        <span className="w-14 text-center font-mono text-lg font-bold tabular-nums">
-          {m.state === "unstarted" ? <span className="text-sm text-muted">vs</span> : `${left.score ?? 0} : ${right.score ?? 0}`}
+        <span className="min-w-14 text-center font-mono text-lg font-bold tabular-nums">
+          {m.state === "unstarted" ? (
+            <span className="text-sm text-muted">vs</span>
+          ) : (
+            <SeriesScore match={m} leftIsA={!left.team || left.team.id === m.teamA?.id} />
+          )}
         </span>
         <TeamCell seat={right} align="left" selected={selected} onTeamClick={onTeamClick} />
       </div>

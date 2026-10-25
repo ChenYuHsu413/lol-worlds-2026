@@ -65,8 +65,10 @@ export function buildSwiss(
   };
   const actual = new Map<string, Bucket>();
   const known = (m: Match) => m.teamA ?? m.teamB;
+  // 結果更新中的場次視同未完賽，戰績與晉級判定不會短暫跳動
+  const done = (m: Match) => m.state === "completed" && !m.resultPending;
 
-  for (const m of [...swissMatches].filter((x) => x.state === "completed").sort(byTime)) {
+  for (const m of [...swissMatches].filter(done).sort(byTime)) {
     if (!m.teamA || !m.teamB) {
       warn(`已完賽的瑞士輪場次 ${m.id} 缺隊伍資料`);
       continue;
@@ -85,7 +87,7 @@ export function buildSwiss(
 
   // 未完賽但隊伍已知：賽前戰績 = 目前戰績
   for (const m of swissMatches) {
-    if (m.state === "completed") continue;
+    if (done(m)) continue;
     for (const t of [m.teamA, m.teamB]) if (t) rec(t);
     const t = known(m);
     if (!t) continue;

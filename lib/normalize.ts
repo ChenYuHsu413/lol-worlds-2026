@@ -7,6 +7,7 @@ import type {
   ApiTeam,
   GetStandingsResponse,
 } from "./api-types";
+import { isDecided } from "./result";
 import type { Match, MatchState, Stage, Team } from "./types";
 
 export type Warn = (msg: string, detail?: unknown) => void;
@@ -66,19 +67,33 @@ export function mergeMatches(
         const event = eventById.get(m.id);
         if (!event) standingsOnly.push(m.id);
         const [a, b] = m.teams;
+        const bestOf = event?.match.strategy.count ?? 0;
+        const state = (event?.state ?? m.state) as MatchState;
+        let scoreA = a?.result?.gameWins ?? 0;
+        let scoreB = b?.result?.gameWins ?? 0;
+        let winner: Match["winner"] = a?.result?.outcome === "win" ? "A" : b?.result?.outcome === "win" ? "B" : null;
+        // state 來自 schedule、比分來自 standings，兩者更新時間不一：state 已完賽但 standings 比分還沒分出勝負時，
+        // 改用同一個 schedule event 的比分（與 state 同一份回應）
+        if (state === "completed" && !isDecided(scoreA, scoreB, bestOf)) {
+          const res = (t: ApiStandingsTeam | undefined) => event?.match.teams.find((x) => t && x.code === t.code)?.result;
+          const [ea, eb] = [res(a)?.gameWins ?? 0, res(b)?.gameWins ?? 0];
+          if (isDecided(ea, eb, bestOf)) [scoreA, scoreB, winner] = [ea, eb, ea > eb ? "A" : "B"];
+        }
+        const resultPending = state === "completed" && !isDecided(scoreA, scoreB, bestOf);
         matches.push({
           id: m.id,
           stage: internal,
           round: null,
-          bestOf: event?.match.strategy.count ?? 0,
+          bestOf,
           teamA: a ? toTeam(a) : null,
           teamB: b ? toTeam(b) : null,
-          scoreA: a?.result?.gameWins ?? 0,
-          scoreB: b?.result?.gameWins ?? 0,
-          winner: a?.result?.outcome === "win" ? "A" : b?.result?.outcome === "win" ? "B" : null,
-          state: (event?.state ?? m.state) as MatchState,
+          scoreA,
+          scoreB,
+          winner: resultPending ? null : winner,
+          state,
           startTime: event?.startTime ?? "",
           blockName: event?.blockName ?? stage.name,
+          ...(resultPending ? { resultPending: true as const } : {}),
         });
       }
     }
