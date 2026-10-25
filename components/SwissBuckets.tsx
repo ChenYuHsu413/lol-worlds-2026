@@ -5,17 +5,28 @@ import { taipeiMonthDay, taipeiTime } from "@/lib/time";
 import type { SwissSlot, SwissView, Team } from "@/lib/types";
 import { hasGames, useOpenGames } from "./games-context";
 import { SwissMobile } from "./SwissMobile";
+import { SwissTable, type SwissMode } from "./SwissTable";
 import { TeamLogo } from "./TeamLogo";
 
 const COL_MIN = 150;
 const GAP_X = 28;
 const GRID = swissGrid();
 
-export function SwissBuckets({ view, focus }: { view: SwissView; focus: string | null }) {
+export function SwissBuckets({
+  view,
+  focus,
+  mode,
+  onFocus,
+}: {
+  view: SwissView;
+  focus: string | null;
+  mode: SwissMode; // 只影響桌機
+  onFocus: (id: string) => void;
+}) {
   return (
     <>
       <div className="hidden md:block">
-        <SwissDesktop view={view} focus={focus} />
+        {mode === "table" ? <SwissTable view={view} focus={focus} onFocus={onFocus} /> : <SwissDesktop view={view} focus={focus} />}
       </div>
       <div className="md:hidden">
         <SwissMobile view={view} focus={focus} />

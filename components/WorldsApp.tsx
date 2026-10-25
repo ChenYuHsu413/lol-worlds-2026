@@ -10,6 +10,7 @@ import { PlayInBracket } from "./PlayInBracket";
 import { ScheduleList } from "./ScheduleList";
 import { SwissBuckets } from "./SwissBuckets";
 import { SwissPools } from "./SwissPools";
+import { SwissModeToggle, useSwissMode } from "./SwissTable";
 import { TeamsView } from "./TeamsView";
 
 type Tab = Stage | "schedule" | "teams";
@@ -30,6 +31,7 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
   const [jumpTo, setJumpTo] = useState<string | null>(null);
   const [gamesId, setGamesId] = useState<string | null>(null);
   const [openTeam, setOpenTeam] = useState<string | null>(null);
+  const [swissMode, setSwissMode] = useSwissMode();
   const { data, error } = payload;
 
   // 從隊伍頁點場次：切到賽程列表並捲到該場
@@ -187,8 +189,9 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
           {tab === "playin" && <PlayInBracket view={data.playin} focus={focus} />}
           {tab === "swiss" && (
             <>
+              <SwissModeToggle mode={swissMode} onChange={setSwissMode} />
               <SwissPools draw={data.swissDraw} teams={data.teams} />
-              <SwissBuckets view={data.swiss} focus={focus} />
+              <SwissBuckets view={data.swiss} focus={focus} mode={swissMode} onFocus={setFocus} />
             </>
           )}
           {tab === "knockout" && <KnockoutBracket view={data.knockout} focus={focus} />}
