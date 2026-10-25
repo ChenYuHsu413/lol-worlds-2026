@@ -55,7 +55,8 @@ html.light {
 
 html,
 body {
-  overflow-x: hidden;
+  /* 用 clip 而非 hidden：hidden 會讓 body 變成捲動容器，頁籤列與日期標題的 sticky 失效 */
+  overflow-x: clip;
 }
 
 body {

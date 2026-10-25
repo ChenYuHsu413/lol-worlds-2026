@@ -132,7 +132,11 @@ export function WorldsApp({ initial, fixture }: { initial: WorldsPayload; fixtur
 
       {data && (
         <GamesContext.Provider value={setGamesId}>
-          <nav className="mb-4 hidden gap-1 overflow-x-auto border-b border-line md:flex" role="tablist">
+          {/* 桌機頁籤固定在頂部（賽程頁捲到今天時，日期標題接在頁籤下方） */}
+          <nav
+            className="sticky top-0 z-30 -mx-4 mb-4 hidden gap-1 overflow-x-auto border-b border-line bg-bg/95 px-4 backdrop-blur md:flex"
+            role="tablist"
+          >
             {TABS.map((t) => (
               <button
                 key={t.key}
