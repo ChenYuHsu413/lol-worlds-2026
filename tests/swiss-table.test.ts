@@ -50,12 +50,19 @@ describe("戰績表：2026 正式資料（R3 進行中）", () => {
     expect(rows.every((r) => r.status === "alive")).toBe(true);
   });
 
-  it("進行中的場次標 LIVE、未打的留空", () => {
+  it("進行中的場次標 LIVE、尚未配對的留空", () => {
     const hle = row(rows, "HLE");
-    expect(hle.rounds[2]).toMatchObject({ live: true, result: null });
+    expect(hle.rounds[2]).toMatchObject({ live: true, upcoming: false, result: null });
     expect(hle.rounds[2]!.opponent?.code).toBe("IG");
-    expect(hle.rounds.slice(3)).toEqual([null, null]);
-    expect(row(rows, "MKOI").rounds[2]).toBeNull(); // R3 已配對但未開打
+    expect(hle.rounds.slice(3)).toEqual([null, null]); // R4、R5 尚未配對
     expect(row(rows, "MKOI").rounds.slice(0, 2).map((c) => c?.result)).toEqual(["win", "win"]);
+  });
+
+  it("已配對但未開打：有對手與開賽時間、沒有勝負", () => {
+    const r3 = row(rows, "MKOI").rounds[2]!;
+    expect(r3).toMatchObject({ upcoming: true, live: false, result: null });
+    expect(r3.opponent?.code).toBe("DK");
+    expect(r3.match.startTime).toBe("2026-10-25T19:00:00Z"); // 台灣 10/26 03:00
+    expect(row(rows, "DK").rounds[2]!.opponent?.code).toBe("MKOI");
   });
 });

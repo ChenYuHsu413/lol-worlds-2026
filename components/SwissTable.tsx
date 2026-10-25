@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { swissTable, TIEBREAK_NOTE, type TableCell } from "@/lib/swiss-table";
+import { taipeiMonthDay, taipeiTime } from "@/lib/time";
 import type { SwissView } from "@/lib/types";
 import { hasGames, useOpenGames } from "./games-context";
 import { useSeriesResult } from "./result-context";
@@ -66,7 +67,7 @@ export function SwissTable({ view, focus, onFocus }: { view: SwissView; focus: s
             <tr>
               <th className="px-3 py-2 text-left font-semibold">隊伍</th>
               {Array.from({ length: rounds }, (_, i) => (
-                <th key={i} className="w-28 px-2 py-2 text-left font-semibold">
+                <th key={i} className="w-32 px-2 py-2 text-left font-semibold">
                   R{i + 1}
                 </th>
               ))}
@@ -111,6 +112,17 @@ export function SwissTable({ view, focus, onFocus }: { view: SwissView; focus: s
 function Cell({ cell: c }: { cell: TableCell }) {
   const openGames = useOpenGames();
   const r = useSeriesResult(c.match);
+  if (c.upcoming)
+    return (
+      <span className="flex items-center gap-1.5 px-1.5 py-1 text-xs text-muted" title={`vs ${c.opponent?.name}・Bo${c.match.bestOf}`}>
+        <span className="opacity-50">
+          <TeamLogo team={c.opponent} size={18} />
+        </span>
+        <span className="whitespace-nowrap font-mono tabular-nums">
+          {taipeiMonthDay(c.match.startTime)} {taipeiTime(c.match.startTime)}
+        </span>
+      </span>
+    );
   const tone = c.live
     ? "bg-live/10 text-live"
     : c.pending

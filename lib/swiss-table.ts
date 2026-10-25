@@ -9,6 +9,7 @@ export interface TableCell {
   opponent: Team | null;
   result: "win" | "loss" | null; // 進行中為 null
   live: boolean;
+  upcoming: boolean; // 已配對、未開打
   pending: boolean; // 已完賽但結果更新中（不計勝敗）
   score: [number, number] | null; // [己方, 對手]；只有 Bo3 以上顯示
 }
@@ -18,7 +19,7 @@ export interface TableRow {
   wins: number;
   losses: number;
   status: SwissRecord["status"];
-  rounds: (TableCell | null)[]; // 未打為 null
+  rounds: (TableCell | null)[]; // 尚未配對為 null
 }
 
 // 官方 Primer 沒有寫同戰績的排名規則，所以同戰績依隊名排序（畫面上會註明）
@@ -35,14 +36,17 @@ export function swissTable(view: SwissView, cfg: typeof SWISS = SWISS): TableRow
       status: r.status,
       rounds: Array.from({ length: rounds }, (_, i) => {
         const m = view.slots.find((s) => s.round === i + 1 && (s.match.teamA?.id === r.team.id || s.match.teamB?.id === r.team.id))?.match;
-        if (!m || m.state === "unstarted") return null;
+        if (!m) return null;
         const isA = m.teamA?.id === r.team.id;
+        const opponent = isA ? m.teamB : m.teamA;
+        if (m.state === "unstarted" && !opponent) return null; // 尚未配對
         const winner = m.state === "completed" ? m.winner : null;
         return {
           match: m,
-          opponent: isA ? m.teamB : m.teamA,
+          opponent,
           result: winner ? ((winner === "A") === isA ? "win" : "loss") : null,
           live: m.state === "inProgress",
+          upcoming: m.state === "unstarted",
           pending: !!m.resultPending,
           score: m.bestOf > 1 && !m.resultPending ? (isA ? [m.scoreA, m.scoreB] : [m.scoreB, m.scoreA]) : null,
         };
